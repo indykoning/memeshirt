@@ -1,2 +1,2 @@
 RewriteEngine On 
-rewriteRule ^([A-Za-z0-9-]+)/?$ index.php?page=$1 [L,NC,QSA]
+rewriteRule ^([A-Za-z0-9-]+)/?$ index.php?action=$1 [L,NC,QSA]

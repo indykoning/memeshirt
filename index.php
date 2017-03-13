@@ -1,4 +1,5 @@
 <?php
+define('TITLE', 'MemeShirt');
 //require_once 'classes/Login.php';
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 //$login = new Login('users', 'id', 'email', 'wachtwoord', 'key');

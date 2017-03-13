@@ -1,4 +1,3 @@
-<h1>nav</h1>
 <nav><img src=""> <ul><li><a href="ontwerpen">ontwerpen</a></li><li class="winkelmand"></li></ul></nav>
 <form style="display: none" id="registerForm" method="post">
     <table>

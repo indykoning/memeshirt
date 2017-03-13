@@ -18,3 +18,4 @@ include_once 'views/404.php';
 }else{
     include_once 'views/home.php';
 }
+include_once "views/footer.php";

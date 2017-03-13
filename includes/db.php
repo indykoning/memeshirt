@@ -6,3 +6,4 @@ if ($mysqli->connect_errno) {
     echo "Kan niet connecten met database, Error MySQL:
     (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
+

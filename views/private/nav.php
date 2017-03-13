@@ -1,5 +1,4 @@
-<h1>nav</h1>
-<nav><img src=""> <ul><li><a href="ontwerpen" </li><li class="winkelmand"></li></ul></nav>
+<nav><img src=""> <ul><li><a href="ontwerpen">ontwerpen</a></li><li class="winkelmand"></li></ul></nav>
 <form style="display: none" id="registerForm" method="post">
     <table>
         <tr><td><label>e-mail</label></td><td><input type="text" name="username" placeholder="e-mail"></td></tr>

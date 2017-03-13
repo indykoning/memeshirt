@@ -2,7 +2,7 @@
 require_once "includes/config.php";
 require_once  "includes/db.php";
 
-define('TITLE', 'MemeShirt');
+
 //require_once 'classes/Login.php';
 $action = isset($_GET['action']) ? $_GET['action'] : 'home';
 //$login = new Login('users', 'id', 'email', 'wachtwoord', 'key');
@@ -13,7 +13,6 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'home';
 //    $login->logout();
 //}
 //define('LOGGED_IN', $login->loggedin());
-
 include_once "views/private/header.php";
 include_once "views/private/nav.php";
     if(file_exists('views/'. $action . '.php')){
@@ -24,4 +23,4 @@ include_once "views/private/nav.php";
     }
 include_once "views/private/footer.php";
 
-var_dump($action);
+

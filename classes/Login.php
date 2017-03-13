@@ -30,14 +30,23 @@ class Login extends PDO
         }
     }
 
-    public function loggedin()
+    public function loggedin($get_rows_array = array())
     {
             if (!empty($_SESSION['KEY']) && !empty( $_SESSION['ID']) && !empty($_SESSION['IP']) && $_SESSION['KEY'] !== '' && $_SESSION['IP'] == $_SERVER["REMOTE_ADDR"]) {
+                $select_string = "";
+                if (!empty($get_rows_array)) {
+                    $select_string = ",".implode(",", $get_rows_array);
+                }
+
                 $id = $_SESSION['ID'];
-                $stmt = $this->db->prepare("SELECT `" . $this->key_rowName. "` FROM `$this->table` WHERE `". $this->id_rowName. "`=".$id);
+                $stmt = $this->db->prepare("SELECT `" . $this->key_rowName. "` $select_string FROM `$this->table` WHERE `". $this->id_rowName. "`=".$id);
                 $stmt->execute();
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($row[$this->key_rowName] == $_SESSION['KEY']){
+                    $this->Return_array = [];
+                    for ($j = 0; $j<count($get_rows_array); $j++){
+                        $this->Return_array[$get_rows_array[$j]] = $row[$get_rows_array[$j]];
+                    }
                     return 1;
                 }else{
                     return 0;
@@ -58,8 +67,12 @@ class Login extends PDO
         header('location: ' . $returnLocation);
     }
 
-    public function login($username, $password){
-        $stmt = $this->db->prepare("SELECT `" . $this->password_rowName . "`,`" . $this->id_rowName . "` FROM `" . $this->table . "` WHERE ". $this->username_rowName ." = :username");
+    public function login($username, $password, $get_rows_array = array()){
+        $select_string = "";
+        if (!empty($get_rows_array)) {
+        $select_string = ",".implode(",", $get_rows_array);
+        }
+        $stmt = $this->db->prepare("SELECT `" . $this->password_rowName . "`,`" . $this->id_rowName . "` $select_string FROM `" . $this->table . "` WHERE ". $this->username_rowName ." = :username");
         $stmt->bindValue(':username', filter_var($username, FILTER_SANITIZE_STRING), PDO::PARAM_STR);
         if($stmt->execute()){
             $row = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
@@ -85,6 +98,11 @@ class Login extends PDO
                 $_SESSION['IP'] = $_SERVER["REMOTE_ADDR"];
                 $login_key = hash('whirlpool', rand(0, 500));
                 $_SESSION['KEY'] = $login_key;
+                $this->Return_array = [];
+                for ($j = 0; $j<count($get_rows_array); $j++){
+                $this->Return_array[$get_rows_array[$j]] = $row[$get_rows_array[$j]];
+                }
+
                 $this->db->query("UPDATE `" . $this->table . "` SET `".$this->key_rowName. "`='". $login_key. "' WHERE `". $this->id_rowName ."`=".$row['id']);
 
                 return 1;
@@ -96,7 +114,7 @@ class Login extends PDO
         }
     }
 
-    public function register($username, $password, $additional_rows = array()){
+    public function register($username, $password, $additional_rows_assoc = array()){
 
         switch ($this->pass_hash){
             case 1:
@@ -108,14 +126,14 @@ class Login extends PDO
         }
         $rows = '';
         $values = '';
-        foreach ($additional_rows as $key => $value){
+        foreach ($additional_rows_assoc as $key => $value){
         $rows .= ", `$key`";
         $values .= ", :$key";
         }
 
         $stmt = $this->db->prepare("INSERT INTO `". $this->table ."` (`". $this->username_rowName ."`, `" . $this->password_rowName ."`" . $rows . ") VALUES (:username,'" . $password ."' " . $values . ")");
         $stmt->bindValue(':username', filter_var($username, FILTER_SANITIZE_STRING), PDO::PARAM_STR);
-        foreach ($additional_rows as $key => $value) {
+        foreach ($additional_rows_assoc as $key => $value) {
             $stmt->bindValue(':' . $key, filter_var($value, FILTER_SANITIZE_STRING), PDO::PARAM_STR);
         }
 
@@ -124,6 +142,10 @@ class Login extends PDO
         }else{
             return 0;
         }
+
+    }
+    public function getArray(){
+        return $this->Return_array;
 
     }
 }

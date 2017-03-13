@@ -9,6 +9,9 @@ $action = isset($_GET['page']) ? $_GET['page'] : '';
 //    $login->logout();
 //}
 //define('LOGGED_IN', $login->loggedin());
+
+include_once "views/private/header.php";
+include_once "views/private/nav.php";
 if($action != ''){
 if(file_exists('views/'. $action . '.php')){
 include_once 'views/'. $action . '.php';
@@ -18,6 +21,4 @@ include_once 'views/404.php';
 }else{
     include_once 'views/home.php';
 }
-include_once "views/footer.php";
-
-var_dump($a);
+include_once "views/private/footer.php";

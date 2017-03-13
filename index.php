@@ -20,4 +20,4 @@ include_once 'views/404.php';
 }
 include_once "views/footer.php";
 
-var_dump($action);
+var_dump($a);

@@ -64,7 +64,7 @@ class Login extends PDO
         $_SESSION['IP'] = '';
         session_unset();
         session_destroy();
-        header('location: ' . $returnLocation);
+//        header('location: ' . $returnLocation);
     }
 
     public function login($username, $password, $get_rows_array = array()){

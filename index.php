@@ -15,7 +15,7 @@ if (isset($_GET['logout'])){
     $login->logout();
 }
 define('LOGGED_IN', $login->loggedin(['rank']));
-var_dump($login->getArray());
+//var_dump($login->getArray());
 define('rank', $login->getArray()['rank']);
 
 

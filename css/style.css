@@ -1,0 +1,161 @@
+/* --------> Basis codes <--------*/
+
+body, html {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url(../links/wallpaper.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden; 
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}  
+
+/* --------> Tekst <--------*/
+
+h1, h2, h3, h4 {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+}
+p {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+}
+
+.h2_home {
+    font-size: 8vh;
+    color: #73B7E5;
+}
+
+.h_button_home {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 3vh;
+    color: #73B7E5;
+}
+
+/* --------> Navigatie <--------*/
+
+.p_nav {
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #F49517;
+    background-color: transparent;
+}
+
+ul.nav {
+    float: right;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+    text-align: right;
+}
+
+.navigation_bar {
+    background-color: rgba(0,0,0,0.90);
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-toggle {
+    border: none;
+}
+
+.navbar {
+    min-height: 51px;
+}
+
+.navbar_no_border {
+    border: none;   
+}
+
+
+/* --------> Sections <--------*/
+
+.wrapper_home {
+    background-color: rgba(0, 0, 0, 0.0);
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    padding-top: 100px;
+    padding-left: 50px;
+}
+
+.wrapper_winkelen {
+    background: white;
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    padding-top: 100px;
+    padding-left: 50px;
+}
+
+/* --------> Buttons <--------*/
+
+.btn_ontwerpen {
+    background-color: transparent;
+    border: 2px solid #F49517;
+    color: #ff9800;
+    margin: 20px;
+    width: 35vh;
+    height: 7vh;
+    margin-left: 0;
+}
+
+.btn_ontwerpen:hover {
+    background-color: #F49517;
+    border: 2px solid #F49517;
+    color: black;
+    margin: 20px;
+    width: 35vh;
+    margin-left: 0;
+}
+
+.btn_ontwerpen:focus {
+    background-color: transparent;
+    border: 2px solid #F49517;
+    color: #F49517;
+    margin: 20px;
+    width: 35vh;
+    margin-left: 0;
+}
+
+/* --------> @media <--------*/
+
+@media (max-width: 620px) {
+    .html, body {
+        background-image: url(../links/wallpaper_mobile.jpg);
+    }
+    
+    .navigation_bar {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}

@@ -2,33 +2,6 @@
 
 <a href="http://snoep.at/clients/thisway/poc/">http://snoep.at/clients/thisway/poc/</a>
 
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12">
-            <nav class="navbar navbar-inverse navbar-fixed-top navbar-right-top navigation_bar">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="#" class="navbar-left">MemeShirt</a>
-                    </div>
-                    <div class="collapse navbar-collapse navbar_no_border" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#" class="p_nav">Winkelen</a></li>
-                            <li><a href="#" class="p_nav">Ontwerpen</a></li>
-                            <li><a href="#" class="p_nav">Inloggen</a></li>
-                            <li><a href="#" class="p_nav">Winkelwagen</a></li>
-                        </ul>
-                    </div>
-                </div> <!-- eind container fluid nav -->
-            </nav>
-        </div>
-    </div> <!-- eind row navbar  -->
     <div class="row">
         <div class="col-xs-12">
             <div class="wrapper_home">

@@ -6,7 +6,7 @@ require_once 'classes/Login.php';
 $action = isset($_GET['action']) ? $_GET['action'] : 'home';
 $login = new Login('users', 'id', 'email', 'wachtwoord', 'key');
 if(!empty($_POST['registreren'])){
-    $login->register($_POST['email'],$_POST['wachtwoord']);
+    $login->register($_POST['email'],$_POST['wachtwoord'], array("voornaam"=>$_POST['voornaam'], "achternaam"=>$_POST['achternaam'], "straatnaam"=>$_POST['straatnaam'], "huisnummer"=>$_POST['huisnummer'], "postcode"=>$_POST['postcode'], "plaatsnaam"=>$_POST['plaatsnaam'],"rank"=>0));
 }
 if(!empty($_POST['login'])){
     $login->login($_POST['email'],$_POST['wachtwoord']);

@@ -1,3 +1,5 @@
+
+
 (function() {
     var upload = document.getElementById('fileUpload');
     var canvas = this.__canvas = new fabric.Canvas('editor');
@@ -25,9 +27,21 @@
         };
     }
 
-    addHandler('color', function(obj) {
-        setStyle(obj, 'fill', this.value);
-    }, 'onchange');
+
+    var input = document.createElement('INPUT');
+    var picker = new jscolor(input, {
+        value: "000000",
+    });
+
+    input.addEventListener('change', function(e){
+        var color = e.target.value;
+        var obj = canvas.getActiveObject();
+        setStyle(obj, 'fill', '#'+color);
+        canvas.renderAll();
+        console.log(color);
+    });
+    document.getElementById('colordiv').appendChild(input);
+
     addHandler('size', function(obj) {
         setStyle(obj, 'fontSize', parseInt(this.value, 10));
     }, 'onchange');
@@ -41,11 +55,11 @@
 
     document.getElementById('addtextBut').addEventListener('click', function () {
         // textArr.push(document.getElementById('addtext').value);
-
+        var fillcolor = "#"+input.value;
         var index = textArr.push(canvas.add(new fabric.IText(document.getElementById('addtext').value, {
             left: 100, //Take the block's position
             top: 100,
-            fill: 'black'
+            fill: fillcolor
         })));
         console.log(index);
         textArr[index-1].on('selected', function() {

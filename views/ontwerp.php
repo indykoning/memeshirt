@@ -3,7 +3,7 @@
 <head><title>move</title></head>
 <body>
 <script src="js/fabric.js"></script>
-
+<script src="js/jscolor.js"></script>
 <div id="step-1">
     <!--stap 1-->
 </div>
@@ -15,7 +15,9 @@
 <div id="step-3">
     <!--stap 3-->
     <input type="text" id="addtext"><input id="addtextBut" type="button" value="voeg toe"><br>
-    <input type="color" id="color"><br>
+    <!--<input type="color" id="color">-->
+    <div id="colordiv"></div>
+    <br>
     <input type="range" min="5" max="150" value="40" id="size">
     <canvas style="border: solid black" id="editor" width="670" height="474"></canvas>
     <img src="" id="test" class="canvas-img">

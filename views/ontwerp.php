@@ -18,7 +18,7 @@
     <!--<input type="color" id="color">-->
     <div id="colordiv"></div>
     <br>
-    <input type="range" min="5" max="150" value="40" id="size">
+    <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
     <canvas style="border: solid black" id="editor" width="670" height="474"></canvas>
     <img src="" id="test" class="canvas-img">
 </div>

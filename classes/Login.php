@@ -128,15 +128,14 @@ class Login extends PDO
         $values = '';
         foreach ($additional_rows_assoc as $key => $value){
         $rows .= ", `$key`";
-        $values .= ", :$key";
+        $values .= ", :" . str_replace(' ', '_', $key) . "PDO_VALUE";
         }
-
-        $stmt = $this->db->prepare("INSERT INTO `". $this->table ."` (`". $this->username_rowName ."`, `" . $this->password_rowName ."`" . $rows . ") VALUES (:username,'" . $password ."' " . $values . ")");
+        $stmt = $this->db->prepare("INSERT INTO `". $this->table ."` (`". $this->username_rowName ."`, `" . $this->password_rowName ."` " . $rows . ") VALUES (:username, '$password' " . $values . ")");
         $stmt->bindValue(':username', filter_var($username, FILTER_SANITIZE_STRING), PDO::PARAM_STR);
+//        $stmt->bindValue(':password', $username, PDO::PARAM_STR);
         foreach ($additional_rows_assoc as $key => $value) {
-            $stmt->bindValue(':' . $key, filter_var($value, FILTER_SANITIZE_STRING), PDO::PARAM_STR);
+            $stmt->bindValue(':' . str_replace(' ', '_', $key) . "PDO_VALUE", filter_var($value, FILTER_SANITIZE_STRING), PDO::PARAM_STR);
         }
-
         if ($stmt->execute()){
             return 1;
         }else{

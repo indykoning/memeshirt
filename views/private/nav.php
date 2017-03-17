@@ -9,7 +9,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="#" class="navbar-left">MemeShirt</a>
+                        <a href="home" class="navbar-left">MemeShirt</a>
                     </div>
                     <div class="collapse navbar-collapse navbar_no_border" id="myNavbar">
                         <ul class="nav navbar-nav">

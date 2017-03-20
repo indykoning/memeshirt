@@ -41,3 +41,5 @@ function changeStep(stepNumber) {
 }
 
 changeStep(0);
+
+//stap 1

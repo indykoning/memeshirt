@@ -1,5 +1,4 @@
-
-
+var canvas = this.__canvas = new fabric.Canvas('editor');
 (function() {
     window.mobileAndTabletcheck = function() {
         var check = false;
@@ -12,10 +11,9 @@
         var cornersize = 14;
     }
     var upload = document.getElementById('fileUpload');
-    var canvas = this.__canvas = new fabric.Canvas('editor');
+
     var imgbuffer;
     var textArr = [];
-
 
     document.getElementById('deleteButton').addEventListener('click', function () {
         canvas.getActiveObject().remove();

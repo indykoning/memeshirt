@@ -1,15 +1,13 @@
 <?php
-$_SESSION['bestelling_id']= 1;
+//$_SESSION['bestelling_id']= 3;
 
 $sql = "SELECT id FROM bestelling WHERE id = ".$_SESSION['bestelling_id'];
 $result = $mysqli->query($sql);
 if($result->num_rows > 0) {
 
-var_dump($_SESSION['ID']);
 if(!empty($_POST['update'])) {
-    $sql = "UPDATE images SET totaal_prijs = '".$_POST['prijs'] * ($_POST['xs'] + $_POST['s'] + $_POST['m'] + $_POST['l'] + $_POST['xl'] + $_POST['xxl'])."', xs = '" . $_POST['xs'] . "', s = '" . $_POST['s'] . "', m = '" . $_POST['m'] . "', l = '" . $_POST['l'] . "', xl = '" . $_POST['xl'] . "', xxl = '" . $_POST['xll'] . "' WHERE id = ".$_POST['id'];
+    $sql = "UPDATE images SET totaal_prijs = '".$_POST['prijs'] * ($_POST['xs'] + $_POST['s'] + $_POST['m'] + $_POST['l'] + $_POST['xl'] + $_POST['xxl'])."', xs = '" . $_POST['xs'] . "', s = '" . $_POST['s'] . "', m = '" . $_POST['m'] . "', l = '" . $_POST['l'] . "', xl = '" . $_POST['xl'] . "', xxl = '" . $_POST['xxl'] . "' WHERE id = ".$_POST['id'];
     $result = $mysqli->query($sql);
-    var_dump(mysqli_error($sql));
 
 }
 if(!empty($_POST['delete'])) {
@@ -25,15 +23,13 @@ $sql = "SELECT * FROM bestelling JOIN images ON bestelling.id = images.bestellin
 $result = $mysqli->query($sql);
 
 $totale_prijs = 0;
-var_dump($_POST);
-
 $i = 0;
 while ($row = $result->fetch_assoc()) {
 
     echo "<table>";
     echo "<form method='post' class='formpie'>";
     echo "<input name='id' type='hidden' value='".$row['id']."' />";
-    echo "<tr><td></td><td><img src='" . $row['filename'] . "' width='300px'></td></tr>";
+    echo "<tr><td></td><td><img src='order_images/" . $row['filename'] . "' width='300px'></td></tr>";
 //    echo "<tr><td>Aantal </td><td><input class='aantal' onchange='liveEdit(" .$i++ . ")' min='1' type='number' name='aantal' value='" . $row['aantal'] . "'/></td></tr>";
     echo "<tr><td>Prijs:</td><td>€<input style='border:none' class='prijs' name='prijs' readonly type='number' value='".$row['prijs']."'  /></td></tr>";
     echo "<tr><td>totaal Prijs:</td><td><input style='border:none' readonly class='totaal_prijs' value='". $row['prijs'] * ($row['xs'] + $row['s'] + $row['m'] + $row['l'] + $row['xl'] + $row['xxl'])."'/></td></tr>";

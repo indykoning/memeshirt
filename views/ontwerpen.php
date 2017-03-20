@@ -21,6 +21,7 @@ $result = $mysqli->query($sql);
     }
 $sql = "INSERT INTO `images`(`filename`, `status`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, " . $_POST['xs'] . "," . $_POST['s'] . "," . $_POST['m'] . "," . $_POST['l'] . "," . $_POST['xl'] . "," . $_POST['xxl'] . ",".$_SESSION['bestelling_id'].")";
     $mysqli->query($sql);
+    var_dump(mysqli_error($mysqli));
 }
 
 ?>

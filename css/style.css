@@ -4,25 +4,62 @@ body, html {
     margin: 0; 
     padding: 0;
     box-sizing: border-box;
-    background-image: url(../links/wallpaper.jpg);
+    background-image: url(../links/wallpaper_home.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    overflow-x: hidden; 
     position: absolute;
     height: 100%;
     width: 100%;
 }
 
+#no-x-scroll {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+}
 .container-fluid {
     margin: 0;
     padding: 0;
+}
+
+.background-image{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.background-image img {
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 * {
     margin: 0;
     padding: 0;
 }  
+
+.no_padding {
+    padding: 0;
+}
+
+.row_home {
+    margin-top: 20vh;
+}
+
+.row_winkelen {
+    margin-top: 2vh;
+}
+
+.col_footer {
+    padding: 0;
+}
 
 /* --------> Tekst <--------*/
 
@@ -40,14 +77,65 @@ p {
     color: #73B7E5;
 }
 
+.h2_winkelen {
+    font-size: 6vh;
+    color: #73B7E5;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 8vh;
+}
+
 .h_button_home {
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
     font-size: 3vh;
     color: #73B7E5;
+    padding: 0;
+}
+
+.h_button_home2 {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 3vh;
+    color: #73B7E5;
+    padding: 0;
+}
+
+.h2_footer {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 3vh;
+    color: #73B7E5;
+    padding: 0;
+}
+
+.p_footer {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    font-size: 2vh;
+    color: lightgray;
+    padding: 0;
+}
+
+.p_gratis {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    font-size: 2vh;
+    color: white;
+    padding: 0;
+    text-align: center;
 }
 
 /* --------> Navigatie <--------*/
+
+.gratis_balk {
+    width: 100%;
+    height: 3vh;
+    background-color: #F49517;
+    position: fixed;
+    z-index: 999;
+}
 
 .p_nav {
     margin: 0;
@@ -55,18 +143,34 @@ p {
     font-weight: 700;
 }
 
+.p_nav_winkelwagen {
+    position: absolute;
+    right: 60px;
+    top: 12px;
+}
+
 .navbar-inverse .navbar-nav>li>a {
     color: white;
 }
 
-.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+.navbar-brand {
+    padding: 0px;
+    padding-top: 7px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
     color: #F49517;
     background-color: transparent;
 }
 
+.navbar-inverse .navbar-nav>li>a:focus {
+    color: white;
+    background-color: transparent; 
+}
+
 ul.nav {
     float: right;
-}
+} 
 
 .navbar .navbar-nav {
     display: inline-block;
@@ -74,14 +178,15 @@ ul.nav {
 }
 
 .navbar .navbar-collapse {
-    text-align: right;
+    text-align: center;
 }
 
 .navigation_bar {
-    background-color: rgba(0,0,0,0.90);
+    background-color: black;
     border: 0;
-    padding-left: 10px;
+    padding-left: 25px;
     padding-right: 10px;
+    margin-top: 3vh;
 }
 
 .navbar-toggle {
@@ -96,25 +201,33 @@ ul.nav {
     border: none;   
 }
 
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
 
 /* --------> Sections <--------*/
 
 .wrapper_home {
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
-    height: 100vh;
+    heig_ht: 100vh;
     min-height: 400px;
     padding-top: 100px;
     padding-left: 50px;
 }
 
-.wrapper_winkelen {
+#wrapper_winkelen {
     background: white;
     width: 100%;
-    height: 100vh;
-    min-height: 400px;
-    padding-top: 100px;
-    padding-left: 50px;
+    height: 100%;
+    padding-top: 2vh;
 }
 
 /* --------> Buttons <--------*/
@@ -147,15 +260,225 @@ ul.nav {
     margin-left: 0;
 }
 
+.btn_ontwerpen2 {
+    background-color: transparent;
+    border: 2px solid #F49517;
+    color: #ff9800;
+    margin: 20px;
+    width: 50%;
+    height: 7vh;
+    margin-left: 0;
+}
+
+.btn_ontwerpen2:hover {
+    background-color: #F49517;
+    border: 2px solid #F49517;
+    color: black;
+    margin: 20px;
+    width: 50%;;
+    margin-left: 0;
+}
+
+.btn_ontwerpen2:focus {
+    background-color: transparent;
+    border: 2px solid #F49517;
+    color: #F49517;
+    margin: 20px;
+    width: 50%;
+    margin-left: 0;
+}
+
+/* --------> producten/winkelen <--------*/
+
+.wrapper_product {
+    width: 100%;
+    background-color: white;
+    padding: 1vh;
+}
+
+.img_product {
+    width: 100%;
+    transition:all 0.9s ease;
+}
+
+.img_product:hover {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+.wrapper_banner {
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    padding: 5vh;
+}
+
+.row-flex {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/* --------> Footer <--------*/
+
+.footer {
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: black;
+}
+
+.footer_section {
+    width: 100%;
+    height: 20vh;
+    float: left;
+    text-align: center;
+    background-color: black;
+    border-left: 1px solid #F49517; 
+}
+
+.img_footer1 {
+    width: 7%;
+}
+
+.img_footer2 {
+    width: 22%;
+}
+
+/* --------> Glyphicons <--------*/
+
+.glyphicon-arrow-right {
+    font-size: 8vh;
+    margin-top: 2vh;
+}
+
+/* --------> bounce <--------*/
+
+.glyphicon-chevron-down {
+    color: white;
+    font-size: 5vh;
+}
+
+.bounce {
+    position:fixed;
+    left:50%;
+    bottom:0;
+    margin-top:-25px;
+    margin-left:-20px;
+    -webkit-animation:bounce 1s infinite;
+}
+
+@-webkit-keyframes bounce {
+    0%       { bottom:5px; }
+    25%, 75% { bottom:15px; }
+    50%      { bottom:20px; }
+    100%     {bottom:0; }
+}
+
 /* --------> @media <--------*/
 
-@media (max-width: 620px) {
-    .html, body {
-        background-image: url(../links/wallpaper_mobile.jpg);
+@media (min-width: 769px) {
+    
+    .img_footer1 {
+        width: 12%;
+    }
+
+    .img_footer2 {
+        width: 27%;
+    }
+}
+
+@media (max-width: 650px) {
+    
+    .h2_home {
+        margin-top: 0;
+        font-size: 4vh;
     }
     
-    .navigation_bar {
-        padding-left: 5%;
-        padding-right: 5%;
+    .h2_home2 {
+        margin-top: 0;
+        font-size: 4vh;
+    }
+    
+    .wrapper_home {
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100vh;
+        min-height: 400px;
+        padding-top: 100px;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
+    .h_button_home {
+        font-family: 'PT Sans', sans-serif;
+        font-weight: 700;
+        font-size: 2vh;
+        padding: 0;
+    } 
+    
+    .row_home {
+        margin-top: 40vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn_ontwerpen {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn_ontwerpen:hover {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .btn_ontwerpen:focus {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn_ontwerpen2 {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn_ontwerpen2:hover {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn_ontwerpen2:focus {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    ul.nav {
+        float: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    ul.nav {
+        text-align: center;
+    }
+    
+}
+
+@media screen and (max-width: 1024px) {
+    .html, body {
+        background-image: url(../links/wallpaper_mobile.jpg);
     }
 }

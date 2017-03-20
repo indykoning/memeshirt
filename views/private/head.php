@@ -1,5 +1,4 @@
 <head>
-    <title><?php echo TITLE . " | " . $action; ?></title>
     <meta charset="UTF-8">
     <meta name="keywords" content="Meme, shirt, meme shirt, shirts, bedrukking, bedrukken, meme bedrukken"/>
     <meta name="description" content="Een website waar je memes kunt ontwerpen die op shirts bedrukt kunnen worden."/>
@@ -11,4 +10,5 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
     <title> MemeShirt </title>
 </head>
-<body class="scroll">
+<body data-spy="scroll">
+<div id="no-x-scroll">

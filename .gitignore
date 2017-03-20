@@ -3,6 +3,19 @@
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/.name
+<<<<<<< Updated upstream
 .idea/misc.xml
 .idea/encodings.xml
 .idea/copyright/profiles_settings.xml
+=======
+
+.idea/copyright/profiles_settings.xml
+
+.idea/dictionaries/SSSillyMac.xml
+
+.idea/encodings.xml
+
+.idea/misc.xml
+
+css/style.css
+>>>>>>> Stashed changes

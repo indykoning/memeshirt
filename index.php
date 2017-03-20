@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once "includes/config.php";
 require_once  "includes/db.php";
 

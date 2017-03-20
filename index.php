@@ -19,6 +19,7 @@ define('LOGGED_IN', $login->loggedin(['rank']));
 define('rank', $login->getArray()['rank']);
 
 
+
 include_once "views/private/head.php";
 include_once "views/private/header.php";
 include_once "views/private/nav.php";

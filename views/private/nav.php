@@ -16,7 +16,11 @@
                             <li><a href="#" class="p_nav">Winkelen</a></li>
                             <li><a href="#" class="p_nav">Ontwerpen</a></li>
                             <li><a href="#" class="p_nav">Inloggen</a></li>
-                            <li><a href="winkelwagen" class="p_nav">Winkelwagen</a></li>
+                            <?php
+                            $sql = "SELECT bestelling_id FROM images WHERE bestelling_id = ".$_SESSION['bestelling_id'];
+                            $result = $mysqli->query($sql);
+                            echo "<li><a href='winkelwagen' class='p_nav'>Winkelwagen ($result->num_rows)</a></li>";
+                            ?>
                         </ul>
                     </div>
                 </div> <!-- eind container fluid nav -->

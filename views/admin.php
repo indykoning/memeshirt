@@ -50,7 +50,13 @@ if(!empty($_POST['delete'])) {
     }
     echo "</table>";
 
+    $sql = "SELECT * FROM bestelling";
+    $result = $mysqli->query($sql);
 
+    while ($row = $result->fetch_assoc()) {
+        echo "<td><input type='text' name='titel' value='" . $row['id'] . "'/></td>";
+        echo "<td><input type='text' name='titel' value='" . $row['status'] . "'/></td>";
+    }
 
 }else{
     echo "Niet ingelogd";

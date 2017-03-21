@@ -12,7 +12,31 @@ if (!empty($_POST['image'])){
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
     $data = base64_decode($img);
-    file_put_contents($file, $data);
+
+    $image = imagecreatefromstring($data);
+    $image_p = imagecreatetruecolor(2480, 3508);
+    $width = imagesx($image);
+    $height = imagesy($image);
+    imagecopyresampled($image_p, $image, 0,0,0,0, 2480, 3508, $width, $height);
+    ob_start();
+    imagepng($image_p);
+    $data2 = ob_get_contents();
+    ob_end_clean();
+    $context = stream_context_create([
+        'gs' =>[
+            'acl'=> 'public-read',
+            'Content-Type' => 'image/jpeg',
+            'enable_cache' => true,
+            'enable_optimistic_cache' => true,
+            'read_cache_expiry_seconds' => 300,
+        ]
+    ]);
+
+//    var_dump($width, $height);
+    file_put_contents($file, $data, false, $context);
+
+//    var_dump($image);
+//    file_put_contents($file, $data);
     $user_id = (!empty($_SESSION['ID']))? $_SESSION['ID']: 'Null';
     if (empty($_SESSION['bestelling_id'])){
 $sql = "INSERT INTO `bestelling`(`status`, `users_id`) VALUES (0, $user_id)";
@@ -21,7 +45,7 @@ $result = $mysqli->query($sql);
     }
 $sql = "INSERT INTO `images`(`filename`, `status`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, " . $_POST['xs'] . "," . $_POST['s'] . "," . $_POST['m'] . "," . $_POST['l'] . "," . $_POST['xl'] . "," . $_POST['xxl'] . ",".$_SESSION['bestelling_id'].")";
     $mysqli->query($sql);
-    var_dump(mysqli_error($mysqli));
+//    var_dump(mysqli_error($mysqli));
 }
 
 ?>
@@ -59,7 +83,7 @@ $sql = "INSERT INTO `images`(`filename`, `status`, `xs`, `s`, `m`, `l`, `xl`, `x
     <div id="colordiv"></div>
     <br>
     <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
-    <canvas style="border: solid black" id="editor" width="670" height="474"></canvas>
+    <canvas style="border: solid black" id="editor" width="2480" height="3508"></canvas>
     <img src="" id="test" class="canvas-img">
 </div>
 <div id="step-4">

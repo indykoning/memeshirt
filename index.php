@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once "includes/config.php";
 require_once  "includes/db.php";
 
@@ -17,6 +18,7 @@ if (isset($_GET['logout'])){
 define('LOGGED_IN', $login->loggedin(['rank']));
 //var_dump($login->getArray());
 define('rank', $login->getArray()['rank']);
+
 
 
 include_once "views/private/head.php";

@@ -67,7 +67,7 @@
 
                         <div class="col-xs-12 no_padding">
                             <div class="wrapper_banner">
-                                <button onclick="window.location.href='#page2'" type="button" class="btn btn-info btn_ontwerpen2 h_button_home2">Ontwerp je eigen shirt</button>
+                                <button onclick="window.location.href='ontwerpen'" type="button" class="btn btn-info btn_ontwerpen2 h_button_home2">Ontwerp je eigen shirt</button>
                             </div>
                         </div>
                     </div> <!-- eind row flex  -->

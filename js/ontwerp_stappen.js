@@ -1,5 +1,6 @@
 var curstep = 0;
 var steps = ['step-1', 'step-2', 'step-3', 'step-4'];
+console.log(steps.length);
 var prev = document.getElementById('prev');
 var next = document.getElementById('next');
 
@@ -11,8 +12,6 @@ next.addEventListener('click', function () {
         changeStep(curstep);
         prev.style.display = 'inline';
         if (curstep+2> steps.length){
-                document.getElementById('ImageToUpload').value = canvas.toDataURL('image/jpg');
-                console.log(document.getElementById('ImageToUpload').value);
             next.style.display = 'none';
         }
     }
@@ -33,6 +32,11 @@ prev.addEventListener('click', function () {
 
 });
 function changeStep(stepNumber) {
+    if (stepNumber == steps.length-1){
+        console.log('ezfix');
+        document.getElementById('ImageToUpload').value = canvas.toDataURL('image/jpg');
+        console.log(document.getElementById('ImageToUpload').value);
+    }
     steps.forEach(function (id) {
        document.getElementById(id).style.display = 'none';
     });
@@ -41,3 +45,7 @@ function changeStep(stepNumber) {
 changeStep(0);
 
 //stap 1
+
+document.getElementById('ImageToUpload').addEventListener('change', function () {
+    console.log(document.getElementById('ImageToUpload').value);
+})

@@ -15,14 +15,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href="#" class="navbar-left navbar-brand"><img src="links/logo.png" height="40" alt=""></a>
+                        <a href="home" class="navbar-left navbar-brand"><img src="links/logo.png" height="40" alt=""></a>
                     </div>
                     <a href="#" class="hidden-sm hidden-md hidden-lg p_nav p_nav_winkelwagen"><img src="links/winkelwagen.png" alt="" height="25"></a>
                     <div class="collapse navbar-collapse navbar_no_border" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="#wrapper_winkelen" class="p_nav">Winkelen</a></li>
-                            <li><a href="#" class="p_nav">Ontwerpen</a></li>
+                            <li><a href="home#wrapper_winkelen" class="p_nav">Winkelen</a></li>
+                            <li><a href="ontwerpen" class="p_nav">Ontwerpen</a></li>
                             <li><a href="#" class="p_nav">Inloggen</a></li>
+                            <li><a href="winkelwagen" class="hidden-xs p_nav"><img src="links/winkelwagen.png" alt="" height="25"></a></li>
                             <li><a href="#" class="hidden-xs p_nav"><img src="links/winkelwagen.png" alt="" height="25"></a></li>                            <?php
                             $sql = "SELECT bestelling_id FROM images WHERE bestelling_id = ".$_SESSION['bestelling_id'];
                             $result = $mysqli->query($sql);
@@ -34,7 +35,7 @@
             </nav>
         </div>
     </div> <!-- eind row navbar  -->
-    <!---->
+<!---->
 <!--<nav><img src=""> <ul><li><a href="ontwerpen">ontwerpen</a></li><li class="winkelmand"></li></ul></nav>-->
 <!--<a href="?logout">Logout</a>-->
 <!--<form id="registerForm" method="post">-->

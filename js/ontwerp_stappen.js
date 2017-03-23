@@ -41,6 +41,8 @@ function changeStep(stepNumber) {
        document.getElementById(id).style.display = 'none';
     });
     document.getElementById(steps[stepNumber]).style.display = 'block';
+    curstep = stepNumber;
+    console.log(curstep);
 }
 changeStep(0);
 

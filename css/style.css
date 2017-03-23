@@ -67,6 +67,7 @@ h1, h2, h3, h4 {
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
 }
+
 p {
     font-family: 'PT Sans', sans-serif;
     font-weight: 400;
@@ -126,6 +127,37 @@ p {
     padding: 0;
     text-align: center;
 }
+
+.p_prijs {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 3vh;
+    color: black;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.h_button_terug {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2vh;
+    padding: 0;
+} 
+
+.h_button_verder {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2vh;
+    padding: 0;
+} 
+
+.h_button_status {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1.5vh;
+    padding: 0;
+} 
 
 /* --------> Navigatie <--------*/
 
@@ -217,17 +249,24 @@ ul.nav {
 .wrapper_home {
     background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
-    heig_ht: 100vh;
+    height: 100vh;
     min-height: 400px;
     padding-top: 100px;
     padding-left: 50px;
 }
 
 #wrapper_winkelen {
-    background: white;
+    background-color: white;
     width: 100%;
     height: 100%;
     padding-top: 2vh;
+}
+
+.wrapper_ontwerpen {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
 /* --------> Buttons <--------*/
@@ -242,22 +281,14 @@ ul.nav {
     margin-left: 0;
 }
 
-.btn_ontwerpen:hover {
-    background-color: #F49517;
+.btn_ontwerpen:hover, .btn_ontwerpen:focus, .btn_ontwerpen:active {
+    background-color: #F49517 !important;
     border: 2px solid #F49517;
     color: black;
     margin: 20px;
     width: 35vh;
     margin-left: 0;
-}
-
-.btn_ontwerpen:focus {
-    background-color: transparent;
-    border: 2px solid #F49517;
-    color: #F49517;
-    margin: 20px;
-    width: 35vh;
-    margin-left: 0;
+    outline-color: #F49517 !important;
 }
 
 .btn_ontwerpen2 {
@@ -270,59 +301,107 @@ ul.nav {
     margin-left: 0;
 }
 
-.btn_ontwerpen2:hover {
-    background-color: #F49517;
+.btn_ontwerpen2:hover, .btn_ontwerpen2:focus, .btn_ontwerpen2:active {
+    background-color: #F49517 !important;
     border: 2px solid #F49517;
     color: black;
     margin: 20px;
-    width: 50%;;
-    margin-left: 0;
-}
-
-.btn_ontwerpen2:focus {
-    background-color: transparent;
-    border: 2px solid #F49517;
-    color: #F49517;
-    margin: 20px;
     width: 50%;
     margin-left: 0;
+    outline-color: #F49517 !important;
+}
+
+.btn_ontwerpproces_verder {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    width: 35%;
+    margin-top: 3vh;
+    height: 6vh;
+    float: right;
+}
+
+.btn_ontwerpproces_verder:hover, .btn_ontwerpproces_verder:focus, .btn_ontwerpproces_verder:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #73B7E5 !important;
+}
+
+.btn_ontwerpproces_terug {
+    background-color: transparent;
+    border: 2px solid black;
+    color: black;
+    width: 35%;
+    height: 6vh;
+    margin-top: 3vh;
+    float: left;
+}
+
+.btn_ontwerpproces_terug:hover, .btn_ontwerpproces_terug:focus, .btn_ontwerpproces_terug:active {
+    background-color: black !important;
+    border: 2px solid black;
+    color: white;
+    width: 35%;
+    margin-left: 0;
+    outline-color: black !important;
+}
+
+.btn_ontwerpproces_status {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    margin-bottom: 3vh;
+    width: 100%;
+    height: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn_ontwerpproces_status:hover, .btn_ontwerpproces_status:focus, .btn_ontwerpproces_status:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    margin-bottom: 3vh;
+    width: 100%;
+    outline-color: #73B7E5 !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* --------> producten/winkelen <--------*/
 
 .wrapper_product {
     width: 100%;
-    overflow:hidden;
-    position:relative;
-    max-height: 100%;
     background-color: white;
     padding: 1vh;
-
+    position: relative;
+    overflow: hidden;
 }
 
-.img_product{
-    max-width: 100%;
-    background-position:center;
-    transition: all 1s ease;
+.img_product {
+    width: 100%;
+    transition:all 1s ease;
     -moz-transition: all 1s ease;
     -webkit-transition: all 1s ease;
-    width:100%;
-    position:relative;
-    left:0;
-    top:0;
+    top: 0;
+    left: 0;
+    position: relative;
 }
 
-.img_product:hover{
-    -moz-transform: scale(1.9);
+.img_product:hover {
     -webkit-transform: scale(1.9);
+    -ms-transform: scale(1.9);
     transform: scale(1.9);
-    background-position: center;
     top: 100px;
 }
 
 .wrapper_banner {
     background-color: white;
     width: 100%;
+    height: 100%;
     text-align: center;
     padding: 5vh;
 }
@@ -334,6 +413,42 @@ ul.nav {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+
+/* --------> Ontwerpen <--------*/
+
+.ontwerpen_links {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 3vh;
+    margin-top: 76px;
+}
+
+.ontwerpen_rechts {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 3vh;
+    margin-top: 76px;
+}
+
+.wrapper_functies_ontwerp {
+    background-color: lightblue;
+    height: 100%;
+    min-height: 700px;
+    max-height: 800px;
+    width: 100%;
+    padding: 3vh;
+}
+
+.shirt_preview {
+    background-color: lightblue;
+    height: 100%;
+    min-height: 700px;
+    max-height: 800px;
+    width: 100%;
+    padding: 3vh;
 }
 
 /* --------> Footer <--------*/
@@ -410,7 +525,7 @@ ul.nav {
     
     .h2_home {
         margin-top: 0;
-        font-size: 4vh;
+        font-size: 6vh;
     }
     
     .h2_home2 {
@@ -431,12 +546,12 @@ ul.nav {
     .h_button_home {
         font-family: 'PT Sans', sans-serif;
         font-weight: 700;
-        font-size: 2vh;
+        font-size: 3vh;
         padding: 0;
     } 
     
     .row_home {
-        margin-top: 40vh;
+        margin-top: 30vh;
         margin-left: auto;
         margin-right: auto;
     }
@@ -447,17 +562,11 @@ ul.nav {
         margin-right: auto;
     }
 
-    .btn_ontwerpen:hover {
+    .btn_ontwerpen:hover, .btn_ontwerpen:focus, .btn_ontwerpen:active {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
 
-    }
-
-    .btn_ontwerpen:focus {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
     }
     
     .btn_ontwerpen2 {
@@ -466,13 +575,7 @@ ul.nav {
         margin-right: auto;
     }
 
-    .btn_ontwerpen2:hover {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .btn_ontwerpen2:focus {
+    .btn_ontwerpen2:hover, btn_ontwerpen2:focus, btn_ontwerpen2:active {
         width: 90%;
         margin-left: auto;
         margin-right: auto;
@@ -488,10 +591,193 @@ ul.nav {
         text-align: center;
     }
     
+    .ontwerpen_rechts {
+        margin-top: 0;
+    }
+    
+    .ontwerpen_links {
+        margin-top: 70px;
+    }
 }
 
 @media screen and (max-width: 1024px) {
     .html, body {
         background-image: url(../links/wallpaper_mobile.jpg);
+    }
+}
+
+@media (min-height: 1024px) { 
+    .h2_footer {
+        font-size: 2vh;
+    }
+
+    .p_footer {
+        font-size: 1.5vh;
+    }
+    
+    .ontwerpen_rechts {
+        margin-top: 76px;
+    }
+    
+    .h_button_terug {
+        font-size: 1vh;
+    } 
+
+    .h_button_verder {
+        font-size: 1vh;
+    } 
+    
+    .h_button_status {
+        font-size: 1vh;
+        margin: 1vh;
+    }
+    
+    .btn_ontwerpproces_verder {
+        color: #73B7E5;
+        width: 35%;
+        margin-top: 3vh;
+        height: 3vh;
+        float: right;
+    }   
+    
+    .btn_ontwerpproces_verder:hover, .btn_ontwerpproces_verder:focus, .btn_ontwerpproces_verder:active {
+        color: black;
+        width: 35%;
+        margin-left: 0;
+        outline-color: #73B7E5 !important;
+    }
+    
+    .btn_ontwerpproces_terug {
+        color: black;
+        width: 35%;
+        height: 3vh;
+        margin-top: 3vh;
+        float: left;
+    }
+    
+    .btn_ontwerpproces_terug:hover, .btn_ontwerpproces_terug:focus, .btn_ontwerpproces_terug:active {
+        color: white;
+        width: 35%;
+        margin-left: 0;
+        outline-color: black !important;
+    }
+    
+    .btn_ontwerpproces_status {
+        color: #73B7E5;
+        margin-bottom: 3vh;
+        width: 100%;
+        height: 2vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn_ontwerpproces_status:hover, .btn_ontwerpproces_status:focus, .btn_ontwerpproces_status:active {
+        color: black;
+        margin-bottom: 3vh;
+        width: 100%;
+        outline-color: #73B7E5 !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .wrapper_functies_ontwerp {
+        padding: 0;
+    }
+
+    .shirt_preview {
+        padding: 0;
+    }
+    
+    .img_footer1 {
+        width: 20%;
+    }
+
+    .img_footer2 {
+        width: 35%;
+    }
+}
+
+@media (max-width: 400px) {
+    .h_button_terug {
+        font-size: 1vh;
+    } 
+
+    .h_button_verder {
+        font-size: 1vh;
+    } 
+    
+    .h_button_status {
+        font-size: 1.3vh;
+        margin: 1vh;
+    }
+    
+    .btn_ontwerpproces_verder {
+        color: #73B7E5;
+        width: 35%;
+        margin-top: 3vh;
+        height: 4vh;
+        float: right;
+    }   
+    
+    .btn_ontwerpproces_verder:hover, .btn_ontwerpproces_verder:focus, .btn_ontwerpproces_verder:active {
+        color: black;
+        width: 35%;
+        margin-left: 0;
+        outline-color: #73B7E5 !important;
+    }
+    
+    .btn_ontwerpproces_terug {
+        color: black;
+        width: 35%;
+        height: 4vh;
+        margin-top: 3vh;
+        float: left;
+    }
+    
+    .btn_ontwerpproces_terug:hover, .btn_ontwerpproces_terug:focus, .btn_ontwerpproces_terug:active {
+        color: white;
+        width: 35%;
+        margin-left: 0;
+        outline-color: black !important;
+    }
+    
+    .btn_ontwerpproces_status {
+        color: #73B7E5;
+        margin-bottom: 3vh;
+        width: 100%;
+        height: 3vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn_ontwerpproces_status:hover, .btn_ontwerpproces_status:focus, .btn_ontwerpproces_status:active {
+        color: black;
+        margin-bottom: 3vh;
+        width: 100%;
+        outline-color: #73B7E5 !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .wrapper_functies_ontwerp {
+        padding: 1vh;
+    }
+
+    .shirt_preview {
+        padding: 1vh;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .col-sm-4{
+        width: 33.29%;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .col-md-3{
+        width: 24.96%;
     }
 }

@@ -8,7 +8,7 @@ $mollie->setApiKey('leeg');
 $payment = $mollie->payments->create(array(
    "amount"=>$prijs,
     "description" => "Betaling Memeshirt",
-    "redirectUrl" => $_SERVER['REQUEST_URI'] . "payment_successfull"
+    "redirectUrl" => $_SERVER['REQUEST_URI'] . "payment_successfull?id="
 ));
 
 //betaling binnen halen

@@ -11,11 +11,20 @@ if(!empty($_POST['update'])) {
 
 }
 if(!empty($_POST['delete'])) {
+    $sql = "SELECT * FROM images WHERE id = ".$_POST['id'];
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc();
+    unlink("order_images/" . $row['filename']);
     $sql = "DELETE FROM images WHERE id = ".$_POST['id'];
     $result = $mysqli->query($sql);
-    if($result->num_rows == 0){
+
+    $sql = "SELECT id FROM images WHERE bestelling_id = " . $_SESSION['bestelling_id'];
+    $result2 = $mysqli->query($sql);
+
+    if($result2->num_rows == 0){
         $sql = "DELETE FROM bestelling WHERE id = ".$_SESSION['bestelling_id'];
         $result = $mysqli->query($sql);
+        unset($_SESSION['bestelling_id']);
     };
 }
 

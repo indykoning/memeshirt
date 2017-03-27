@@ -1,33 +1,105 @@
 <?php
 if (rank == 1){
     if(!empty($_POST['bestellingDone'])) {
-        $sql = "UPDATE bestelling SET status = 1 WHERE id='". $_POST['id'] . "'";
+        $sql = "UPDATE bestelling SET status = 3 WHERE id='". $_POST['id'] . "'";
         $result = $mysqli->query($sql);
     }
-if(!empty($_POST['showBestelling'])) {
+//    if(!empty($_POST['textboxUpdate'])) {
+//        $klaar = (!empty($_POST['klaar'])) ? '1' : '0';
+//        $sql = "UPDATE images SET status_img = ". $klaar . " WHERE id='". $_POST['id_img'] . "'";
+//        $result = $mysqli->query($sql);
+//
+//    }
 
-        $klaar = (!empty($_POST['klaar'])) ? '1' : '0';
+if(!empty($_POST['showBestelling'])) {
+    var_dump($_POST);
+    $klaar = (!empty($_POST['klaar'])) ? '1' : '0';
+//    $sql = "UPDATE images SET status_img = ". $klaar . " WHERE id='". $_POST['id_img'] . "'";
+//    $result = $mysqli->query($sql);
+
+
+    $xs = (!empty($_POST['xs'])) ? '1' : '0';
+    $s = (!empty($_POST['s'])) ? '1' : '0';
+    $m = (!empty($_POST['m'])) ? '1' : '0';
+    $l = (!empty($_POST['l'])) ? '1' : '0';
+    $xl = (!empty($_POST['xl'])) ? '1' : '0';
+    $xxl = (!empty($_POST['xxl'])) ? '1' : '0';
+
+    $sql = "UPDATE images SET status_img = ". $klaar . ", xs_status = ".$xs.", s_status = ".$s.", m_status = ".$m.", l_status = ".$l.", xl_status = ".$xl.", xxl_status = ".$xxl." WHERE id='". $_POST['id_img'] . "'";
+    $result = $mysqli->query($sql);
+
+
+
+    $sql = "SELECT * FROM bestelling WHERE id = " . $_POST['id'] . " ";
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc();
+    if($row['status'] == 1){
+        $sql = "UPDATE bestelling SET status = 2 WHERE id='". $_POST['id'] . "'";
+        $result = $mysqli->query($sql);
+    }
+
+    echo "<h3>Contactgegevens</h3>";
+    $sql = "SELECT * FROM bestelling WHERE id = " . $_POST['id'] . " ";
+    $result = $mysqli->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        if($row['b_huisnummer']) {
+            echo "<p>" . $row['b_email'] . "</p>";
+            echo "<p>" . $row['b_straatnaam'] . "</p>";
+            echo "<p>" . $row['b_huisnummer'] . "</p>";
+            echo "<p>" . $row['b_postcode'] . "</p>";
+        }
+    }
+    $sql = "SELECT * FROM users WHERE id = " . $_POST['id'] . " ";
+    $result = $mysqli->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo "<p>" . $row['voornaam'] . "</p>";
+        echo "<p>" . $row['achternaam'] . "</p>";
+        echo "<p>" . $row['email'] . "</p>";
+        echo "<p>" . $row['straatnaam'] . "</p>";
+        echo "<p>" . $row['huisnummer'] . "</p>";
+        echo "<p>" . $row['postcode'] . "</p>";
+        echo "<p>" . $row['plaatsnaam'] . "</p>";
+    }
 
     $sql = "SELECT * FROM images WHERE bestelling_id = " . $_POST['id'] . " ";
     $result = $mysqli->query($sql);
-    echo "<form method='post'>";
     echo "<table>";
     echo "<tr>";
     echo "<th>Al gedownload?</th>";
-    echo "<th>Aantal keer printen</th>";
+    echo "<th>xs</th>";
+    echo "<th>s</th>";
+    echo "<th>m</th>";
+    echo "<th>l</th>";
+    echo "<th>xl</th>";
+    echo "<th>xxl</th>";
     echo "<th>Downloaden</th>";
     echo "</tr>";
     echo "<tr>";
     while ($row = $result->fetch_assoc()) {
+        echo "<form method='post'>";
         $aantal = 0;
         echo "<tr>";
         $checked = ($row['status_img'] == 1) ? 'checked' : '';
-
-        echo "<td><input $checked type='checkbox' name='klaar'>Deze afbeelding is geprint,gedrukt</td>";
-        $aantal += $row['xs'] + $row['s'] + $row['m'] + $row['l'] + $row['xl'] + $row['xxl'];
-        echo "<td>$aantal</td>";
+        echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
+        echo "<td><input $checked type='checkbox' name='klaar'>Deze afbeelding is geprint,gedrukt";
+        echo "<input type='submit' name='showBestelling' value='Sla op'/> </td>";
+        $checked = ($row['xs_status'] == 1) ? 'checked' : '';
+        echo "<td>".$row['xs']."<input $checked type='checkbox' name='xs' /></td>";
+        $checked = ($row['s_status'] == 1) ? 'checked' : '';
+        echo "<td>".$row['s']."<input $checked type='checkbox' name='s' /></td>";
+        $checked = ($row['m_status'] == 1) ? 'checked' : '';
+        echo "<td>".$row['m']."<input $checked type='checkbox' name='m' /></td>";
+        $checked = ($row['l_status'] == 1) ? 'checked' : '';
+        echo "<td>".$row['l']."<input $checked type='checkbox' name='l' /></td>";
+        $checked = ($row['xl_status'] == 1) ? 'checked' : '';
+        echo "<td>".$row['xl']."<input $checked type='checkbox' name='xl' /></td>";
+        $checked = ($row['xxl_status'] == 1) ? 'checked' : '';
+        echo "<td>".$row['xxl']."<input $checked type='checkbox' name='xxl' /></td>";
         echo "<td><a href='/order_images' download='".$row['filename']."' >Download</a></td>";
         echo "</tr>";
+        echo "<input name='id' type='hidden' value='" .$row['bestelling_id']. "' />";
+        echo "</form>";
+        echo "<form method='post'>";
         echo "<input name='id' type='hidden' value='" .$row['bestelling_id']. "' />";
     }
     echo "</table>";
@@ -83,113 +155,15 @@ if(!empty($_POST['delete'])) {
     echo "</table>";
 
     //Nieuwe bestellingen
-    $sql = "SELECT * FROM bestelling";
-    $result = $mysqli->query($sql);
-    echo "<div><h2>Nieuwe</h2>";
-    while ($row = $result->fetch_assoc()) {
-        $aantal = 0;
-        if ($row['users_id'] != Null) {
-            if ($row['status'] == 0) {
-                echo "<div style='border: 1px solid black;'>";
-                $sql3 = "SELECT * FROM users WHERE id = " . $row['users_id'] . " ";
-                $result3 = $mysqli->query($sql3);
-                while ($row3 = $result3->fetch_assoc()) {
-                    echo "<p>" . $row3['voornaam'] . "</p>";
-                    echo "<p>" . $row3['achternaam'] . "</p>";
-                }
+    include "model/nieuweBestellingen.php";
 
-                $sql2 = "SELECT * FROM images WHERE bestelling_id = " . $row['id'] . " ";
-                $result2 = $mysqli->query($sql2);
-                echo "Aantal verschillende afbeelding: $result2->num_rows";
-
-                while ($row2 = $result2->fetch_assoc()) {
-                    $aantal += $row2['xs'] + $row2['s'] + $row2['m'] + $row2['l'] + $row2['xl'] + $row2['xxl'];
-                }
-                echo "<br>Aantal afbeeldingen om te printen: $aantal";
-                echo "<form target='_blank' method='post'>";
-                echo "<input type='submit' name='showBestelling' value='Open'/>";
-                echo "<input type='hidden' name='id' value='".$row['id']."' />";
-                echo "</form>";
-                echo "</div>";
-                echo "</div>";
-            }
-        } if ($row['users_id'] == Null){
-            if ($row['status'] == 0) {
-                echo "<div style='border: 1px solid black;'>";
-                echo "<p>" . $row['b_email'] . "</p>";
-                echo "<p>" . $row['totale_prijs'] . "</p>";
-
-                $sql2 = "SELECT * FROM images WHERE bestelling_id = " . $row['id'] . " ";
-                $result2 = $mysqli->query($sql2);
-                echo "Aantal verschillende afbeelding: $result2->num_rows";
-
-                while ($row2 = $result2->fetch_assoc()) {
-                    $aantal += $row2['xs'] + $row2['s'] + $row2['m'] + $row2['l'] + $row2['xl'] + $row2['xxl'];
-                }
-                echo "<br>Aantal afbeeldingen om te printen: $aantal";
-                echo "<form target='_blank' method='post'>";
-                echo "<input type='submit' name='showBestelling' value='Open'/>";
-                echo "<input type='hidden' name='id' value='".$row['id']."' />";
-                echo "</form>";
-                echo "</div>";
-                echo "</div>";
-            }
-        }
-    }
     //Lopende bestellingen
-    $sql = "SELECT * FROM bestelling";
-    $result = $mysqli->query($sql);
-    echo "<div><h2>Lopende bestellingen</h2>";
-        while ($row = $result->fetch_assoc()) {
-            $aantal = 0;
-            if ($row['users_id'] != Null) {
-                if($row['status'] == 1){
-                    echo "<div style='border: 1px solid black;'>";
-                    $sql3 = "SELECT * FROM users WHERE id = " . $row['users_id'] . " ";
-                    $result3 = $mysqli->query($sql3);
-                    while ($row3 = $result3->fetch_assoc()) {
-                        echo "<p>" . $row3['voornaam'] . "</p>";
-                        echo "<p>" . $row3['achternaam'] . "</p>";
-                    }
-                        $sql2 = "SELECT * FROM images WHERE bestelling_id = ".$row['id']. " ";
-                        $result2 = $mysqli->query($sql2);
-                        echo "Aantal verschillende afbeelding: $result2->num_rows";
+    include "model/lopendeBestellingen.php";
 
-                        while ($row2 = $result2->fetch_assoc()) {
-                            $aantal += $row2['xs'] + $row2['s'] + $row2['m'] + $row2['l'] + $row2['xl'] + $row2['xxl'];
-                        }
-                        echo "<br>Aantal afbeeldingen om te printen: $aantal";
-                    echo "<form target='_blank' method='post'>";
-                        echo "<input type='submit' name='showBestelling' value='Open'/>";
-                    echo "<input type='hidden' name='id' value='".$row['id']."' />";
-                        echo "</form>";
-                    echo "</div>";
-    echo "</div>";
-            }
-        }
-            if ($row['users_id'] == Null){
-                if ($row['status'] == 1) {
-                    echo "<div style='border: 1px solid black;'>";
-                    echo "<p>" . $row['b_email'] . "</p>";
-                    echo "<p>" . $row['totale_prijs'] . "</p>";
+    //Voltooide bestellingen
+    include "model/voltooideBestellingen.php";
 
-                    $sql2 = "SELECT * FROM images WHERE bestelling_id = " . $row['id'] . " ";
-                    $result2 = $mysqli->query($sql2);
-                    echo "Aantal verschillende afbeelding: $result2->num_rows";
 
-                    while ($row2 = $result2->fetch_assoc()) {
-                        $aantal += $row2['xs'] + $row2['s'] + $row2['m'] + $row2['l'] + $row2['xl'] + $row2['xxl'];
-                    }
-                    echo "<br>Aantal afbeeldingen om te printen: $aantal";
-                    echo "<form target='_blank' method='post'>";
-                    echo "<input type='submit' name='showBestelling' value='Open'/>";
-                    echo "<input type='hidden' name='id' value='".$row['id']."' />";
-                    echo "</form>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            }
-    }
 }}else{
     echo "Niet ingelogd";
     header("Location: home");

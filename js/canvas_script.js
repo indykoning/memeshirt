@@ -1,4 +1,4 @@
-var canvas = this.__canvas = new fabric.Canvas('editor');
+var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:2480});
 (function() {
     window.mobileAndTabletcheck = function() {
         var check = false;

@@ -35,14 +35,14 @@ if (!empty($_POST['add_to_cart'])) {
 //    imagesavealpha($image, true);
 
 
-    $image_p = imagecreatetruecolor(2480, 3508);
+    $image_p = imagecreatetruecolor(3508, 2480);
     setTransparency($image_p, $image);
 //    imagecolortransparent($image_p, imagecolorallocate($image_p,255, 255, 255));
 //    imagealphablending($image_p, false);
 //    imagesavealpha($image_p, true);
     $width = imagesx($image);
     $height = imagesy($image);
-    imagecopyresampled($image_p, $image, 0, 0, 0, 0, 2480, 3508, $width, $height);
+    imagecopyresampled($image_p, $image, 0, 0, 0, 0,3508 , 2480, $width, $height);
 
     ob_start(); // Let's start output buffering.
     imagejpeg($image_p); //This will normally output the image, but because of ob_start(), it won't.
@@ -69,7 +69,14 @@ if (!empty($_POST['add_to_cart'])) {
 //            var_dump(mysqli_error($mysqli));
             $_SESSION['bestelling_id'] = $mysqli->insert_id;
         }
-        $sql = "INSERT INTO `images`(`filename`, `status`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, " . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
+    $xs = abs($_POST['xs']) * PRIJS_XS;
+    $s = abs($_POST['s']) * PRIJS_S;
+    $m = abs($_POST['m']) * PRIJS_M;
+    $l = abs($_POST['l']) * PRIJS_L;
+    $xl = abs($_POST['xl']) * PRIJS_XL;
+    $xxl = abs($_POST['xxl']) * PRIJS_XXL;
+    $totaal = $xs+$s+$m+$l+$xl+$xxl;
+        $sql = "INSERT INTO `images`(`filename`, `status`, `kleur` `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, " . $_POST['shirtColor'] . " ," . $totaal . ", "  . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
         $mysqli->query($sql);
 }
 ?>
@@ -112,7 +119,7 @@ if (!empty($_POST['add_to_cart'])) {
                                             <div id="colordiv"></div>
                                             <br>
                                             <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
-                                            <canvas style="border: solid black" id="editor" width="595" height="842"></canvas>
+                                            <canvas style="border: solid black" id="editor" width="842" height="595"></canvas>
                                             <img src="" id="test" class="canvas-img">
                                         </div>
                                         <div id="step-4">

@@ -2,8 +2,13 @@
 error_reporting(0);
 require_once "includes/config.php";
 require_once  "includes/db.php";
-
 require_once 'classes/Login.php';
+
+require_once "includes/Mollie/API/Autoloader.php";
+
+$mollie = new Mollie_API_Client;
+$mollie->setApiKey('test_xH9fTegKwsMPtQzvc9z7x9fspJeJSx');
+
 $action = isset($_GET['action']) ? $_GET['action'] : 'home';
 $login = new Login('users', 'id', 'email', 'wachtwoord', 'key');
 if(!empty($_POST['registreren'])){

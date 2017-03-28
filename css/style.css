@@ -456,6 +456,10 @@ ul.nav {
 #step-2{
     margin-left: 190px;
 }
+label{
+    width: 190px;
+    height: 190px;
+}
 .KleurKiezer_label{
     width: 190px;
     height: 190px;
@@ -635,6 +639,10 @@ ul.nav {
         float: none;
     }
     .KleurKiezer_label {
+        width: 150px;
+        height: 150px;
+    }
+    label{
         width: 150px;
         height: 150px;
     }
@@ -837,6 +845,10 @@ ul.nav {
         width: 160px;
         height: 160px;
     }
+    label{
+        width: 160px;
+        height: 160px;
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -848,9 +860,17 @@ ul.nav {
         width: 180px;
         height: 180px;
     }
+    label{
+        width: 180px;
+        height: 180px;
+    }
 }
 @media (min-width: 892px){
     .KleurKiezer_label {
+        width: 160px;
+        height: 160px;
+    }
+    label{
         width: 160px;
         height: 160px;
     }

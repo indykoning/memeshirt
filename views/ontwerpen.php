@@ -73,7 +73,7 @@ if (!empty($_POST['add_to_cart'])) {
 //    var_dump($sql);
 //    var_dump(mysqli_error($mysqli));
     }else{
-        var_dump('err');
+//        var_dump('err');
     }
 }
 ?>
@@ -142,9 +142,6 @@ if (!empty($_POST['add_to_cart'])) {
                                             <div id="colordiv"></div>
                                             <br>
                                             <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
-
-<!--                                            <canvas style="border: solid black" id="editor" width="842" height="595"></canvas>-->
-<!--                                            <img src="" id="test" class="canvas-img">-->
                                         </div>
                                         <div id="step-4">
                                             <!--stap 4 -->

@@ -1,7 +1,10 @@
 <?php
+$output_width = 3508;
+$output_height = 2480;
+
 function setTransparency($new_image,$image_source)
 {
-
+    ini_set('memory_limit', '-1');
     $transparencyIndex = imagecolortransparent($image_source);
     $transparencyColor = array('red' => 255, 'green' => 255, 'blue' => 255);
 
@@ -35,14 +38,14 @@ if (!empty($_POST['add_to_cart'])) {
 //    imagesavealpha($image, true);
 
 
-    $image_p = imagecreatetruecolor(2480, 3508);
+    $image_p = imagecreatetruecolor($output_width, $output_height);
     setTransparency($image_p, $image);
 //    imagecolortransparent($image_p, imagecolorallocate($image_p,255, 255, 255));
 //    imagealphablending($image_p, false);
 //    imagesavealpha($image_p, true);
     $width = imagesx($image);
     $height = imagesy($image);
-    imagecopyresampled($image_p, $image, 0, 0, 0, 0,2480 , 3508, $width, $height);
+    imagecopyresampled($image_p, $image, 0, 0, 0, 0,$output_width , $output_height, $width, $height);
 
     ob_start(); // Let's start output buffering.
     imagejpeg($image_p); //This will normally output the image, but because of ob_start(), it won't.
@@ -58,9 +61,6 @@ if (!empty($_POST['add_to_cart'])) {
             'read_cache_expiry_seconds' => 300,
         ]
     ]);
-
-//    $data = base64_encode($image_p);
-    $data = base64_encode($image_p);
     if (file_put_contents($file, $data, false, $context) !== false) {
         $user_id = (!empty($_SESSION['ID'])) ? $_SESSION['ID'] : 'Null';
         if (empty($_SESSION['bestelling_id'])) {
@@ -143,8 +143,8 @@ if (!empty($_POST['add_to_cart'])) {
                                             <br>
                                             <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
 
-                                            <canvas style="border: solid black" id="editor" width="842" height="595"></canvas>
-                                            <img src="" id="test" class="canvas-img">
+<!--                                            <canvas style="border: solid black" id="editor" width="842" height="595"></canvas>-->
+<!--                                            <img src="" id="test" class="canvas-img">-->
                                         </div>
                                         <div id="step-4">
                                             <!--stap 4 -->

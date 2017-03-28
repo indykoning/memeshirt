@@ -1,4 +1,12 @@
 var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:2480});
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
 (function() {
     window.mobileAndTabletcheck = function() {
         var check = false;
@@ -15,6 +23,11 @@ var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:24
     var imgbuffer;
     var textArr = [];
 
+
+    if(getUrlVars()['foto'] != ''){
+        imgbuffer = decodeURIComponent(getUrlVars()['foto']);
+        clear();
+    }
     document.getElementById('deleteButton').addEventListener('click', function () {
         canvas.getActiveObject().remove();
     });
@@ -64,7 +77,6 @@ var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:24
     upload.addEventListener('change', function (e) {
         var image = URL.createObjectURL(upload.files[0]);
         imgbuffer = image;
-
         clear();
     });
 

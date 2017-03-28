@@ -1,6 +1,7 @@
 <?php
 //var_dump($_POST);
 //$_SESSION['bestelling_id']= 3;
+
 $sql = "SELECT * FROM bestelling WHERE id = ".$_SESSION['bestelling_id'];
 $result = $mysqli->query($sql);
 if (!empty($_POST['betaal'])){
@@ -14,17 +15,37 @@ if (!empty($_POST['betaal'])){
         echo "<h1 style='color: red'>Nog niet alle velden zijn ingevuld</h1>";
         $goodTogo = false;
     }
+
     if (LOGGED_IN || $goodTogo) {
         $row = $result->fetch_assoc();
-        $payment = $mollie->payments->create(array(
-            "amount" => $row['totale_prijs'],
-            "description" => "Betaling Memeshirt",
-            "redirectUrl" => $_SERVER['REQUEST_URI'] . "payment_successfull"
-        ));
-        $_SESSION['payment_id'] = $payment->id;
-        $_SESSION['payment_price'] = $row['totale_prijs'];
-        $sql = "UPDATE bestelling SET betalings_id='"  . $payment->id . "'";
-        $mysqli->query($sql);
+
+
+        try
+        {
+            $payment = $mollie->payments->create(array(
+                "amount" => $row['totale_prijs'],
+                "description" => "Betaling Memeshirt",
+                "redirectUrl" => str_replace("/winkelwagen", "", $_SERVER['REDIRECT_URL']) . "/paymentsuccessfull"
+            ));
+
+            $_SESSION['payment_id'] = $payment->id;
+            $_SESSION['payment_price'] = $row['totale_prijs'];
+            $sql = "UPDATE bestelling SET betalings_id='"  . $payment->id . "'";
+            $mysqli->query($sql);
+            ?>
+            <script>window.location.href ="<?php echo $payment->links->paymentUrl; ?>";</script>
+            <a href="<?php echo $payment->links->paymentUrl; ?>"><h1>Klik hier om door te gaan naar de betaling</h1></a>
+            <?php
+
+
+        }
+        catch (Mollie_API_Exception $e)
+        {
+            echo "Setting up payment failed";
+
+        }
+
+
     }
 }
 if($result->num_rows > 0) {

@@ -1,12 +1,14 @@
 <?php
+echo "<h1>payment</h1>";
 $payment = $mollie->payments->get($_SESSION['payment_id']);
-
 if($payment->isPaid()){
     $sql = "SELECT * FROM bestelling WHERE id = ".$_SESSION['bestelling_id'];
     $result = $mysqli->query($sql);
     if ($result->fetch_assoc()['totale_prijs'] == $_SESSION['payment_price']){
         $sql = "UPDATE bestelling SET status=1 WHERE id = ". $_SESSION['bestelling_id'];
         $result2 = $mysqli->query($sql);
+        echo "<h1 style='color: green'>Payment successfull</h1>";
+        unset($_SESSION['bestelling_id']);
     }else{
         //price changed since payment
         $refund = $mollie->payments->refund($payment);

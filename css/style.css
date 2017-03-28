@@ -4,7 +4,7 @@ body, html {
     margin: 0; 
     padding: 0;
     box-sizing: border-box;
-    background-image: url(../links/wallpaper_home.jpg);
+    /*background-image: url(../links/wallpaper_home.jpg);*/
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -16,6 +16,7 @@ body, html {
 #no-x-scroll {
     position: relative;
     width: 100%;
+    height: 100%;
     overflow-x: hidden;
 }
 .container-fluid {
@@ -173,6 +174,7 @@ p {
     margin: 0;
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
+    margin-top: 10px;
 }
 
 .p_nav_winkelwagen {
@@ -401,7 +403,7 @@ ul.nav {
 .wrapper_banner {
     background-color: white;
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     text-align: center;
     padding: 5vh;
 }
@@ -419,7 +421,7 @@ ul.nav {
 
 .ontwerpen_links {
     width: 100%;
-    height: 100%;
+    height: 700px;
     background-color: white;
     padding: 3vh;
     margin-top: 76px;
@@ -427,7 +429,7 @@ ul.nav {
 
 .ontwerpen_rechts {
     width: 100%;
-    height: 100%;
+    height: 700px;
     background-color: white;
     padding: 3vh;
     margin-top: 76px;
@@ -437,7 +439,7 @@ ul.nav {
     background-color: lightblue;
     height: 100%;
     min-height: 700px;
-    max-height: 800px;
+    max-height: 900px;
     width: 100%;
     padding: 3vh;
 }
@@ -451,11 +453,27 @@ ul.nav {
     padding: 3vh;
 }
 
+#step-2{
+    margin-left: 190px;
+}
+.KleurKiezer_label{
+    width: 190px;
+    height: 190px;
+    border: solid black;
+}
+.colorSelect input[type="radio"]:checked+label {
+    box-shadow: 3px 3px 28px 7px rgba(0,0,0,0.75);
+}
+#editor{
+    border: solid black;
+}
+
+
 /* --------> Footer <--------*/
 
 .footer {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: black;
@@ -476,6 +494,37 @@ ul.nav {
 
 .img_footer2 {
     width: 22%;
+}
+
+/* --------> Bestelling <--------*/
+
+.blue_line {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    height: 2px;
+    background-color: #73B7E5;
+}
+
+.img_shirt {
+    width: 30vh;
+}
+
+.row_winkelwagen {
+    margin-top: 2.5vh;
+}
+
+.aantal {
+    margin-top: 20px;
+}
+
+.verwijderen {
+    color: #73B7E5;
+    font-size: 2vh;
+}
+
+.padding_bestelling {
+    padding-top: 11vh;
 }
 
 /* --------> Glyphicons <--------*/
@@ -519,6 +568,7 @@ ul.nav {
     .img_footer2 {
         width: 27%;
     }
+
 }
 
 @media (max-width: 650px) {
@@ -584,6 +634,11 @@ ul.nav {
     ul.nav {
         float: none;
     }
+    .KleurKiezer_label {
+        width: 150px;
+        height: 150px;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -598,12 +653,15 @@ ul.nav {
     .ontwerpen_links {
         margin-top: 70px;
     }
+
 }
 
 @media screen and (max-width: 1024px) {
     .html, body {
         background-image: url(../links/wallpaper_mobile.jpg);
     }
+
+
 }
 
 @media (min-height: 1024px) { 
@@ -695,6 +753,7 @@ ul.nav {
     .img_footer2 {
         width: 35%;
     }
+
 }
 
 @media (max-width: 400px) {
@@ -766,6 +825,7 @@ ul.nav {
     .shirt_preview {
         padding: 1vh;
     }
+
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -773,11 +833,25 @@ ul.nav {
     .col-sm-4{
         width: 33.29%;
     }
+    .KleurKiezer_label {
+        width: 160px;
+        height: 160px;
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
     .col-md-3{
         width: 24.96%;
+    }
+    .KleurKiezer_label {
+        width: 180px;
+        height: 180px;
+    }
+}
+@media (min-width: 892px){
+    .KleurKiezer_label {
+        width: 160px;
+        height: 160px;
     }
 }

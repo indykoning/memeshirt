@@ -4,20 +4,9 @@ if (rank == 1){
         $sql = "UPDATE bestelling SET status = 3 WHERE id='". $_POST['id'] . "'";
         $result = $mysqli->query($sql);
     }
-//    if(!empty($_POST['textboxUpdate'])) {
-//        $klaar = (!empty($_POST['klaar'])) ? '1' : '0';
-//        $sql = "UPDATE images SET status_img = ". $klaar . " WHERE id='". $_POST['id_img'] . "'";
-//        $result = $mysqli->query($sql);
-//
-//    }
 
 if(!empty($_POST['showBestelling'])) {
-    var_dump($_POST);
     $klaar = (!empty($_POST['klaar'])) ? '1' : '0';
-//    $sql = "UPDATE images SET status_img = ". $klaar . " WHERE id='". $_POST['id_img'] . "'";
-//    $result = $mysqli->query($sql);
-
-
     $xs = (!empty($_POST['xs'])) ? '1' : '0';
     $s = (!empty($_POST['s'])) ? '1' : '0';
     $m = (!empty($_POST['m'])) ? '1' : '0';
@@ -38,29 +27,55 @@ if(!empty($_POST['showBestelling'])) {
         $result = $mysqli->query($sql);
     }
 
-    echo "<h3>Contactgegevens</h3>";
+    echo "<h3 style='margin-top: 10%  '>Contactgegevens</h3>";
+    echo "<div id='trr'>";
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>E-mail</th>";
+    echo "<th>Straatnaam</th>";
+    echo "<th>Huisnummer</th>";
+    echo "<th>Postcode</th>";
+    echo "<th>Plaatsnaam</th>";
+    if(!empty($_POST['user_id'])) {
+        echo "<th>Voornaam</th>";
+        echo "<th>Achternaam</th>";
+    }
+    echo "</tr>";
+    echo "<tr>";
+
     $sql = "SELECT * FROM bestelling WHERE id = " . $_POST['id'] . " ";
     $result = $mysqli->query($sql);
     while ($row = $result->fetch_assoc()) {
         if($row['b_huisnummer']) {
-            echo "<p>" . $row['b_email'] . "</p>";
-            echo "<p>" . $row['b_straatnaam'] . "</p>";
-            echo "<p>" . $row['b_huisnummer'] . "</p>";
-            echo "<p>" . $row['b_postcode'] . "</p>";
+            echo "<td>" . $row['b_email'] . "</td>";
+            echo "<td>" . $row['b_straatnaam'] . "</td>";
+            echo "<td>" . $row['b_huisnummer'] . "</td>";
+            echo "<td>" . $row['b_postcode'] . "</td>";
+            echo "<td>" . $row['b_plaatsnaam'] . "</td>";
+            echo "</tr>";
         }
     }
-    $sql = "SELECT * FROM users WHERE id = " . $_POST['id'] . " ";
-    $result = $mysqli->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        echo "<p>" . $row['voornaam'] . "</p>";
-        echo "<p>" . $row['achternaam'] . "</p>";
-        echo "<p>" . $row['email'] . "</p>";
-        echo "<p>" . $row['straatnaam'] . "</p>";
-        echo "<p>" . $row['huisnummer'] . "</p>";
-        echo "<p>" . $row['postcode'] . "</p>";
-        echo "<p>" . $row['plaatsnaam'] . "</p>";
-    }
+    if(!empty($_POST['user_id'])) {
+        $sql = "SELECT * FROM users WHERE id = " . $_POST['user_id'] . " ";
+        $result = $mysqli->query($sql);
 
+
+        while ($row = $result->fetch_assoc()) {
+            echo "<td>" . $row['email'] . "</td>";
+            echo "<td>" . $row['straatnaam'] . "</td>";
+            echo "<td>" . $row['huisnummer'] . "</td>";
+            echo "<td>" . $row['postcode'] . "</td>";
+            echo "<td>" . $row['plaatsnaam'] . "</td>";
+            echo "<td>" . $row['voornaam'] . "</td>";
+            echo "<td>" . $row['achternaam'] . "</td>";
+            echo "</tr>";
+        }
+    }
+    echo "</table>";
+    echo "</div>";
+
+    echo "<h3>Afbeeldingen</h3>";
+    echo "<div id='trr'>";
     $sql = "SELECT * FROM images WHERE bestelling_id = " . $_POST['id'] . " ";
     $result = $mysqli->query($sql);
     echo "<table>";
@@ -75,26 +90,29 @@ if(!empty($_POST['showBestelling'])) {
     echo "<th>Downloaden</th>";
     echo "</tr>";
     echo "<tr>";
+    $i = 0;
     while ($row = $result->fetch_assoc()) {
+        $i += 1;
         echo "<form method='post'>";
         $aantal = 0;
         echo "<tr>";
         $checked = ($row['status_img'] == 1) ? 'checked' : '';
         echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
-        echo "<td><input $checked type='checkbox' name='klaar'>Deze afbeelding is geprint,gedrukt";
+        echo "<td><input $checked type='checkbox' name='klaar' id='$i'><label for='$i'> Deze afbeelding is geprint,gedrukt</label>";
         echo "<input type='submit' name='showBestelling' value='Sla op'/> </td>";
-        $checked = ($row['xs_status'] == 1) ? 'checked' : '';
-        echo "<td>".$row['xs']."<input $checked type='checkbox' name='xs' /></td>";
-        $checked = ($row['s_status'] == 1) ? 'checked' : '';
-        echo "<td>".$row['s']."<input $checked type='checkbox' name='s' /></td>";
-        $checked = ($row['m_status'] == 1) ? 'checked' : '';
-        echo "<td>".$row['m']."<input $checked type='checkbox' name='m' /></td>";
-        $checked = ($row['l_status'] == 1) ? 'checked' : '';
-        echo "<td>".$row['l']."<input $checked type='checkbox' name='l' /></td>";
-        $checked = ($row['xl_status'] == 1) ? 'checked' : '';
-        echo "<td>".$row['xl']."<input $checked type='checkbox' name='xl' /></td>";
-        $checked = ($row['xxl_status'] == 1) ? 'checked' : '';
-        echo "<td>".$row['xxl']."<input $checked type='checkbox' name='xxl' /></td>";
+        $checked = ($row['xs_status'] == 1) ? 'checked' : '';$i += 1;
+        echo "<td><input $checked type='checkbox' name='xs' id='$i' /><label for='$i'>".$row['xs']."</label> </td>";
+        $checked = ($row['s_status'] == 1) ? 'checked' : ''; $i += 1;
+        echo "<td><input $checked type='checkbox' name='s' id='$i' /><label for='$i'>".$row['s']."</label> </td>";
+        $checked = ($row['m_status'] == 1) ? 'checked' : ''; $i += 1;
+        echo "<td><input $checked type='checkbox' name='m' id='$i' /><label for='$i'>".$row['m']."</label> </td>";
+        $checked = ($row['l_status'] == 1) ? 'checked' : ''; $i += 1;
+        echo "<td><input $checked type='checkbox' name='l' id='$i' /><label for='$i'>".$row['l']."</label> </td>";
+        $checked = ($row['xl_status'] == 1) ? 'checked' : ''; $i += 1;
+        echo "<td><input $checked type='checkbox' name='xl' id='$i' /><label for='$i'>".$row['xl']."</label> </td>";
+        $checked = ($row['xxl_status'] == 1) ? 'checked' : ''; $i += 1;
+        echo "<td><input $checked type='checkbox' name='xxl' id='$i' /><label for='$i'>".$row['xxl']."</label> </td>";
+
         echo "<td><a href='/order_images' download='".$row['filename']."' >Download</a></td>";
         echo "</tr>";
         echo "<input name='id' type='hidden' value='" .$row['bestelling_id']. "' />";
@@ -105,6 +123,8 @@ if(!empty($_POST['showBestelling'])) {
     echo "</table>";
     echo "<input type='submit' name='bestellingDone' value='Deze bestelling is klaar' />";
     echo "</form>";
+    echo "</div id='trr'>";
+
 } else {
 if(!empty($_POST['edit'])) {
     $sql = "UPDATE memes SET titel = '" . $_POST['titel'] . "', filename = '" . $_POST['filename'] . "' WHERE id='" . $_POST['id'] . "'";
@@ -114,13 +134,11 @@ if(!empty($_POST['edit'])) {
 if(!empty($_POST['new'])) {
     $sql = "INSERT INTO memes (titel, filename) VALUES ('" . $_POST['titel'] . "', '" . $_POST['filename'] . "') ";
     $result = $mysqli->query($sql);
-    var_dump($sql);
 }
 
 if(!empty($_POST['delete'])) {
     $sql = "DELETE FROM memes WHERE id=". $_POST['id'] ." ";
     $result = $mysqli->query($sql);
-    var_dump($sql);
 }
     echo "<form method='post'>";
     echo "<input type='text' name='titel' placeholder='Titel' />";
@@ -164,25 +182,30 @@ if(!empty($_POST['delete'])) {
     include "model/voltooideBestellingen.php";
 
 
+
+
 }}else{
     echo "Niet ingelogd";
     header("Location: home");
 }
 ?>
 <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+    #trr{
+        background-color: #f5f5f5;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-td, th {
-    border: 1px solid #000;
-    text-align: left;
-    padding: 2px;
-}
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #F49517;
+        color: white;
+    }
+    tr:hover{background-color:lightgrey}
 
-tr:nth-child(even) {
-background-color: #dddddd;
-}
 </style>

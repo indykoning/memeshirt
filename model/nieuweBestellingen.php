@@ -24,6 +24,7 @@ while ($row = $result->fetch_assoc()) {
             echo "<form target='_blank' method='post'>";
             echo "<input type='submit' name='showBestelling' value='Open'/>";
             echo "<input type='hidden' name='id' value='".$row['id']."' />";
+            echo "<input name='user_id' type='hidden' value='" .$row['users_id']. "' />";
             echo "</form>";
             echo "</div>";
             echo "</div>";
@@ -46,9 +47,44 @@ while ($row = $result->fetch_assoc()) {
             echo "<form target='_blank' method='post'>";
             echo "<input type='submit' name='showBestelling' value='Open'/>";
             echo "<input type='hidden' name='id' value='".$row['id']."' />";
+            echo "<input name='user_id' type='hidden' value='" .$row['users_id']. "' />";
+
             echo "</form>";
             echo "</div>";
             echo "</div>";
         }
     }
 }
+
+
+echo '                    <div class="col-xs-12">
+                        <h1 class="h_bestelling">Bestellingen</h1>
+                        <div class="blue_line"></div>
+                    </div>
+
+<div class="wrapper_winkelwagen" style="background-color: whitesmoke">
+    <div class="row">
+        <div class="col-sm-4 col-xs-12 row_winkelwagen">
+                            <img class="img_shirt" src="links/greyfree.jpg" alt="">
+                        </div>
+                        <div class="col-sm-2 col-xs-6 padding_bestelling">
+                            <h1 class="h_bestelling_specs">Kleur: Grijs</h1>
+                            <h1 class="h_bestelling_specs">Maat: S</h1>
+                        </div>
+                        <div class="col-sm-2 hidden-xs padding_bestelling">
+                            <h1 class="h_bestelling_specs">&euro; 19,95</h1>
+                        </div>
+                        <div class="col-sm-2 col-xs-8 padding_bestelling">
+                            <select class="aantal">
+                                <option value="australia">1</option>
+                                <option value="canada">2</option>
+                                <option value="usa">3</option>
+                                <option value="usa">4</option>
+                            </select>
+                        </div>    <div class="col-sm-2 col-xs-4 padding_bestelling text_align_right_bestelling">
+                            <h1 class="h_bestelling_specs2">&euro; 19,95</h1>
+                            <p class="verwijderen">Verwijderen</p>
+        </div>
+    </div>
+</div>
+';

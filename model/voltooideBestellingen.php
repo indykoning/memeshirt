@@ -24,6 +24,7 @@ while ($row = $result->fetch_assoc()) {
             echo "<form target='_blank' method='post'>";
             echo "<input type='submit' name='showBestelling' value='Open'/>";
             echo "<input type='hidden' name='id' value='".$row['id']."' />";
+            echo "<input name='user_id' type='hidden' value='" .$row['users_id']. "' />";
             echo "</form>";
             echo "</div>";
             echo "</div>";
@@ -47,6 +48,7 @@ while ($row = $result->fetch_assoc()) {
             echo "<form target='_blank' method='post'>";
             echo "<input type='submit' name='showBestelling' value='Open'/>";
             echo "<input type='hidden' name='id' value='".$row['id']."' />";
+            echo "<input name='user_id' type='hidden' value='" .$row['users_id']. "' />";
             echo "</form>";
             echo "</div>";
             echo "</div>";

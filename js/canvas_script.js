@@ -97,12 +97,25 @@ function getUrlVars() {
 
     }, 'onchange');
     document.getElementById('addtextBut').addEventListener('click', function () {
-        var fillcolor = "#"+input.value;
+        if (document.getElementById('font-family').value == 'meme'){
+            var stroke = '#000000';
+            var fill = '#ffffff';
+            var strokewidth = 1;
+            var fontfamily = 'impact';
+        }else{
+            var stroke = '';
+            var fill = '#' + input.value;
+            var strokewidth = '';
+            var fontfamily = document.getElementById('font-family').value;
+        }
         var index = textArr.push(canvas.add(new fabric.IText(document.getElementById('addtext').value, {
             left: 100, //Take the block's position
             top: 100,
-            fill: fillcolor,
-            cornerSize: cornersize
+            fill: fill,
+            cornerSize: cornersize,
+            stroke: stroke,
+            strokeWidth: strokewidth,
+            fontFamily: fontfamily
         })));
     });
 

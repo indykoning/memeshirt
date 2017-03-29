@@ -142,9 +142,9 @@ if (!empty($_POST['add_to_cart'])) {
                                             <div id="colordiv"></div>
                                             <br>
                                             <select id="font-family">
-                                                <option value="meme">meme</option>
+                                                <option value="meme" selected>meme</option>
                                                 <option value="arial">Arial</option>
-                                                <option value="helvetica" selected>Helvetica</option>
+                                                <option value="helvetica">Helvetica</option>
                                                 <option value="myriad pro">Myriad Pro</option>
                                                 <option value="delicious">Delicious</option>
                                                 <option value="verdana">Verdana</option>

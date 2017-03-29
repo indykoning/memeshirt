@@ -17,7 +17,7 @@ function setTransparency($new_image,$image_source)
     imagecolortransparent($new_image, $transparencyIndex);
 
 }
-//var_dump($_POST);
+var_dump($_POST);
 if (!empty($_POST['add_to_cart'])) {
     ini_set('gd.jpeg_ignore_warning', 1);
     $rand = rand();
@@ -68,7 +68,14 @@ if (!empty($_POST['add_to_cart'])) {
             $result = $mysqli->query($sql);
             $_SESSION['bestelling_id'] = $mysqli->insert_id;
         }
-        $sql = "INSERT INTO `images`(`filename`, `status`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, " . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
+        $xs = abs($_POST['xs']) * PRIJS_XS;
+        $s = abs($_POST['s']) * PRIJS_S;
+        $m = abs($_POST['m']) * PRIJS_M;
+        $l = abs($_POST['l']) * PRIJS_L;
+        $xl = abs($_POST['xl']) * PRIJS_XL;
+        $xxl = abs($_POST['xxl']) * PRIJS_XXL;
+        $totaal = $xs+$s+$m+$l+$xl+$xxl;
+        $sql = "INSERT INTO `images`(`filename`, `status`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, ". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
         $mysqli->query($sql);
 //    var_dump($sql);
 //    var_dump(mysqli_error($mysqli));

@@ -141,8 +141,28 @@ if (!empty($_POST['add_to_cart'])) {
                                             <!--<input type="color" id="color">-->
                                             <div id="colordiv"></div>
                                             <br>
+                                            <select id="font-family">
+                                                <option value="meme">meme</option>
+                                                <option value="arial">Arial</option>
+                                                <option value="helvetica" selected>Helvetica</option>
+                                                <option value="myriad pro">Myriad Pro</option>
+                                                <option value="delicious">Delicious</option>
+                                                <option value="verdana">Verdana</option>
+                                                <option value="georgia">Georgia</option>
+                                                <option value="courier">Courier</option>
+                                                <option value="comic sans ms">Comic Sans MS</option>
+                                                <option value="impact">Impact</option>
+                                                <option value="monaco">Monaco</option>
+                                                <option value="optima">Optima</option>
+                                                <option value="hoefler text">Hoefler Text</option>
+                                                <option value="plaster">Plaster</option>
+                                                <option value="engagement">Engagement</option>
+                                            </select>
                                             <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
+
+
                                         </div>
+
                                         <div id="step-4">
                                             <!--stap 4 -->
                                             <table>

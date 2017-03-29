@@ -1,3 +1,4 @@
+//basic functions
 var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:2480});
 function getUrlVars() {
     var vars = {};
@@ -56,7 +57,7 @@ function getUrlVars() {
         };
     }
 
-
+//code
     var input = document.createElement('INPUT');
     var picker = new jscolor(input, {
         value: "000000",
@@ -80,6 +81,21 @@ function getUrlVars() {
         clear();
     });
 
+
+    addHandler('font-family', function(obj) {
+        if (this.value == 'meme'){
+            setStyle(obj, 'stroke', '#000000');
+            setStyle(obj, 'fill', '#ffffff');
+            setStyle(obj, 'strokeWidth', 1);
+            setStyle(obj, 'fontFamily', 'impact');
+        }else{
+            setStyle(obj, 'stroke', '');
+            setStyle(obj, 'fill', '#' + input.value);
+            setStyle(obj, 'strokeWidth', '');
+            setStyle(obj, 'fontFamily', this.value);
+        }
+
+    }, 'onchange');
     document.getElementById('addtextBut').addEventListener('click', function () {
         var fillcolor = "#"+input.value;
         var index = textArr.push(canvas.add(new fabric.IText(document.getElementById('addtext').value, {

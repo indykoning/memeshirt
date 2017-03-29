@@ -145,17 +145,14 @@ if (!empty($_POST['add_to_cart'])) {
                                         </div>
                                         <div id="step-4">
                                             <!--stap 4 -->
-                                            <table>
-                                                <tr><td>xs</td><td><input type="number" value="0" name="xs"></td></tr>
-                                                <tr><td>s</td><td><input type="number" value="0" name="s"></td></tr>
-                                                <tr><td>m</td><td><input type="number" value="0" name="m"></td></tr>
-                                                <tr><td>l</td><td><input type="number" value="0" name="l"></td></tr>
-                                                <tr><td>xl</td><td><input type="number" value="0" name="xl"></td></tr>
-                                                <tr><td>xxl</td><td><input type="number" value="0" name="xxl"></td></tr>
-
-                                            </table>
+                                            <div><p class="maat">XS</p><input type="number" class="maatAantal" value="0" name="xs"></div>
+                                            <div><p class="maat">S</p><input type="number" class="maatAantal" value="0" name="s"></div>
+                                            <div><p class="maat">M</p><input type="number" class="maatAantal" value="0" name="m"></div>
+                                            <div><p class="maat">L</p><input type="number" class="maatAantal" value="0" name="l"></div>
+                                            <div><p class="maat">XL</p><input type="number" class="maatAantal" value="0" name="xl"></div>
+                                            <div><p class="maat">XLL</p><input type="number" class="maatAantal" value="0" name="xxl"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
-                                            <input type="submit"  name="add_to_cart" value="Voeg toe aan winkelwagen">
+                                                <input type="submit" class="btn btn-info btn_ontwerpproces_verder h_button_verder" name="add_to_cart" value="Voeg toe aan winkelwagen">
                                         </div>
                                         </form>
                                         <div class="col-xs-12">

@@ -20,15 +20,13 @@
                     <a href="#" class="hidden-sm hidden-md hidden-lg p_nav p_nav_winkelwagen"><img src="links/winkelwagen.png" alt="" height="25"></a>
                     <div class="collapse navbar-collapse navbar_no_border" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="home#wrapper_winkelen" class="p_nav">Winkelen</a></li>
+                            <li><a href="home" class="p_nav">Winkelen</a></li>
                             <li><a href="ontwerpen" class="p_nav">Ontwerpen</a></li>
-                            <li><a href="#" class="p_nav">Inloggen</a></li>
-<!--                            <li><a href="winkelwagen" class="hidden-xs p_nav"><img src="links/winkelwagen.png" alt="" height="25"></a></li>-->
-                            <li><a href="#" class="hidden-xs p_nav"><img src="links/winkelwagen.png" alt="" height="25"></a>
+                            <li><a href="inloggen" class="p_nav">Inloggen</a></li>
                             <?php
                             $sql = "SELECT bestelling_id FROM images WHERE bestelling_id = ".$_SESSION['bestelling_id'];
                             $result = $mysqli->query($sql);
-                            echo "<li><a href='winkelwagen' class='p_nav'>($result->num_rows)</a></li>";
+                            echo "<li><a href='winkelwagen' class='p_nav'><img src='links/winkelwagen.png' alt='' height='25'>($result->num_rows)</a></li>";
                             ?>
                             </li>
                         </ul>

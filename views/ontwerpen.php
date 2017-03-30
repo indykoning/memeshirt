@@ -1,10 +1,14 @@
 <?php
+ini_set('memory_limit', '-1');
+ini_set('post_max_size', '500M');
+ini_set('upload_max_filesize', '50M');
 $output_width = 3508;
 $output_height = 2480;
 
+var_dump($_POST);
 function setTransparency($new_image,$image_source)
 {
-    ini_set('memory_limit', '-1');
+
     $transparencyIndex = imagecolortransparent($image_source);
     $transparencyColor = array('red' => 255, 'green' => 255, 'blue' => 255);
 
@@ -17,7 +21,7 @@ function setTransparency($new_image,$image_source)
     imagecolortransparent($new_image, $transparencyIndex);
 
 }
-//var_dump($_POST);
+
 if (!empty($_POST['add_to_cart'])) {
     ini_set('gd.jpeg_ignore_warning', 1);
     $rand = rand();
@@ -68,7 +72,14 @@ if (!empty($_POST['add_to_cart'])) {
             $result = $mysqli->query($sql);
             $_SESSION['bestelling_id'] = $mysqli->insert_id;
         }
-        $sql = "INSERT INTO `images`(`filename`, `status`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, " . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
+        $xs = abs($_POST['xs']) * PRIJS_XS;
+        $s = abs($_POST['s']) * PRIJS_S;
+        $m = abs($_POST['m']) * PRIJS_M;
+        $l = abs($_POST['l']) * PRIJS_L;
+        $xl = abs($_POST['xl']) * PRIJS_XL;
+        $xxl = abs($_POST['xxl']) * PRIJS_XXL;
+        $totaal = $xs+$s+$m+$l+$xl+$xxl;
+        $sql = "INSERT INTO `images`(`filename`, `status`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, ". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
         $mysqli->query($sql);
 //    var_dump($sql);
 //    var_dump(mysqli_error($mysqli));
@@ -87,12 +98,19 @@ if (!empty($_POST['add_to_cart'])) {
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 no_padding">
                             <div class="ontwerpen_links">
-                                <div class="shirt_preview" style="overflow-y: auto">
+                                <div class="shirt_preview">
 
                                         <canvas id="editor"></canvas>
 
 
-
+                                    <style>
+                                        .canvas-container{
+                                            transform: scale(0.13);
+                                            left: -1550px;
+                                            top: -1100px;
+                                            border: 20px solid black;
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </div>
@@ -141,18 +159,42 @@ if (!empty($_POST['add_to_cart'])) {
                                             <!--<input type="color" id="color">-->
                                             <div id="colordiv"></div>
                                             <br>
+                                            <select id="font-family">
+                                                <option value="meme" selected>meme</option>
+                                                <option value="arial">Arial</option>
+                                                <option value="helvetica">Helvetica</option>
+                                                <option value="myriad pro">Myriad Pro</option>
+                                                <option value="delicious">Delicious</option>
+                                                <option value="verdana">Verdana</option>
+                                                <option value="georgia">Georgia</option>
+                                                <option value="courier">Courier</option>
+                                                <option value="comic sans ms">Comic Sans MS</option>
+                                                <option value="impact">Impact</option>
+                                                <option value="monaco">Monaco</option>
+                                                <option value="optima">Optima</option>
+                                                <option value="hoefler text">Hoefler Text</option>
+                                                <option value="plaster">Plaster</option>
+                                                <option value="engagement">Engagement</option>
+                                            </select>
                                             <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
+
+
                                         </div>
+
                                         <div id="step-4">
                                             <!--stap 4 -->
-                                            <div><p class="maat">XS</p><input type="number" class="maatAantal" value="0" name="xs"></div>
-                                            <div><p class="maat">S</p><input type="number" class="maatAantal" value="0" name="s"></div>
-                                            <div><p class="maat">M</p><input type="number" class="maatAantal" value="0" name="m"></div>
-                                            <div><p class="maat">L</p><input type="number" class="maatAantal" value="0" name="l"></div>
-                                            <div><p class="maat">XL</p><input type="number" class="maatAantal" value="0" name="xl"></div>
-                                            <div><p class="maat">XLL</p><input type="number" class="maatAantal" value="0" name="xxl"></div>
+                                            <table>
+                                                <tr><td>xs</td><td><input type="number" value="0" name="xs"></td></tr>
+                                                <tr><td>s</td><td><input type="number" value="0" name="s"></td></tr>
+                                                <tr><td>m</td><td><input type="number" value="0" name="m"></td></tr>
+                                                <tr><td>l</td><td><input type="number" value="0" name="l"></td></tr>
+                                                <tr><td>xl</td><td><input type="number" value="0" name="xl"></td></tr>
+                                                <tr><td>xxl</td><td><input type="number" value="0" name="xxl"></td></tr>
+
+                                            </table>
+                                            <div id="uploadHolder" style="display: none"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
-                                                <input type="submit" class="btn btn-info btn_ontwerpproces_verder h_button_verder" name="add_to_cart" value="Voeg toe aan winkelwagen">
+                                            <input type="submit"  name="add_to_cart" value="Voeg toe aan winkelwagen">
                                         </div>
                                         </form>
                                         <div class="col-xs-12">

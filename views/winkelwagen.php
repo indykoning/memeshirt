@@ -85,37 +85,66 @@ $result = $mysqli->query($sql);
 
 $totale_prijs = 0;
 $i = 0;
+
+echo '    <div class="row">
+        <div class="col-xs-12">
+            <div class="wrapper_winkelwagen">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="h_bestelling">Winkelwagen</h1>
+                        <div class="blue_line"></div>
+                    </div>';
+            
 while ($row = $result->fetch_assoc()) {
 
-    echo "<table>";
-    echo "<form method='post' class='formpie'>";
+
+
+echo '
+<form method=\'post\' class=\'formpie\'>
+    <div class="col-sm-4 col-xs-12 row_winkelwagen">
+                        <img class="img_shirt" src="order_images/'.$row["filename"].'" alt="">
+                    </div>
+                    <div class="col-sm-2 col-xs-6 padding_bestelling">
+                        <h1 class="h_bestelling_specs">Kleur: ' . $row["kleur"] . '</h1>
+                    </div>
+                    <div class="col-sm-2 col-xs-8 padding_bestelling">
+                    <table>
+<tr><td>XS:</td><td><input name=\'xs\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["xs"].'\'/></td></tr>
+<tr><td>S:</td><td><input name=\'s\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["s"].'\'/></td></tr>
+<tr><td>M:</td><td><input name=\'m\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i .' )\' value=\''.$row["m"].'\'/></td></tr>
+<tr><td>L:</td><td><input name=\'l\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["l"].'\'/></td></tr>
+<tr><td>XL:</td><td><input name=\'xl\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["xl"].'\'/></td></tr>
+<tr><td>XXL:</td><td><input name=\'xxl\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["xxl"].'\'/></td></tr>
+</table>
+                    </div>
+                    <div class="col-sm-2 col-xs-4 padding_bestelling text_align_right_bestelling">
+                        <h1 class="h_bestelling_specs2">&euro; '. $row["totaal_prijs"] .'</h1>
+                        <p class="verwijderen"><label style="cursor: pointer" for="delete_wagen_'.$i.'">Verwijderen</label></p>
+                    </div>
+                    
+';
     echo "<input name='id' type='hidden' value='".$row['id']."' />";
-    echo "<tr><td></td><td><img src='order_images/" . $row['filename'] . "' width='300px'></td></tr>";
-//    echo "<tr><td>Aantal </td><td><input class='aantal' onchange='liveEdit(" .$i++ . ")' min='1' type='number' name='aantal' value='" . $row['aantal'] . "'/></td></tr>";
-//    echo "<tr><td>Prijs:</td><td>€<input style='border:none' class='prijs' name='prijs' readonly type='number' value='".$row['prijs']."'  /></td></tr>";
-    echo "<tr><td>totaal Prijs:</td><td>€<input style='border:none' readonly class='totaal_prijs' value='". $row['totaal_prijs']."'/></td></tr>";
-    echo "<tr><td>XS:</td><td><input name='xs' type='number' min='0' onchange='liveEdit(" .$i . ")' value='".$row['xs']."'/></td></tr>";
-    echo "<tr><td>S:</td><td><input name='s' type='number' min='0' onchange='liveEdit(" .$i . ")' value='".$row['s']."'/></td></tr>";
-    echo "<tr><td>M:</td><td><input name='m' type='number' min='0' onchange='liveEdit(" .$i . ")' value='".$row['m']."'/></td></tr>";
-    echo "<tr><td>L:</td><td><input name='l' type='number' min='0' onchange='liveEdit(" .$i . ")' value='".$row['l']."'/></td></tr>";
-    echo "<tr><td>XL:</td><td><input name='xl' type='number' min='0' onchange='liveEdit(" .$i . ")' value='".$row['xl']."'/></td></tr>";
-    echo "<tr><td>XXL:</td><td><input name='xxl' type='number' min='0' onchange='liveEdit(" .$i . ")' value='".$row['xxl']."'/></td></tr>";
-    echo "<tr><td></td><td><input type='hidden' name='update' value='Sla op' /></td></tr>";
-    echo "<tr><td></td><td><input type='submit' name='delete' value='Verwijder' /></td></tr>";
+    echo "<input type='hidden' name='update' value='Sla op' />";
+    echo "<input type='submit' style='display:none' id='delete_wagen_".$i."' name='delete' value='Verwijder'/>";
+    $i++;
     $totale_prijs += $row['totaal_prijs'];
     echo "</form>";
-    echo "</table>";
-    echo "<hr>";
-    $i++;
 }
-echo "<p>Totaal: €".$totale_prijs. "</p>";
+echo "</div>                    <div class=\"col-sm-3 col-sm-offset-7 col-xs-6 row_winkelwagen\">
+                        <h1 class=\"h_verzendkosten\">Verzendkosten:</h1>
+                        <h1 class=\"h_totaal_prijs\">Totale prijs:</h1>
+                    </div>
+                    <div class=\"col-sm-2 col-xs-6 row_winkelwagen text_align_right_totaal\">
+                        <h1 class=\"h_verzendkosten\">&euro; 0,00</h1>
+                        <h1 class=\"h_totaal_prijs\">&euro; ".$totale_prijs."</h1>
+                    </div>";
 $sql = "UPDATE bestelling SET totale_prijs = ". $totale_prijs . " WHERE id= ". $_SESSION['bestelling_id'];
 $mysqli->query($sql);
 
 echo "<form method='post'>";
 if (!LOGGED_IN){
  ?>
-    <table>
+    <table style="padding: 0; margin: 0">
     <tr><td><label>e-mail</label></td><td><input type="text" name="email" placeholder="e-mail"></td></tr>
             <tr><td><label>Straatnaam</label></td><td><input type="text" name="straatnaam" placeholder="straatnaam"></td></tr>
             <tr><td><label>huisnummer</label></td><td><input type="number" name="huisnummer" placeholder="huisnummer"></td></tr>

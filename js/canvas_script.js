@@ -1,4 +1,13 @@
+//basic functions
 var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:2480});
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
 (function() {
     window.mobileAndTabletcheck = function() {
         var check = false;
@@ -6,15 +15,20 @@ var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:24
         return check;
     };
     if (window.mobileAndTabletcheck()){
-        var cornersize = 30;
+        var cornersize = 300;
     }else{
-        var cornersize = 14;
+        var cornersize = 140;
     }
     var upload = document.getElementById('fileUpload');
 
     var imgbuffer;
     var textArr = [];
 
+
+    if(getUrlVars()['foto'] != ''){
+        imgbuffer = decodeURIComponent(getUrlVars()['foto']);
+        clear();
+    }
     document.getElementById('deleteButton').addEventListener('click', function () {
         canvas.getActiveObject().remove();
     });
@@ -43,7 +57,7 @@ var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:24
         };
     }
 
-
+//code
     var input = document.createElement('INPUT');
     var picker = new jscolor(input, {
         value: "000000",
@@ -64,17 +78,45 @@ var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:24
     upload.addEventListener('change', function (e) {
         var image = URL.createObjectURL(upload.files[0]);
         imgbuffer = image;
-
         clear();
     });
 
+
+    addHandler('font-family', function(obj) {
+        if (this.value == 'meme'){
+            setStyle(obj, 'stroke', '#000000');
+            setStyle(obj, 'fill', '#ffffff');
+            setStyle(obj, 'strokeWidth', 10);
+            setStyle(obj, 'fontFamily', 'impact');
+        }else{
+            setStyle(obj, 'stroke', '');
+            setStyle(obj, 'fill', '#' + input.value);
+            setStyle(obj, 'strokeWidth', '');
+            setStyle(obj, 'fontFamily', this.value);
+        }
+
+    }, 'onchange');
     document.getElementById('addtextBut').addEventListener('click', function () {
-        var fillcolor = "#"+input.value;
+        if (document.getElementById('font-family').value == 'meme'){
+            var stroke = '#000000';
+            var fill = '#ffffff';
+            var strokewidth = 10;
+            var fontfamily = 'impact';
+        }else{
+            var stroke = '';
+            var fill = '#' + input.value;
+            var strokewidth = '';
+            var fontfamily = document.getElementById('font-family').value;
+        }
         var index = textArr.push(canvas.add(new fabric.IText(document.getElementById('addtext').value, {
             left: 100, //Take the block's position
             top: 100,
-            fill: fillcolor,
-            cornerSize: cornersize
+            fontSize: '400',
+            fill: fill,
+            cornerSize: cornersize,
+            stroke: stroke,
+            strokeWidth: strokewidth,
+            fontFamily: fontfamily
         })));
     });
 

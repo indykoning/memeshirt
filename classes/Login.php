@@ -15,6 +15,7 @@ class Login extends PDO
         if(session_id() == '') {
             session_start();
         }
+        $this->Return_array = [];
         $this->table = $table;
         $this->id_rowName = $id_rowName;
         $this->username_rowName = $username_rowName;

@@ -1,7 +1,9 @@
 <?php
+$message = 'Welkom';
+
 if (rank == 1){
     if(!empty($_POST['bestellingDone'])) {
-        $sql = "UPDATE bestelling SET status = 3 WHERE id='". $_POST['id'] . "'";
+        $sql = "UPDATE bestelling SET status = 3, eindDatum = CURRENT_TIMESTAMP WHERE id='". $_POST['id'] . "'";
         $result = $mysqli->query($sql);
     }
 
@@ -16,8 +18,6 @@ if(!empty($_POST['showBestelling'])) {
 
     $sql = "UPDATE images SET status_img = ". $klaar . ", xs_status = ".$xs.", s_status = ".$s.", m_status = ".$m.", l_status = ".$l.", xl_status = ".$xl.", xxl_status = ".$xxl." WHERE id='". $_POST['id_img'] . "'";
     $result = $mysqli->query($sql);
-
-
 
     $sql = "SELECT * FROM bestelling WHERE id = " . $_POST['id'] . " ";
     $result = $mysqli->query($sql);
@@ -59,7 +59,6 @@ if(!empty($_POST['showBestelling'])) {
         $sql = "SELECT * FROM users WHERE id = " . $_POST['user_id'] . " ";
         $result = $mysqli->query($sql);
 
-
         while ($row = $result->fetch_assoc()) {
             echo "<td>" . $row['email'] . "</td>";
             echo "<td>" . $row['straatnaam'] . "</td>";
@@ -78,9 +77,9 @@ if(!empty($_POST['showBestelling'])) {
     echo "<div id='trr'>";
     $sql = "SELECT * FROM images WHERE bestelling_id = " . $_POST['id'] . " ";
     $result = $mysqli->query($sql);
-    echo "<table>";
+    echo "<table id='table1'>";
     echo "<tr>";
-    echo "<th>Al gedownload?</th>";
+    echo "<th>Opslaan</th>";
     echo "<th>xs</th>";
     echo "<th>s</th>";
     echo "<th>m</th>";
@@ -98,8 +97,8 @@ if(!empty($_POST['showBestelling'])) {
         echo "<tr>";
         $checked = ($row['status_img'] == 1) ? 'checked' : '';
         echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
-        echo "<td><input $checked type='checkbox' name='klaar' id='$i'><label for='$i'> Deze afbeelding is geprint,gedrukt</label>";
-        echo "<input type='submit' name='showBestelling' value='Sla op'/> </td>";
+//        echo "<td><input $checked type='checkbox' name='klaar' id='$i'><label for='$i'> Deze afbeelding is geprint,gedrukt</label>";
+        echo "<td><input type='submit' name='showBestelling' value='Sla op'/> </td>";
         $checked = ($row['xs_status'] == 1) ? 'checked' : '';$i += 1;
         echo "<td><input $checked type='checkbox' name='xs' id='$i' /><label for='$i'>".$row['xs']."</label> </td>";
         $checked = ($row['s_status'] == 1) ? 'checked' : ''; $i += 1;
@@ -129,18 +128,21 @@ if(!empty($_POST['showBestelling'])) {
 if(!empty($_POST['edit'])) {
     $sql = "UPDATE memes SET titel = '" . $_POST['titel'] . "', filename = '" . $_POST['filename'] . "' WHERE id='" . $_POST['id'] . "'";
     $result = $mysqli->query($sql);
+    $message = 'Succesvol veranderd';
 }
 
 if(!empty($_POST['new'])) {
     $sql = "INSERT INTO memes (titel, filename) VALUES ('" . $_POST['titel'] . "', '" . $_POST['filename'] . "') ";
     $result = $mysqli->query($sql);
+    $message = 'Succesvol toegevoegd';
 }
 
 if(!empty($_POST['delete'])) {
     $sql = "DELETE FROM memes WHERE id=". $_POST['id'] ." ";
     $result = $mysqli->query($sql);
+    $message = 'Succesvol verwijderd';
 }
-    echo "<form method='post'>";
+    echo "<form method='post' style='margin-top: 7%'>";
     echo "<input type='text' name='titel' placeholder='Titel' />";
     echo "<input type='text' name='filename' placeholder='Bestandsnaam' />";
     echo "<input type='submit' name='new' value='Voeg toe'>";
@@ -148,7 +150,7 @@ if(!empty($_POST['delete'])) {
 
     $sql = "SELECT * FROM memes";
     $result = $mysqli->query($sql);
-    echo "<table>";
+    echo "<table style='margin-top: 8%'>";
     echo "<tr>";
     echo "<th>Afbeelding</th>";
     echo "<th>Titel</th>";
@@ -158,30 +160,28 @@ if(!empty($_POST['delete'])) {
     echo "</tr>";
     echo "<tr>";
 
-//    while ($row = $result->fetch_assoc()) {
-//        echo "<tr>";
-//        echo "<form method='post'>";
-//        echo "<input name='id' type='hidden' value='" .$row['id']. "' />";
-//        echo "<td><img src='" . $row['filename'] . "'  height='70px'/> </td>";
-//        echo "<td><input type='text' name='titel' value='" . $row['titel'] . "'/></td>";
-//        echo "<td><input type='text' name='filename' value='" . $row['filename'] . "' /></td>";
-//        echo "<td><input type='submit' name='edit' value='Opslaan'></td>";
-//        echo "<td><input type='submit' name='delete' value='Verwijder'></td>";
-//        echo "</form>";
-//        echo "</tr>";
-//    }
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<form method='post'>";
+        echo "<input name='id' type='hidden' value='" .$row['id']. "' />";
+        echo "<td><img src='" . $row['filename'] . "'  height='70px'/> </td>";
+        echo "<td><input type='text' name='titel' value='" . $row['titel'] . "'/></td>";
+        echo "<td><input type='text' name='filename' value='" . $row['filename'] . "' /></td>";
+        echo "<td><input type='submit' name='edit' value='Opslaan'></td>";
+        echo "<td><input type='submit' name='delete' value='Verwijder'></td>";
+        echo "</form>";
+        echo "</tr>";
+    }
     echo "</table>";
 
     //Nieuwe bestellingen
     include "model/nieuweBestellingen.php";
-
     //Lopende bestellingen
     include "model/lopendeBestellingen.php";
-
     //Voltooide bestellingen
     include "model/voltooideBestellingen.php";
 
-
+    echo "<p style='   position: fixed; top: 87px; color: white; font-size: 120%; padding-top: 10px; padding-bottom: 10px; width: 100%; background-color: grey; text-align: center'>$message</p>";
 
 
 }}else{
@@ -196,6 +196,10 @@ if(!empty($_POST['delete'])) {
     table {
         border-collapse: collapse;
         width: 100%;
+    }
+
+    label{
+        height: 10px;
     }
 
     th, td {

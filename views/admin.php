@@ -77,9 +77,9 @@ if(!empty($_POST['showBestelling'])) {
     echo "<div id='trr'>";
     $sql = "SELECT * FROM images WHERE bestelling_id = " . $_POST['id'] . " ";
     $result = $mysqli->query($sql);
-    echo "<table>";
+    echo "<table id='table1'>";
     echo "<tr>";
-    echo "<th>Al gedownload?</th>";
+    echo "<th>Opslaan</th>";
     echo "<th>xs</th>";
     echo "<th>s</th>";
     echo "<th>m</th>";
@@ -97,8 +97,8 @@ if(!empty($_POST['showBestelling'])) {
         echo "<tr>";
         $checked = ($row['status_img'] == 1) ? 'checked' : '';
         echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
-        echo "<td><input $checked type='checkbox' name='klaar' id='$i'><label for='$i'> Deze afbeelding is geprint,gedrukt</label>";
-        echo "<input type='submit' name='showBestelling' value='Sla op'/> </td>";
+//        echo "<td><input $checked type='checkbox' name='klaar' id='$i'><label for='$i'> Deze afbeelding is geprint,gedrukt</label>";
+        echo "<td><input type='submit' name='showBestelling' value='Sla op'/> </td>";
         $checked = ($row['xs_status'] == 1) ? 'checked' : '';$i += 1;
         echo "<td><input $checked type='checkbox' name='xs' id='$i' /><label for='$i'>".$row['xs']."</label> </td>";
         $checked = ($row['s_status'] == 1) ? 'checked' : ''; $i += 1;
@@ -176,18 +176,13 @@ if(!empty($_POST['delete'])) {
 
     //Nieuwe bestellingen
     include "model/nieuweBestellingen.php";
-
     //Lopende bestellingen
     include "model/lopendeBestellingen.php";
-
     //Voltooide bestellingen
     include "model/voltooideBestellingen.php";
-//    $date = strtotime("+7 day");
-//    echo $date;
-//    echo date('M d, Y');
-    $date = strtotime("-7 day");
-    echo date('M d, Y', $date);
+
     echo "<p style='   position: fixed; top: 87px; color: white; font-size: 120%; padding-top: 10px; padding-bottom: 10px; width: 100%; background-color: grey; text-align: center'>$message</p>";
+
 
 }}else{
     echo "Niet ingelogd";
@@ -201,6 +196,10 @@ if(!empty($_POST['delete'])) {
     table {
         border-collapse: collapse;
         width: 100%;
+    }
+
+    label{
+        height: 10px;
     }
 
     th, td {

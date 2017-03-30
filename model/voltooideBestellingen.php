@@ -26,14 +26,14 @@ while ($row = $result->fetch_assoc()) {
                 echo "<td>" . $row['eindDatum'] . "</td>";
             }
 
-//            $date = strtotime("-7 day");
-            $date = strtotime("-1 hours");
-
-            if(strtotime($row['eindDatum']) < $date) {
-                echo "<td>ezz</td>";
-            }
-
-
+//            $date1 = new DateTime($row['eindDatum']);
+//            $date2 = new DateTime();
+//            $date2->modify("+2 hours"); $date2->modify("-7 days");
+//            if($date1 < $date2){
+//                echo "<td>Word delete</td>";
+//
+//                $sql4 = "DELETE * FROM images WHERE id = ";
+//            }
 
             $sql2 = "SELECT * FROM images WHERE bestelling_id = ".$row['id']. " ";
             $result2 = $mysqli->query($sql2);
@@ -41,6 +41,20 @@ while ($row = $result->fetch_assoc()) {
 
             while ($row2 = $result2->fetch_assoc()) {
                 $aantal += $row2['xs'] + $row2['s'] + $row2['m'] + $row2['l'] + $row2['xl'] + $row2['xxl'];
+
+                $date1 = new DateTime($row['eindDatum']);
+                $date2 = new DateTime();
+                $date2->modify("+2 hours"); $date2->modify("-7 days");
+                if($date1 < $date2){
+                    echo "<td>Word delete".$row['id']."</td>";
+                    $sql4 = "DELETE FROM images WHERE bestelling_id = ".$row['id']. " ";
+                    $result4 = $mysqli->query($sql4);
+
+                    $sql5 = "DELETE FROM bestelling WHERE id = ".$row['id']. " ";
+                    $result5 = $mysqli->query($sql5);
+
+                }
+
             }
             echo "<td>$aantal</td>";
             echo "<form target='_blank' method='post'>";
@@ -60,11 +74,12 @@ while ($row = $result->fetch_assoc()) {
             echo "<td>" . $row['b_email'] . "</td>";
             echo "<td>" . $row['eindDatum'] . "</td>";
 
-            $date = strtotime("-7 day");
+            $date = strtotime("-1 hours");
 
             if(strtotime($row['eindDatum']) < $date) {
                 echo "<td>ezz</td>";
             }
+
             $sql2 = "SELECT * FROM images WHERE bestelling_id = " . $row['id'] . " ";
             $result2 = $mysqli->query($sql2);
             echo "<td>$result2->num_rows</td>";

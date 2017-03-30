@@ -1,10 +1,14 @@
 <?php
+ini_set('memory_limit', '-1');
+ini_set('post_max_size', '500M');
+ini_set('upload_max_filesize', '50M');
 $output_width = 3508;
 $output_height = 2480;
 
+var_dump($_POST);
 function setTransparency($new_image,$image_source)
 {
-    ini_set('memory_limit', '-1');
+
     $transparencyIndex = imagecolortransparent($image_source);
     $transparencyColor = array('red' => 255, 'green' => 255, 'blue' => 255);
 
@@ -17,7 +21,7 @@ function setTransparency($new_image,$image_source)
     imagecolortransparent($new_image, $transparencyIndex);
 
 }
-var_dump($_POST);
+
 if (!empty($_POST['add_to_cart'])) {
     ini_set('gd.jpeg_ignore_warning', 1);
     $rand = rand();
@@ -94,12 +98,19 @@ if (!empty($_POST['add_to_cart'])) {
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 no_padding">
                             <div class="ontwerpen_links">
-                                <div class="shirt_preview" style="overflow-y: auto">
+                                <div class="shirt_preview">
 
                                         <canvas id="editor"></canvas>
 
 
-
+                                    <style>
+                                        .canvas-container{
+                                            transform: scale(0.13);
+                                            left: -1550px;
+                                            top: -1100px;
+                                            border: 20px solid black;
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </div>
@@ -181,6 +192,7 @@ if (!empty($_POST['add_to_cart'])) {
                                                 <tr><td>xxl</td><td><input type="number" value="0" name="xxl"></td></tr>
 
                                             </table>
+                                            <div id="uploadHolder" style="display: none"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
                                             <input type="submit"  name="add_to_cart" value="Voeg toe aan winkelwagen">
                                         </div>

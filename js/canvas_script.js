@@ -15,9 +15,9 @@ function getUrlVars() {
         return check;
     };
     if (window.mobileAndTabletcheck()){
-        var cornersize = 30;
+        var cornersize = 300;
     }else{
-        var cornersize = 14;
+        var cornersize = 140;
     }
     var upload = document.getElementById('fileUpload');
 
@@ -86,7 +86,7 @@ function getUrlVars() {
         if (this.value == 'meme'){
             setStyle(obj, 'stroke', '#000000');
             setStyle(obj, 'fill', '#ffffff');
-            setStyle(obj, 'strokeWidth', 1);
+            setStyle(obj, 'strokeWidth', 10);
             setStyle(obj, 'fontFamily', 'impact');
         }else{
             setStyle(obj, 'stroke', '');
@@ -100,7 +100,7 @@ function getUrlVars() {
         if (document.getElementById('font-family').value == 'meme'){
             var stroke = '#000000';
             var fill = '#ffffff';
-            var strokewidth = 1;
+            var strokewidth = 10;
             var fontfamily = 'impact';
         }else{
             var stroke = '';
@@ -111,6 +111,7 @@ function getUrlVars() {
         var index = textArr.push(canvas.add(new fabric.IText(document.getElementById('addtext').value, {
             left: 100, //Take the block's position
             top: 100,
+            fontSize: '400',
             fill: fill,
             cornerSize: cornersize,
             stroke: stroke,

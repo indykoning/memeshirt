@@ -1,5 +1,5 @@
 //basic functions
-var canvas = this.__canvas = new fabric.Canvas('editor', {width: 3508 ,height:2480});
+var canvas = this.__canvas = new fabric.Canvas('editor', {width: 1754 ,height:1240});
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -15,9 +15,9 @@ function getUrlVars() {
         return check;
     };
     if (window.mobileAndTabletcheck()){
-        var cornersize = 300;
+        var cornersize = 250;
     }else{
-        var cornersize = 140;
+        var cornersize = 100;
     }
     var upload = document.getElementById('fileUpload');
 
@@ -35,7 +35,9 @@ function getUrlVars() {
     document.addEventListener('keyup', function (e) {
        if(e.key == 'Delete'){
            canvas.getActiveObject().remove();
-       }
+       }else if (e.key == 'Enter'){
+           canvas.deactivateAll();
+       };
     });
     function setStyle(object, styleName, value) {
         if (object.setSelectionStyles && object.isEditing) {
@@ -71,9 +73,9 @@ function getUrlVars() {
     });
     document.getElementById('colordiv').appendChild(input);
 
-    addHandler('size', function(obj) {
-        setStyle(obj, 'fontSize', parseInt(this.value, 10));
-    }, 'onchange');
+    // addHandler('size', function(obj) {
+    //     setStyle(obj, 'fontSize', parseInt(this.value, 10));
+    // }, 'onchange');
     fabric.Object.prototype.transparentCorners = false;
     upload.addEventListener('change', function (e) {
         var image = URL.createObjectURL(upload.files[0]);
@@ -81,7 +83,9 @@ function getUrlVars() {
         clear();
     });
 
-
+    document.getElementById('deselect').addEventListener('click', function () {
+        canvas.deactivateAll();
+    });
     addHandler('font-family', function(obj) {
         if (this.value == 'meme'){
             setStyle(obj, 'stroke', '#000000');
@@ -97,6 +101,7 @@ function getUrlVars() {
 
     }, 'onchange');
     document.getElementById('addtextBut').addEventListener('click', function () {
+        canvas.deactivateAll();
         if (document.getElementById('font-family').value == 'meme'){
             var stroke = '#000000';
             var fill = '#ffffff';
@@ -128,5 +133,31 @@ function getUrlVars() {
         });
 
     }
+    document.getElementById('wagen').addEventListener('click', function () {
+        canvas.deactivateAll();
+        document.getElementById('loading').style.display = 'table-cell';
+        var imgBase64 = canvas.toDataURL('image/jpg');
+        document.getElementById('ImageToUpload').value = imgBase64;
+        var fd = new FormData(document.forms["uploadForm"]);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'views/private/upload_ontwerp.php', true);
+        xhr.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+                var percentComplete = Math.ceil((e.loaded / e.total) * 100);
+                console.log(percentComplete + '% uploaded');
+            }
+        };
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200){
+                alert('Toegevoegd aan de winkelwagen');
+                // document.getElementById('response').innerHTML = this.responseText;
+                window.location.href = window.location.href.replace('/ontwerpen', '/winkelwagen');
+            }
+        };
+        xhr.onload = function() {
 
+        };
+        xhr.send(fd);
+
+    });
 })();

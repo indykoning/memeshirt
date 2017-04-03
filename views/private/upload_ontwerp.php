@@ -3,9 +3,6 @@ chdir('../../');
 ini_set('memory_limit', '-1');
 ini_set('post_max_size', '-1');
 ini_set('upload_max_filesize', '-1');
-var_dump($_POST);
-
-var_dump($_POST['image']);
 $output_width = 3508;
 $output_height = 2480;
 
@@ -85,7 +82,7 @@ if (!empty($_POST['image'])) {
         $user_id = (!empty($_SESSION['ID'])) ? $_SESSION['ID'] : 'Null';
         if (empty($_SESSION['bestelling_id'])) {
             $sql = "INSERT INTO `bestelling`(`status`, `users_id`) VALUES (0, $user_id)";
-//            $result = $mysqli->query($sql);
+            $result = $mysqli->query($sql);
             $_SESSION['bestelling_id'] = $mysqli->insert_id;
         }
         $xs = abs($_POST['xs']) * PRIJS_XS;
@@ -96,7 +93,7 @@ if (!empty($_POST['image'])) {
         $xxl = abs($_POST['xxl']) * PRIJS_XXL;
         $totaal = $xs+$s+$m+$l+$xl+$xxl;
         $sql = "INSERT INTO `images`(`filename`, `status`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, ". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
-//        $mysqli->query($sql);
+        $mysqli->query($sql);
 //    var_dump($sql);
 //    var_dump(mysqli_error($mysqli));
     }else{

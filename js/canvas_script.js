@@ -150,8 +150,8 @@ function getUrlVars() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
                 alert('Toegevoegd aan de winkelwagen');
-                // document.getElementById('response').innerHTML = this.responseText;
-                window.location.href = window.location.href.replace('/ontwerpen', '/winkelwagen');
+                document.getElementById('response').innerHTML = this.responseText;
+                // window.location.href = window.location.href.replace('/ontwerpen', '/winkelwagen');
             }
         };
         xhr.onload = function() {

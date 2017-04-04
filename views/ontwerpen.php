@@ -90,7 +90,6 @@ if (!empty($_POST['add_to_cart'])) {
 ?>
 <script src="js/fabric.js"></script>
 <script src="js/jscolor.js"></script>
-<body data-spy="scroll" data-target=".navbar" data-offset="25">
 <div id="no-x-scroll">
         <div class="row">
             <div class="col-xs-12">
@@ -138,14 +137,14 @@ if (!empty($_POST['add_to_cart'])) {
                                             <!--stap 1-->
 
                                             <div class="colorSelect" >
-                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="black" id="black"><label class="KleurKiezer_label" for="black" style="background-color: black"></label>
-                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="white" id="white" checked><label class="KleurKiezer_label" for="white" style="background-color: white"></label>
-                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="gray" id="gray"><label class="KleurKiezer_label" for="gray" style="background-color: lightgray"></label>
-                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="blue" id="blue"><label class="KleurKiezer_label" for="blue" style="background-color: blue"></label>
-                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="pink" id="pink"><label class="KleurKiezer_label" for="pink" style="background-color: deeppink"></label>
-                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="red" id="red"><label class="KleurKiezer_label" for="red" style="background-color: red"></label>
+                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="Zwart" id="Zwart"><label class="KleurKiezer_label kleurlabel" for="Zwart" style="background-color: black"></label>
+                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="Wit" id="Wit" checked><label class="KleurKiezer_label kleurlabel" for="Wit" style="background-color: white"></label>
+                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="Grijs" id="Grijs"><label class="KleurKiezer_label kleurlabel kleurlabel" for="Grijs" style="background-color: lightgray"></label>
+                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="Blauw" id="Blauw"><label class="KleurKiezer_label kleurlabel" for="Blauw" style="background-color: blue"></label>
+                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="Roze" id="Roze"><label class="KleurKiezer_label kleurlabel" for="Roze" style="background-color: deeppink"></label>
+                                                <input style="display: none" type="radio" name="shirtColor" onchange="showSelectedColor(this.id)" value="Rood" id="Rood"><label class="KleurKiezer_label kleurlabel" for="Rood" style="background-color: red"></label>
                                             </div>
-                                            <p id="selectedColor">white</p>
+                                            <p id="selectedColor">Wit</p>
                                         </div>
                                         <div id="step-2">
                                             <!--stap 2-->
@@ -155,7 +154,12 @@ if (!empty($_POST['add_to_cart'])) {
 
                                         <div id="step-3">
                                             <!--stap 3-->
-                                            <input type="text" id="addtext"><input id="addtextBut" type="button" value="voeg toe"><br>
+                                            <textarea name="" id="addtext" cols="80" rows="5"></textarea>
+
+                                            <input id="addtextBut" class="btn btn-info btn-add" type="button" value="voeg toe" style="margin-top: 5px; margin-bottom: 5px">
+                                                <br>
+                                            <input type="button" id="deleteButton" class="btn btn-info btn-remove" value="Verwijder tekst">
+                                            <br>
                                             <!--<input type="color" id="color">-->
                                             <div id="colordiv"></div>
                                             <br>
@@ -176,30 +180,25 @@ if (!empty($_POST['add_to_cart'])) {
                                                 <option value="plaster">Plaster</option>
                                                 <option value="engagement">Engagement</option>
                                             </select>
-                                            <input type="range" min="5" max="150" value="40" id="size"><input type="button" id="deleteButton" value="verwijder het geselecteerde ding">
-
 
                                         </div>
 
                                         <div id="step-4">
                                             <!--stap 4 -->
-                                            <table>
-                                                <tr><td>xs</td><td><input type="number" value="0" name="xs"></td></tr>
-                                                <tr><td>s</td><td><input type="number" value="0" name="s"></td></tr>
-                                                <tr><td>m</td><td><input type="number" value="0" name="m"></td></tr>
-                                                <tr><td>l</td><td><input type="number" value="0" name="l"></td></tr>
-                                                <tr><td>xl</td><td><input type="number" value="0" name="xl"></td></tr>
-                                                <tr><td>xxl</td><td><input type="number" value="0" name="xxl"></td></tr>
-
-                                            </table>
+                                            <div class="floatMaat"><p class="maat">XS</p><input type="number" class="maatAantal" value="0" name="xs"></div>
+                                            <div class="floatMaat"><p class="maat">S</p><input type="number" class="maatAantal" value="0" name="s"></div>
+                                            <div class="floatMaat"><p class="maat">M</p><input type="number" class="maatAantal" value="0" name="m"></div>
+                                            <div class="floatMaat"><p class="maat">L</p><input type="number" class="maatAantal" value="0" name="l"></div>
+                                            <div class="floatMaat"><p class="maat">XL</p><input type="number" class="maatAantal" value="0" name="xl"></div>
+                                            <div class="floatMaat"><p class="maat">XLL</p><input type="number" class="maatAantal" value="0" name="xxl"></div>
                                             <div id="uploadHolder" style="display: none"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
-                                            <input type="submit"  name="add_to_cart" value="Voeg toe aan winkelwagen">
                                         </div>
                                         </form>
                                         <div class="col-xs-12">
                                             <button type="button" id="prev" class="btn btn-info btn_ontwerpproces_terug h_button_terug">Terug</button>
                                             <button type="button" id="next" class="btn btn-info btn_ontwerpproces_verder h_button_verder">Verder</button>
+                                            <input type="submit" id="wagen" class="btn btn-info btn_ontwerpproces_verder h_button_verder" name="add_to_cart" value="Voeg toe aan winkelwagen">
                                         </div>
                                     </div>
                                 </div>
@@ -229,8 +228,7 @@ if (!empty($_POST['add_to_cart'])) {
             });
         });
     });</script>
-</body>
-</html>
+
 
 <script src="js/ontwerp_stappen.js"></script>
 <script src="js/canvas_script.js"></script>

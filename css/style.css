@@ -1,10 +1,9 @@
 /* --------> Basis codes <--------*/
 
 body, html {
-    margin: 0; 
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*background-image: url(../links/wallpaper_home.jpg);*/
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -16,9 +15,9 @@ body, html {
 #no-x-scroll {
     position: relative;
     width: 100%;
-    height: 100%;
     overflow-x: hidden;
 }
+
 .container-fluid {
     margin: 0;
     padding: 0;
@@ -44,7 +43,7 @@ body, html {
 * {
     margin: 0;
     padding: 0;
-}  
+}
 
 .no_padding {
     padding: 0;
@@ -90,7 +89,7 @@ p {
 
 .h_button_home {
     font-family: 'PT Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 3vh;
     color: #73B7E5;
     padding: 0;
@@ -98,7 +97,7 @@ p {
 
 .h_button_home2 {
     font-family: 'PT Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 3vh;
     color: #73B7E5;
     padding: 0;
@@ -144,21 +143,65 @@ p {
     font-weight: 800;
     font-size: 2vh;
     padding: 0;
-} 
+}
 
 .h_button_verder {
     font-family: 'PT Sans', sans-serif;
     font-weight: 800;
     font-size: 2vh;
     padding: 0;
-} 
+}
+
+.h_button_terug_bestel {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2vh;
+    padding: 0;
+}
+
+.h_button_verder_bestel {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 2vh;
+    padding: 0;
+}
 
 .h_button_status {
     font-family: 'PT Sans', sans-serif;
     font-weight: 400;
     font-size: 1.5vh;
     padding: 0;
-} 
+}
+
+.h_bestelling {
+    font-size: 5vh;
+    color: black;
+}
+
+.h_bestelling_specs {
+    font-size: 2vh;
+    color: black;
+    margin-bottom: -1.5vh;
+}
+
+.h_bestelling_specs2 {
+    font-size: 2vh;
+    color: black;
+    font-weight: 400;
+}
+
+.h_verzendkosten {
+    font-size: 2.8vh;
+    color: black;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.h_totaal_prijs {
+    font-size: 2.8vh;
+    color: black;
+    font-weight: 800;
+}
 
 /* --------> Navigatie <--------*/
 
@@ -174,7 +217,6 @@ p {
     margin: 0;
     font-family: 'PT Sans', sans-serif;
     font-weight: 700;
-    margin-top: 10px;
 }
 
 .p_nav_winkelwagen {
@@ -199,12 +241,12 @@ p {
 
 .navbar-inverse .navbar-nav>li>a:focus {
     color: white;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 ul.nav {
     float: right;
-} 
+}
 
 .navbar .navbar-nav {
     display: inline-block;
@@ -232,7 +274,7 @@ ul.nav {
 }
 
 .navbar_no_border {
-    border: none;   
+    border: none;
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
@@ -269,6 +311,26 @@ ul.nav {
     width: 100%;
     height: 100%;
     text-align: center;
+}
+
+.wrapper_winkelwagen {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    padding-top: 11vh;
+    padding-bottom: 4vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+}
+
+.wrapper_inloggen {
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    padding-top: 11vh;
+    padding-bottom: 4vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
 }
 
 /* --------> Buttons <--------*/
@@ -311,6 +373,43 @@ ul.nav {
     width: 50%;
     margin-left: 0;
     outline-color: #F49517 !important;
+}
+
+.btn_bestelling_verder {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    width: 35%;
+    margin-top: 3vh;
+    height: 6vh;
+    float: right;
+}
+
+.btn_bestelling_verder:hover, .btn_bestelling_verder:focus, .btn_bestelling_verder:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #73B7E5 !important;
+}
+
+.btn_bestelling_terug {
+    background-color: transparent;
+    border: 2px solid #404040;
+    color: black;
+    width: 35%;
+    height: 6vh;
+    margin-top: 3vh;
+}
+
+.btn_bestelling_terug:hover, .btn_bestelling_terug:focus, .btn_bestelling_terug:active {
+    background-color: #404040 !important;
+    border: 2px solid #404040;
+    color: white;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #404040 !important;
 }
 
 .btn_ontwerpproces_verder {
@@ -403,7 +502,6 @@ ul.nav {
 .wrapper_banner {
     background-color: white;
     width: 100%;
-    /*height: 100%;*/
     text-align: center;
     padding: 5vh;
 }
@@ -421,7 +519,7 @@ ul.nav {
 
 .ontwerpen_links {
     width: 100%;
-    height: 700px;
+    height: 100%;
     background-color: white;
     padding: 3vh;
     margin-top: 76px;
@@ -429,74 +527,135 @@ ul.nav {
 
 .ontwerpen_rechts {
     width: 100%;
-    height: 700px;
+    height: 100%;
     background-color: white;
     padding: 3vh;
     margin-top: 76px;
 }
 
 .wrapper_functies_ontwerp {
-    background-color: lightblue;
+    background-color: whitesmoke;
     height: 100%;
-    min-height: 700px;
-    max-height: 900px;
     width: 100%;
     padding: 3vh;
 }
 
 .shirt_preview {
-    background-color: lightblue;
+    background-color: whitesmoke;
     height: 100%;
-    min-height: 700px;
-    max-height: 800px;
     width: 100%;
     padding: 3vh;
 }
 
-#step-2{
+#step-2 {
     margin-left: 190px;
 }
-label{
+
+.kleurlabel {
     width: 190px;
     height: 190px;
 }
-.KleurKiezer_label{
+
+.KleurKiezer_label {
     width: 190px;
-    height: 190px;
-    border: solid black;
+    border: 2px solid black;
 }
+
 .colorSelect input[type="radio"]:checked+label {
     box-shadow: 3px 3px 28px 7px rgba(0,0,0,0.75);
 }
-#editor{
+
+#editor {
     border: solid black;
 }
 
-#fileUpload{
+#fileUpload {
     text-align: center;
     margin-top: 40px;
-
 }
 
+#selectedColor {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 800;
+    font-size: 3vh;
+    color: black;
+}
 
-.maat{
-    border: solid black;
+.maat {
+    border: 2px solid black;
+    display: inline-block;
     width: 10%;
     margin-bottom: 0;
-    border-radius: 10px;
-    display: inline-block;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 5px;
     padding-left: 5px;
+    margin-top: 1vh;
+    margin-left: 2vh;
+    color: black;
+    background-color: transparent;
+    height: 6vh;
+    border-radius: 6px;
+    float: left;
+}
 
+.maatAantal {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: black;
+    margin-top: 1vh;
+    width: 10%;
+    height: 6vh;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.btn-add {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    width: 35%;
+    margin-top: 3vh;
+    height: 6vh;
+}
+
+.btn-add:hover, .btn-add:focus, .btn-add:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #73B7E5 !important;
+}
+
+.btn-remove {
+    background-color: transparent;
+    border: 2px solid #404040;
+    color: #404040;
+    width: 35%;
+    margin-top: 3vh;
+    height: 6vh;
+    margin-bottom: 3vh;
+}
+
+.btn-remove:hover, .btn-remove:focus, .btn-remove:active {
+    background-color: black !important;
+    border: 2px solid black;
+    color: white;
+    width: 35%;
+    margin-left: 0;
+    outline-color: black !important;
+    margin-bottom: 3vh;
+}
+
+#addtext {
+    margin-bottom: 3vh;
 }
 
 /* --------> Footer <--------*/
 
 .footer {
     width: 100%;
-    /*height: 100%;*/
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: black;
@@ -508,7 +667,7 @@ label{
     float: left;
     text-align: center;
     background-color: black;
-    border-left: 1px solid #F49517; 
+    border-left: 1px solid #F49517;
 }
 
 .img_footer1 {
@@ -517,6 +676,98 @@ label{
 
 .img_footer2 {
     width: 22%;
+}
+
+/* --------> Inloggen <--------*/
+
+.gif{
+    margin-left: -150px;
+}
+
+.btn_inlog_login {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    width: 35%;
+    margin-top: 0;
+    height: 6vh;
+    float: left;
+    margin-bottom: 1.5vh;
+}
+
+.btn_inlog_login:hover, .btn_inlog_login:focus, .btn_inlog_login:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #73B7E5 !important;
+}
+
+.btn_inlog_registreer {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    width: 35%;
+    margin-top: 3vh;
+    height: 6vh;
+    float: right;
+}
+
+.btn_inlog_registreer:hover, .btn_inlog_registreer:focus, .btn_inlog_registreer:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #73B7E5 !important;
+}
+
+.btn_inlog_terug {
+    background-color: transparent;
+    border: 2px solid #404040;
+    color: black;
+    width: 35%;
+    height: 6vh;
+    margin-top: 3vh;
+}
+
+.btn_inlog_terug:hover, .btn_inlog_terug:focus, .btn_inlog_terug:active {
+    background-color: #404040 !important;
+    border: 2px solid #404040;
+    color: white;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #404040 !important;
+}
+
+
+.blue_line1 {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    height: 2px;
+    background-color: #73B7E5;
+}
+
+.form-group {
+    padding-top: 2vh;
+}
+
+.form-control {
+    height: 6vh;
+    margin-bottom: 1vh;
+}
+
+.p_form {
+    font-size: 2vh;
+    color: #404040;
+    font-weight: 800;
+}
+
+.p_vergeten {
+    font-size: 2vh;
+    color: #404040;
 }
 
 /* --------> Bestelling <--------*/
@@ -548,6 +799,56 @@ label{
 
 .padding_bestelling {
     padding-top: 11vh;
+}
+
+/* Registreren */
+
+.wrapper_registreren {
+    background-color: white;
+    width: 100%;
+    padding-top: 11vh;
+    padding-bottom: 4vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    margin-bottom: -10px;
+
+}
+
+
+.btn_reg_registreer {
+    background-color: transparent;
+    border: 2px solid #73B7E5;
+    color: #73B7E5;
+    width: 35%;
+    margin-top: 1vh;
+    height: 6vh;
+    float: right;
+}
+
+.btn_reg_registreer:hover, .btn_reg_registreer:focus, .btn_reg_registreer:active {
+    background-color: #73B7E5 !important;
+    border: 2px solid #73B7E5;
+    color: black;
+    width: 35%;
+    margin-left: 0;
+    outline-color: #73B7E5 !important;
+}
+
+.btn_reg_terug {
+    background-color: transparent;
+    border: 2px solid #404040;
+    color: black;
+    width: 35%;
+    height: 6vh;
+    margin-top: 3vh;
+}
+
+.btn_reg_terug:hover, .btn_reg_terug:focus, .btn_reg_terug:active {
+    background-color: #404040 !important;
+    border: 2px solid #404040;
+    color: white;
+    width: 35%;
+    outline-color: #404040 !important;
 }
 
 /* --------> Glyphicons <--------*/
@@ -583,7 +884,7 @@ label{
 /* --------> @media <--------*/
 
 @media (min-width: 769px) {
-    
+
     .img_footer1 {
         width: 12%;
     }
@@ -591,21 +892,20 @@ label{
     .img_footer2 {
         width: 27%;
     }
-
 }
 
 @media (max-width: 650px) {
-    
+
     .h2_home {
         margin-top: 0;
         font-size: 6vh;
     }
-    
+
     .h2_home2 {
         margin-top: 0;
         font-size: 4vh;
     }
-    
+
     .wrapper_home {
         background-color: rgba(0, 0, 0, 0.3);
         width: 100%;
@@ -615,20 +915,20 @@ label{
         padding-right: 0;
         padding-left: 0;
     }
-    
+
     .h_button_home {
         font-family: 'PT Sans', sans-serif;
-        font-weight: 700;
+        font-weight: 800;
         font-size: 3vh;
         padding: 0;
-    } 
-    
+    }
+
     .row_home {
         margin-top: 30vh;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .btn_ontwerpen {
         width: 100%;
         margin-left: auto;
@@ -641,7 +941,7 @@ label{
         margin-right: auto;
 
     }
-    
+
     .btn_ontwerpen2 {
         width: 90%;
         margin-left: auto;
@@ -653,45 +953,112 @@ label{
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     ul.nav {
         float: none;
     }
-    .KleurKiezer_label {
-        width: 150px;
-        height: 150px;
-    }
-    label{
-        width: 150px;
-        height: 150px;
-    }
-
 }
 
 @media screen and (max-width: 768px) {
     ul.nav {
         text-align: center;
     }
-    
+
     .ontwerpen_rechts {
         margin-top: 0;
     }
-    
+
     .ontwerpen_links {
         margin-top: 70px;
     }
 
+    .img_shirt {
+        width: 100%;
+    }
+
+    .padding_bestelling {
+        padding-top: 0;
+    }
+
+    .btn_bestelling_terug {
+        width: 100%;
+    }
+
+    .btn_bestelling_terug:hover, .btn_bestelling_terug:focus, .btn_bestelling_terug:active {
+        width: 100%;
+    }
+
+    .btn_bestelling_verder {
+        width: 100%;
+    }
+
+    .btn_bestelling_verder:hover, .btn_bestelling_verder:focus, .btn_bestelling_verder:active {
+        width: 100%;
+    }
+
+    .text_align_right_bestelling {
+        text-align: right;
+        margin-top: -45px;
+    }
+
+    .text_align_right_totaal {
+        text-align: right;
+    }
+
+    .btn_inlog_login {
+        width: 100%;
+    }
+
+    .btn_inlog_login:hover, .btn_inlog_login:focus, .btn_inlog_login:active {
+        width: 100%;
+    }
+
+    .btn_inlog_registreer {
+        width: 100%;
+    }
+
+    .btn_inlog_registreer:hover, .btn_inlog_registreer:focus, .btn_inlog_registreer:active {
+        width: 100%;
+    }
+
+    .btn_inlog_terug {
+        width: 100%;
+    }
+
+    .btn_inlog_terug:hover, .btn_inlog_terug:focus, .btn_inlog_terug:active {
+        width: 100%;
+    }
+
+    .btn_reg_registreer {
+        width: 100%;
+    }
+
+    .btn_reg_registreer:hover, .btn_reg_registreer:focus, .btn_reg_registreer:active {
+        width: 100%;
+    }
+
+    .btn_reg_terug {
+        width: 100%;
+    }
+
+    .btn_reg_terug:hover, .btn_reg_terug:focus, .btn_reg_terug:active {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 1024px) {
     .html, body {
         background-image: url(../links/wallpaper_mobile.jpg);
     }
-
-
 }
 
-@media (min-height: 1024px) { 
+@media (min-height: 1366px) {
+    .text_align_right_totaal {
+        text-align: right;
+    }
+}
+
+@media (min-height: 1024px) {
     .h2_footer {
         font-size: 2vh;
     }
@@ -699,24 +1066,24 @@ label{
     .p_footer {
         font-size: 1.5vh;
     }
-    
+
     .ontwerpen_rechts {
         margin-top: 76px;
     }
-    
+
     .h_button_terug {
         font-size: 1vh;
-    } 
+    }
 
     .h_button_verder {
         font-size: 1vh;
-    } 
-    
+    }
+
     .h_button_status {
         font-size: 1vh;
         margin: 1vh;
     }
-    
+
     .btn_ontwerpproces_verder {
         color: #73B7E5;
         width: 35%;
@@ -724,14 +1091,14 @@ label{
         height: 3vh;
         float: right;
     }
-    
+
     .btn_ontwerpproces_verder:hover, .btn_ontwerpproces_verder:focus, .btn_ontwerpproces_verder:active {
         color: black;
         width: 35%;
         margin-left: 0;
         outline-color: #73B7E5 !important;
     }
-    
+
     .btn_ontwerpproces_terug {
         color: black;
         width: 35%;
@@ -739,14 +1106,14 @@ label{
         margin-top: 3vh;
         float: left;
     }
-    
+
     .btn_ontwerpproces_terug:hover, .btn_ontwerpproces_terug:focus, .btn_ontwerpproces_terug:active {
         color: white;
         width: 35%;
         margin-left: 0;
         outline-color: black !important;
     }
-    
+
     .btn_ontwerpproces_status {
         color: #73B7E5;
         margin-bottom: 3vh;
@@ -755,7 +1122,7 @@ label{
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .btn_ontwerpproces_status:hover, .btn_ontwerpproces_status:focus, .btn_ontwerpproces_status:active {
         color: black;
         margin-bottom: 3vh;
@@ -764,7 +1131,7 @@ label{
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .wrapper_functies_ontwerp {
         padding: 0;
     }
@@ -772,7 +1139,7 @@ label{
     .shirt_preview {
         padding: 0;
     }
-    
+
     .img_footer1 {
         width: 20%;
     }
@@ -781,37 +1148,80 @@ label{
         width: 35%;
     }
 
+    .img_shirt {
+        width: 50%;
+    }
+
+    .h_bestelling_specs {
+        font-size: 1.5vh;
+        color: black;
+        margin-bottom: -1.5vh;
+    }
+
+    .h_bestelling_specs2 {
+        font-size: 1.5vh;
+        color: black;
+        font-weight: 400;
+    }
+
+    .h_verzendkosten {
+        font-size: 2vh;
+        color: black;
+        font-weight: 400;
+        margin-top: 0;
+    }
+
+    .h_totaal_prijs {
+        font-size: 2vh;
+        color: black;
+        font-weight: 800;
+    }
+
+    .verwijderen {
+        color: #73B7E5;
+        font-size: 1.5vh;
+    }
+
+    .text_align_right_bestelling {
+        text-align: right;
+        margin-top: 0;
+    }
+
+    .padding_bestelling {
+        padding-top: 30px;
+    }
+
 }
 
 @media (max-width: 400px) {
     .h_button_terug {
         font-size: 1vh;
-    } 
+    }
 
     .h_button_verder {
         font-size: 1vh;
-    } 
-    
+    }
+
     .h_button_status {
         font-size: 1.3vh;
         margin: 1vh;
     }
-    
+
     .btn_ontwerpproces_verder {
         color: #73B7E5;
         width: 35%;
         margin-top: 3vh;
         height: 4vh;
         float: right;
-    }   
-    
+    }
+
     .btn_ontwerpproces_verder:hover, .btn_ontwerpproces_verder:focus, .btn_ontwerpproces_verder:active {
         color: black;
         width: 35%;
         margin-left: 0;
         outline-color: #73B7E5 !important;
     }
-    
+
     .btn_ontwerpproces_terug {
         color: black;
         width: 35%;
@@ -819,14 +1229,14 @@ label{
         margin-top: 3vh;
         float: left;
     }
-    
+
     .btn_ontwerpproces_terug:hover, .btn_ontwerpproces_terug:focus, .btn_ontwerpproces_terug:active {
         color: white;
         width: 35%;
         margin-left: 0;
         outline-color: black !important;
     }
-    
+
     .btn_ontwerpproces_status {
         color: #73B7E5;
         margin-bottom: 3vh;
@@ -835,7 +1245,7 @@ label{
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .btn_ontwerpproces_status:hover, .btn_ontwerpproces_status:focus, .btn_ontwerpproces_status:active {
         color: black;
         margin-bottom: 3vh;
@@ -844,7 +1254,7 @@ label{
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .wrapper_functies_ontwerp {
         padding: 1vh;
     }
@@ -852,34 +1262,33 @@ label{
     .shirt_preview {
         padding: 1vh;
     }
-
 }
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-    .col-sm-4{
+@media (min-width: 768px) {
+    .col-sm-4 {
         width: 33.29%;
     }
     .KleurKiezer_label {
         width: 160px;
         height: 160px;
     }
-    label{
+    .kleurlabel {
         width: 160px;
         height: 160px;
     }
 }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
-    .col-md-3{
+@media (min-width: 992px) {
+    .col-md-3 {
         width: 24.96%;
     }
     .KleurKiezer_label {
         width: 180px;
         height: 180px;
     }
-    label{
+    .kleurlabel {
         width: 180px;
         height: 180px;
     }
@@ -889,7 +1298,8 @@ label{
         width: 160px;
         height: 160px;
     }
-    label{
+
+    .kleurlabel {
         width: 160px;
         height: 160px;
     }

@@ -2,6 +2,7 @@ var curstep = 0;
 var steps = ['step-1', 'step-2', 'step-3', 'step-4'];
 var prev = document.getElementById('prev');
 var next = document.getElementById('next');
+var wagen = document.getElementById("wagen");
 
 
 
@@ -23,8 +24,11 @@ function changeStep(stepNumber) {
 
     if (stepNumber>=steps.length-1){
         next.style.display = "none";
+        wagen.style.display = "inline";
+
     }else{
         next.style.display = "inline";
+        wagen.style.display = "none";
     }
 
     if (stepNumber == steps.length-1){

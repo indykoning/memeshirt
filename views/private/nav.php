@@ -4,6 +4,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
+
+
             <div class="gratis_balk">
                 <p class="p_gratis"> Gratis verzending | Binnen 2 werkdagen in huis</p>
             </div>

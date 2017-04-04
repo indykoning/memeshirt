@@ -168,6 +168,6 @@ if(!empty($_POST['update'])) {
 <?php
 }
 else{
-    echo "<p>U heeft geen bestellingen</p>";
+    echo "<p style='margin-top: 8%'>U heeft geen bestellingen</p>";
 }
 

@@ -614,12 +614,11 @@ input[type=file] {
     padding-right: 5px;
     padding-left: 5px;
     margin-top: 1vh;
-    margin-left: 2vh;
+    margin-right: 6vh;
     color: black;
     background-color: transparent;
     height: 6vh;
     border-radius: 6px;
-    float: left;
 }
 
 .maatAantal {

@@ -104,5 +104,6 @@ if (!empty($_POST['image'])) {
     var_dump(mysqli_error($mysqli));
     }else{
 //        var_dump('err');
+        
     }
 }?>

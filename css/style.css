@@ -310,6 +310,7 @@ ul.nav {
     background-color: white;
     width: 100%;
     height: 100%;
+    padding-top: 50px;
     text-align: center;
 }
 
@@ -433,8 +434,8 @@ ul.nav {
 
 .btn_ontwerpproces_terug {
     background-color: transparent;
-    border: 2px solid black;
-    color: black;
+    border: 2px solid #404040;
+    color: #404040;
     width: 35%;
     height: 6vh;
     margin-top: 3vh;
@@ -442,12 +443,12 @@ ul.nav {
 }
 
 .btn_ontwerpproces_terug:hover, .btn_ontwerpproces_terug:focus, .btn_ontwerpproces_terug:active {
-    background-color: black !important;
-    border: 2px solid black;
+    background-color: #404040 !important;
+    border: 2px solid #404040;
     color: white;
     width: 35%;
     margin-left: 0;
-    outline-color: black !important;
+    outline-color: #404040 !important;
 }
 
 .btn_ontwerpproces_status {
@@ -519,59 +520,71 @@ ul.nav {
 
 .ontwerpen_links {
     width: 100%;
-    height: 100%;
     background-color: white;
     padding: 3vh;
-    margin-top: 76px;
+    margin-top: 20px;
 }
 
 .ontwerpen_rechts {
     width: 100%;
-    height: 100%;
     background-color: white;
     padding: 3vh;
-    margin-top: 76px;
+    margin-top: 20px;
 }
 
 .wrapper_functies_ontwerp {
-    background-color: whitesmoke;
+    background-color: white;
     height: 100%;
     width: 100%;
     padding: 3vh;
 }
 
 .shirt_preview {
-    background-color: whitesmoke;
+    background-color: white;
     height: 100%;
     width: 100%;
     padding: 3vh;
 }
 
 #step-2 {
-    margin-left: 190px;
+    padding-bottom: 180px;
+    padding-top: 180px;
 }
 
-.kleurlabel {
+#step-3 {
+    padding-bottom: 25px;
+    padding-top: 75px;
+}
+
+#step-4 {
+    padding-bottom: 65px;
+    padding-top: 65px;
+}
+
+label {
     width: 190px;
     height: 190px;
 }
 
 .KleurKiezer_label {
     width: 190px;
-    border: 2px solid black;
+    border-radius: 6px;
+    border: 1px solid black;
 }
 
 .colorSelect input[type="radio"]:checked+label {
-    box-shadow: 3px 3px 28px 7px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 15px 2px rgba(0,0,0,0.75);
+}
+
+.canvas-container{
+    transform: scale(0.13);
+    left: -1550px;
+    top: -1100px;
+    border: 20px solid black;
 }
 
 #editor {
     border: solid black;
-}
-
-#fileUpload {
-    text-align: center;
-    margin-top: 40px;
 }
 
 #selectedColor {
@@ -579,6 +592,16 @@ ul.nav {
     font-weight: 800;
     font-size: 3vh;
     color: black;
+}
+
+input[type=file] {
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+.h_input {
+    font-size: 3vh;
 }
 
 .maat {
@@ -591,12 +614,11 @@ ul.nav {
     padding-right: 5px;
     padding-left: 5px;
     margin-top: 1vh;
-    margin-left: 2vh;
+    margin-right: 6vh;
     color: black;
     background-color: transparent;
     height: 6vh;
     border-radius: 6px;
-    float: left;
 }
 
 .maatAantal {
@@ -639,17 +661,26 @@ ul.nav {
 }
 
 .btn-remove:hover, .btn-remove:focus, .btn-remove:active {
-    background-color: black !important;
-    border: 2px solid black;
+    background-color: #404040 !important;
+    border: 2px solid #404040;
     color: white;
     width: 35%;
     margin-left: 0;
-    outline-color: black !important;
+    outline-color: #404040 !important;
     margin-bottom: 3vh;
 }
 
 #addtext {
     margin-bottom: 3vh;
+    border-radius: 6px;
+    width: 95%;
+}
+
+.h_bestelling2 {
+    font-size: 5vh;
+    color: black;
+    margin-right: 3000px;
+    margin-left: 2vh;
 }
 
 /* --------> Footer <--------*/
@@ -680,7 +711,7 @@ ul.nav {
 
 /* --------> Inloggen <--------*/
 
-.gif{
+.gif {
     margin-left: -150px;
 }
 
@@ -750,6 +781,14 @@ ul.nav {
     background-color: #73B7E5;
 }
 
+.blue_line2 {
+    margin-right: 2vh;
+    margin-left: 2vh;
+    height: 2px;
+    margin-bottom: -20px;
+    background-color: #73B7E5;
+}
+
 .form-group {
     padding-top: 2vh;
 }
@@ -806,12 +845,11 @@ ul.nav {
 .wrapper_registreren {
     background-color: white;
     width: 100%;
+    height: 100%;
     padding-top: 11vh;
     padding-bottom: 4vh;
     padding-left: 5vh;
     padding-right: 5vh;
-    margin-bottom: -10px;
-
 }
 
 
@@ -849,6 +887,23 @@ ul.nav {
     color: white;
     width: 35%;
     outline-color: #404040 !important;
+}
+
+/* --------> Bevestiging/Mislukt <--------*/
+
+.h_bevestiging {
+    font-size: 3.5vh;
+    color: green;
+}
+
+.h_mislukt {
+    font-size: 3.5vh;
+    color: red;
+}
+
+.p_bevestiging {
+    font-size: 2vh;
+    color: black;
 }
 
 /* --------> Glyphicons <--------*/
@@ -966,10 +1021,11 @@ ul.nav {
 
     .ontwerpen_rechts {
         margin-top: 0;
+        padding-bottom: 120px;
     }
 
     .ontwerpen_links {
-        margin-top: 70px;
+        margin-top: 0px;
     }
 
     .img_shirt {
@@ -1044,11 +1100,9 @@ ul.nav {
     .btn_reg_terug:hover, .btn_reg_terug:focus, .btn_reg_terug:active {
         width: 100%;
     }
-}
 
-@media screen and (max-width: 1024px) {
-    .html, body {
-        background-image: url(../links/wallpaper_mobile.jpg);
+    .ontwerpen_links {
+        margin-top: 20px;
     }
 }
 
@@ -1065,10 +1119,6 @@ ul.nav {
 
     .p_footer {
         font-size: 1.5vh;
-    }
-
-    .ontwerpen_rechts {
-        margin-top: 76px;
     }
 
     .h_button_terug {
@@ -1273,7 +1323,7 @@ ul.nav {
         width: 160px;
         height: 160px;
     }
-    .kleurlabel {
+    label {
         width: 160px;
         height: 160px;
     }
@@ -1288,7 +1338,7 @@ ul.nav {
         width: 180px;
         height: 180px;
     }
-    .kleurlabel {
+    label {
         width: 180px;
         height: 180px;
     }
@@ -1299,7 +1349,7 @@ ul.nav {
         height: 160px;
     }
 
-    .kleurlabel {
+    label {
         width: 160px;
         height: 160px;
     }

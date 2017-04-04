@@ -11,6 +11,7 @@ $message = 'Welkom';
 
 if (rank == 1){
     if(!empty($_POST['bestellingDone'])) {
+        $sql = "UPDATE bestelling SET status = 3, eindDatum = CURRENT_TIMESTAMP WHERE id='". $_POST['id'] . "'";
         $sql = "SELECT * from bestelling WHERE id = ".$_POST['id']." ";
         $result = $mysqli->query($sql);
 
@@ -136,7 +137,6 @@ if (rank == 1){
 if(!empty($_POST['showBestelling'])) {
     echo "<a href='?page=admin' class='button'>Ga terug</a>";
 
-    $klaar = (!empty($_POST['klaar'])) ? '1' : '0';
     $xs = (!empty($_POST['xs'])) ? '1' : '0';
     $s = (!empty($_POST['s'])) ? '1' : '0';
     $m = (!empty($_POST['m'])) ? '1' : '0';
@@ -144,7 +144,7 @@ if(!empty($_POST['showBestelling'])) {
     $xl = (!empty($_POST['xl'])) ? '1' : '0';
     $xxl = (!empty($_POST['xxl'])) ? '1' : '0';
 
-    $sql = "UPDATE images SET status_img = ". $klaar . ", xs_status = ".$xs.", s_status = ".$s.", m_status = ".$m.", l_status = ".$l.", xl_status = ".$xl.", xxl_status = ".$xxl." WHERE id='". $_POST['id_img'] . "'";
+    $sql = "UPDATE images SET xs_status = ".$xs.", s_status = ".$s.", m_status = ".$m.", l_status = ".$l.", xl_status = ".$xl.", xxl_status = ".$xxl." WHERE id='". $_POST['id_img'] . "'";
     $result = $mysqli->query($sql);
 
     $sql = "SELECT * FROM bestelling WHERE id = " . $_POST['id'] . " ";
@@ -224,10 +224,9 @@ if(!empty($_POST['showBestelling'])) {
         echo "<form method='post'>";
         $aantal = 0;
         echo "<tr>";
-        $checked = ($row['status_img'] == 1) ? 'checked' : '';
         echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
         echo "<td><input type='submit' name='showBestelling' value='Sla op'/> </td>";
-        echo "<td><div style='width: 100px'><img style=' display: block;width: 100%;height: auto;' src=". $row['filename'] ."></div></td>";
+        echo "<td><div style='width: 100px'><img style=' display: block;width: 100%;height: auto;' src='order_images/" . $row['filename'] ."'></div></td>";
         $checked = ($row['xs_status'] == 1) ? 'checked' : '';$i += 1;
         echo "<td><input $checked type='checkbox' name='xs' id='$i' /><label for='$i'>".$row['xs']."</label> </td>";
         $checked = ($row['s_status'] == 1) ? 'checked' : ''; $i += 1;
@@ -241,7 +240,7 @@ if(!empty($_POST['showBestelling'])) {
         $checked = ($row['xxl_status'] == 1) ? 'checked' : ''; $i += 1;
         echo "<td><input $checked type='checkbox' name='xxl' id='$i' /><label for='$i'>".$row['xxl']."</label> </td>";
 
-        echo "<td><a href='/order_images' download='".$row['filename']."' >Download</a></td>";
+        echo "<td><a class='btn' href='order_images/".$row['filename']."' download='".$row['filename']."' >Download</a></td>";
         echo "</tr>";
         echo "<input name='id' type='hidden' value='" .$row['bestelling_id']. "' />";
         echo "</form>";

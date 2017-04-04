@@ -1,5 +1,7 @@
 <?php
 error_reporting(0);
+$expire = 365*24*3600;
+ini_set('session.gc_maxlifetime', $expire);
 require_once "includes/config.php";
 require_once  "includes/db.php";
 require_once 'classes/Login.php';

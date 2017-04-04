@@ -97,7 +97,7 @@ if (!empty($_POST['image'])) {
         $xl = abs($_POST['xl']) * PRIJS_XL;
         $xxl = abs($_POST['xxl']) * PRIJS_XXL;
         $totaal = $xs+$s+$m+$l+$xl+$xxl;
-        $sql = "INSERT INTO `images`(`filename`, `status`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`, `kleur`) VALUES ('" . $imagename . "',0, ". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ", '".$_POST['shirtColor']."')";
+        $sql = "INSERT INTO `images`(`filename`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`, `kleur`) VALUES ('" . $imagename . "',". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ", '".$_POST['shirtColor']."')";
         $mysqli->query($sql);
 //        var_dump('foto geupload');
     var_dump($sql);

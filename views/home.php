@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
     <div class="col-xs-12">
         <div class="wrapper_home">
             <div class="row row_home">

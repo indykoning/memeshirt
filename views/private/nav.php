@@ -4,6 +4,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
+
+
             <div class="gratis_balk">
                 <p class="p_gratis"> Gratis verzending | Binnen 2 werkdagen in huis</p>
             </div>
@@ -26,20 +28,13 @@
                             }
                             ?>
                             <li><a href="home#wrapper_winkelen" class="p_nav">Winkelen</a></li>
+                            <li><a href="home" class="p_nav">Winkelen</a></li>
                             <li><a href="ontwerpen" class="p_nav">Ontwerpen</a></li>
-                            <?php
-                                if (LOGGED_IN){
-                                    echo '<li><a href="?logout" class="p_nav">Uitloggen</a></li>';
-                                }else {
-                                    echo '<li><a href="inloggen" class="p_nav">Inloggen</a></li>';
-                                };
-                            ?>
-<!--                            <li><a href="winkelwagen" class="hidden-xs p_nav"><img src="links/winkelwagen.png" alt="" height="25"></a></li>-->
-                            <li><a href="#" class="hidden-xs p_nav"></a>
+                            <li><a href="inloggen" class="p_nav">Inloggen</a></li>
                             <?php
                             $sql = "SELECT bestelling_id FROM images WHERE bestelling_id = ".$_SESSION['bestelling_id'];
                             $result = $mysqli->query($sql);
-                            echo "<li><a href='winkelwagen' class='p_nav'><img src='links/winkelwagen.png' alt=''height='25'>($result->num_rows)</a></li>";
+                            echo "<li><a href='winkelwagen' class='p_nav'><img src='links/winkelwagen.png' alt='' height='25'>($result->num_rows)</a></li>";
                             ?>
                             </li>
                         </ul>
@@ -48,6 +43,7 @@
             </nav>
         </div>
     </div> <!-- eind row navbar  -->
+<!---->
 <!--<nav><img src=""> <ul><li><a href="ontwerpen">ontwerpen</a></li><li class="winkelmand"></li></ul></nav>-->
 <!--<a href="?logout">Logout</a>-->
 <!--<form id="registerForm" method="post">-->

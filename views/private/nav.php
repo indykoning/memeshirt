@@ -28,7 +28,6 @@
                             }
                             ?>
                             <li><a href="home#wrapper_winkelen" class="p_nav">Winkelen</a></li>
-                            <li><a href="home" class="p_nav">Winkelen</a></li>
                             <li><a href="ontwerpen" class="p_nav">Ontwerpen</a></li>
                             <?php
                             if (LOGGED_IN){

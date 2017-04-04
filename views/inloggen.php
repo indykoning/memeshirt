@@ -10,12 +10,14 @@
     <div class="row">
         <div class="col-sm-4 col-xs-12">
             <div class="form-group">
+                <form method="post">
                 <span class="p_form"> Email </span>
                 <input name="email" class="form-control p_form" type="email">
                 <span class="p_form"> Wachtwoord </span>
                 <input name="wachtwoord" class="form-control p_form" type="password">
             </div>
             <input type="submit" class="btn btn-info btn_inlog_login h_button_terug_bestel" name="login" value="login">
+            </form>
         </div>
         <div class="col-sm-offset-5 col-sm-3 hidden-xs">
             <img class="gif" src="links/gif_wijs.gif" alt="">

@@ -22,7 +22,7 @@
                         <ul class="nav navbar-nav">
                             <?php
                             if (rank == 1) {
-                                echo '<li><a href="admin" class="p_nav">Admin</a></li>';
+                                echo '<li><a href="admin?page=admin" class="p_nav">Admin</a></li>';
                             }
                             ?>
                             <li><a href="home#wrapper_winkelen" class="p_nav">Winkelen</a></li>

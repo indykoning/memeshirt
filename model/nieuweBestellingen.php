@@ -1,7 +1,6 @@
 <?php
 $sql = "SELECT * FROM bestelling";
 $result = $mysqli->query($sql);
-echo "<div style='margin-top: 5%'>";
 echo "<h2>Nieuwe bestellingen</h2>";
 echo "<tr>";
 echo "<table>";
@@ -16,7 +15,6 @@ while ($row = $result->fetch_assoc()) {
     $aantal = 0;
     if ($row['users_id'] != Null) {
         if($row['status'] == 1){
-            echo "<div style='border: 1px solid black;'>";
             $sql3 = "SELECT * FROM users WHERE id = " . $row['users_id'] . " ";
             $result3 = $mysqli->query($sql3);
             while ($row3 = $result3->fetch_assoc()) {
@@ -31,18 +29,15 @@ while ($row = $result->fetch_assoc()) {
             }
             echo "<td>$aantal</td>";
             echo "<form target='_blank' method='post'>";
-            echo "<td><input type='submit' name='showBestelling' value='Open'/></td>";
+            echo "<td><input class='btn' type='submit' onclick='refresh()' name='showBestelling' value='Open'/></td>";
             echo "<input type='hidden' name='id' value='".$row['id']."' />";
             echo "<input name='user_id' type='hidden' value='" .$row['users_id']. "' />";
             echo "</tr>";
             echo "</form>";
-            echo "</div>";
-            echo "</div>";
         }
     }
     if ($row['users_id'] == Null){
         if ($row['status'] == 1) {
-            echo "<div style='border: 1px solid black;'>";
             echo "<td>" . $row['b_email'] . "</td>";
 
             $sql2 = "SELECT * FROM images WHERE bestelling_id = " . $row['id'] . " ";
@@ -54,15 +49,12 @@ while ($row = $result->fetch_assoc()) {
             }
             echo "<td>$aantal</td>";
             echo "<form target='_blank' method='post'>";
-            echo "<td><input type='submit' name='showBestelling' value='Open'/></td>";
+            echo "<td><input class='btn' type='submit' onclick='refresh()' name='showBestelling' value='Open'/></td>";
             echo "<input type='hidden' name='id' value='".$row['id']."' />";
             echo "<input name='user_id' type='hidden' value='" .$row['users_id']. "' />";
             echo "</tr>";
             echo "</form>";
-            echo "</div>";
-            echo "</div>";
         }
     }
 }
 echo "</table>";
-echo "</div>";

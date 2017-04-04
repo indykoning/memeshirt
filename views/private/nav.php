@@ -30,7 +30,15 @@
                             <li><a href="home#wrapper_winkelen" class="p_nav">Winkelen</a></li>
                             <li><a href="home" class="p_nav">Winkelen</a></li>
                             <li><a href="ontwerpen" class="p_nav">Ontwerpen</a></li>
-                            <li><a href="inloggen" class="p_nav">Inloggen</a></li>
+                            <?php
+                            if (LOGGED_IN){
+                                echo '<li><a href="?logout" class="p_nav">Uitloggen</a></li>';
+                            }else {
+                                echo '<li><a href="inloggen" class="p_nav">Inloggen</a></li>';
+                            };
+                            ?>
+                            <!--                            <li><a href="winkelwagen" class="hidden-xs p_nav"><img src="links/winkelwagen.png" alt="" height="25"></a></li>-->
+                            <li><a href="#" class="hidden-xs p_nav"></a>
                             <?php
                             $sql = "SELECT bestelling_id FROM images WHERE bestelling_id = ".$_SESSION['bestelling_id'];
                             $result = $mysqli->query($sql);

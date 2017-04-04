@@ -12,7 +12,6 @@ echo "<th>Openen</th>";
 echo "</tr>";
 echo "<tr>";
 
-
 while ($row = $result->fetch_assoc()) {
     $aantal = 0;
     if ($row['users_id'] != Null) {

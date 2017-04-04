@@ -83,9 +83,7 @@ function getUrlVars() {
         clear();
     });
 
-    document.getElementById('deselect').addEventListener('click', function () {
-        canvas.deactivateAll();
-    });
+
     addHandler('font-family', function(obj) {
         if (this.value == 'meme'){
             setStyle(obj, 'stroke', '#000000');
@@ -124,7 +122,10 @@ function getUrlVars() {
             fontFamily: fontfamily
         })));
     });
-
+    document.getElementById('deselect').addEventListener('click', function () {
+        console.log('deselect');
+        canvas.deactivateAll();
+    });
     function clear() {
         canvas.clear();
         fabric.Image.fromURL(imgbuffer, function(oImg) {
@@ -150,8 +151,8 @@ function getUrlVars() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
                 alert('Toegevoegd aan de winkelwagen');
-                document.getElementById('response').innerHTML = this.responseText;
-                // window.location.href = window.location.href.replace('/ontwerpen', '/winkelwagen');
+                // document.getElementById('response').innerHTML = this.responseText;
+                window.location.href = window.location.href.replace('/ontwerpen', '/winkelwagen');
             }
         };
         xhr.onload = function() {

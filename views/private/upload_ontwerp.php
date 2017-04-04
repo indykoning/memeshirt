@@ -86,7 +86,7 @@ if (!empty($_POST['image'])) {
             $sql = "INSERT INTO `bestelling`(`status`, `users_id`) VALUES (0, $user_id)";
             $result = $mysqli->query($sql);
             $_SESSION['bestelling_id'] = $mysqli->insert_id;
-            var_dump('bestelling_id is leeg');
+//            var_dump('bestelling_id is leeg');
         }
         $xs = abs($_POST['xs']) * PRIJS_XS;
         $s = abs($_POST['s']) * PRIJS_S;
@@ -97,7 +97,7 @@ if (!empty($_POST['image'])) {
         $totaal = $xs+$s+$m+$l+$xl+$xxl;
         $sql = "INSERT INTO `images`(`filename`, `status`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, ". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
         $mysqli->query($sql);
-        var_dump('foto geupload');
+//        var_dump('foto geupload');
 //    var_dump($sql);
 //    var_dump(mysqli_error($mysqli));
     }else{

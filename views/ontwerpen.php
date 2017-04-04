@@ -12,9 +12,9 @@
                 <div class="wrapper_ontwerpen">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 no_padding">
-                            <div class="ontwerpen_links">
+                            <div class="ontwerpen_links" >
                                 <div class="shirt_preview">
-<img style="position: absolute; width: 100%; left: -100px" src="http://vm3.sm-planet.net/images/t-shirt/1/white.jpg">
+<!--<img style="position: absolute; width: 1000px; left: -100px" src="links/shirt_white.jpg">-->
                                         <canvas id="editor"></canvas>
 
 
@@ -103,12 +103,12 @@
 
                                         <div id="step-4">
                                             <!--stap 4 -->
-                                            <div><p class="maat">XS</p><input type="number" class="maatAantal" value="0" name="xs"></div>
-                                            <div><p class="maat">S</p><input type="number" class="maatAantal" value="0" name="s"></div>
-                                            <div><p class="maat">M</p><input type="number" class="maatAantal" value="0" name="m"></div>
-                                            <div><p class="maat">L</p><input type="number" class="maatAantal" value="0" name="l"></div>
-                                            <div><p class="maat">XL</p><input type="number" class="maatAantal" value="0" name="xl"></div>
-                                            <div><p class="maat">XLL</p><input type="number" class="maatAantal" value="0" name="xxl"></div>
+                                            <div><p class="maat">XS</p><input type="number" class="maatAantal" value="0" min="0" name="xs"></div>
+                                            <div><p class="maat">S</p><input type="number" class="maatAantal" value="0" min="0" name="s"></div>
+                                            <div><p class="maat">M</p><input type="number" class="maatAantal" value="0" min="0" name="m"></div>
+                                            <div><p class="maat">L</p><input type="number" class="maatAantal" value="0" min="0" name="l"></div>
+                                            <div><p class="maat">XL</p><input type="number" class="maatAantal" value="0" min="0" name="xl"></div>
+                                            <div><p class="maat">XLL</p><input type="number" class="maatAantal" value="0" min="0" name="xxl"></div>
                                             <div id="uploadHolder" style="display: none"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
 <!--                                            <input type="submit"  name="add_to_cart" value="Voeg toe aan winkelwagen">-->

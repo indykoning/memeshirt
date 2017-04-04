@@ -15,6 +15,9 @@ prev.addEventListener('click', function () {
     curstep--;
 changeStep(curstep);
 });
+
+
+
 function changeStep(stepNumber) {
     if (stepNumber<=0){
         prev.style.display = "none";
@@ -31,10 +34,7 @@ function changeStep(stepNumber) {
         wagen.style.display = "none";
     }
 
-    if (stepNumber == steps.length-1){
-        document.getElementById('ImageToUpload').value = canvas.toDataURL('image/jpg');
 
-    }
     steps.forEach(function (id) {
        document.getElementById(id).style.display = 'none';
     });
@@ -45,5 +45,3 @@ changeStep(0);
 
 //stap 1
 
-document.getElementById('ImageToUpload').addEventListener('change', function () {
-});

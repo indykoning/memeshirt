@@ -1,119 +1,37 @@
-<?php
-ini_set('memory_limit', '-1');
-ini_set('post_max_size', '500M');
-ini_set('upload_max_filesize', '50M');
-$output_width = 3508;
-$output_height = 2480;
-
-var_dump($_POST);
-function setTransparency($new_image,$image_source)
-{
-
-    $transparencyIndex = imagecolortransparent($image_source);
-    $transparencyColor = array('red' => 255, 'green' => 255, 'blue' => 255);
-
-    if ($transparencyIndex >= 0) {
-        $transparencyColor    = imagecolorsforindex($image_source, $transparencyIndex);
-    }
-
-    $transparencyIndex    = imagecolorallocate($new_image, $transparencyColor['red'], $transparencyColor['green'], $transparencyColor['blue']);
-    imagefill($new_image, 0, 0, $transparencyIndex);
-    imagecolortransparent($new_image, $transparencyIndex);
-
-}
-
-if (!empty($_POST['add_to_cart'])) {
-    ini_set('gd.jpeg_ignore_warning', 1);
-    $rand = rand();
-    $imagename = $rand . ".jpg";
-    $file = getcwd() . '/order_images/' . $imagename;
-    for ($i = 0; file_exists($file); $i++) {
-        $imagename = $rand++ . ".jpg";
-        $file = getcwd() . '/order_images/' . $imagename;
-    }
-
-    $img = $_POST['image'];
-    $img = str_replace('data:image/png;base64,', '', $img);
-    $img = str_replace(' ', '+', $img);
-    $data = base64_decode($img);
-    $image = imagecreatefromstring($data);
-//    imagecolortransparent($image, imagecolorallocate($image,255, 255, 255));
-//    imagealphablending($image, false);
-//    imagesavealpha($image, true);
-
-
-    $image_p = imagecreatetruecolor($output_width, $output_height);
-    setTransparency($image_p, $image);
-//    imagecolortransparent($image_p, imagecolorallocate($image_p,255, 255, 255));
-//    imagealphablending($image_p, false);
-//    imagesavealpha($image_p, true);
-    $width = imagesx($image);
-    $height = imagesy($image);
-    imagecopyresampled($image_p, $image, 0, 0, 0, 0,$output_width , $output_height, $width, $height);
-
-    ob_start(); // Let's start output buffering.
-    imagejpeg($image_p); //This will normally output the image, but because of ob_start(), it won't.
-    $data = ob_get_contents(); //Instead, output above is saved to $contents
-    ob_end_clean();
-
-    $context = stream_context_create([
-        'gs' => [
-            'acl' => 'public-read',
-            'Content-Type' => 'image/jpeg',
-            'enable_cache' => true,
-            'enable_optimistic_cache' => true,
-            'read_cache_expiry_seconds' => 300,
-        ]
-    ]);
-    if (file_put_contents($file, $data, false, $context) !== false) {
-        $user_id = (!empty($_SESSION['ID'])) ? $_SESSION['ID'] : 'Null';
-        if (empty($_SESSION['bestelling_id'])) {
-            $sql = "INSERT INTO `bestelling`(`status`, `users_id`) VALUES (0, $user_id)";
-            $result = $mysqli->query($sql);
-            $_SESSION['bestelling_id'] = $mysqli->insert_id;
-        }
-        $xs = abs($_POST['xs']) * PRIJS_XS;
-        $s = abs($_POST['s']) * PRIJS_S;
-        $m = abs($_POST['m']) * PRIJS_M;
-        $l = abs($_POST['l']) * PRIJS_L;
-        $xl = abs($_POST['xl']) * PRIJS_XL;
-        $xxl = abs($_POST['xxl']) * PRIJS_XXL;
-        $totaal = $xs+$s+$m+$l+$xl+$xxl;
-        $sql = "INSERT INTO `images`(`filename`, `status`, `totaal_prijs`, `xs`, `s`, `m`, `l`, `xl`, `xxl`, `bestelling_id`) VALUES ('" . $imagename . "',0, ". $totaal ."," . abs($_POST['xs']) . "," . abs($_POST['s']) . "," . abs($_POST['m']) . "," . abs($_POST['l']) . "," . abs($_POST['xl']) . "," . abs($_POST['xxl']) . "," . $_SESSION['bestelling_id'] . ")";
-        $mysqli->query($sql);
-//    var_dump($sql);
-//    var_dump(mysqli_error($mysqli));
-    }else{
-//        var_dump('err');
-    }
-}
-?>
 <script src="js/fabric.js"></script>
 <script src="js/jscolor.js"></script>
+<div id="loading" style="position: fixed; background-color: rgba(0,0,0,0.5); z-index: 2000; width: 100%; height: 100%; display:none; vertical-align:middle; text-align:center">
+    <img src="http://www.cuisson.co.uk/templates/cuisson/supersize/slideshow/img/progress.BAK-FOURTH.gif">
+</div>
+
 <div id="no-x-scroll">
         <div class="row">
             <div class="col-xs-12">
                 <div class="wrapper_ontwerpen">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 no_padding">
-                            <div class="ontwerpen_links">
+                            <div class="ontwerpen_links" >
                                 <div class="shirt_preview">
-
+<!--<img style="position: absolute; width: 1000px; left: -100px" src="links/shirt_white.jpg">-->
                                         <canvas id="editor"></canvas>
 
 
                                     <style>
                                         .canvas-container{
-                                            transform: scale(0.13);
-                                            left: -1550px;
-                                            top: -1100px;
-                                            border: 20px solid black;
+                                            transform: scale(0.2);
+                                            left: -700px;
+                                            top: -500px;
+
+                                        }
+                                        #editor{
+                                            box-shadow: 0 0 0 -1px red
                                         }
                                     </style>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 no_padding">
+                            <div id="response"></div>
                             <div class="ontwerpen_rechts">
                                 <div class="wrapper_functies_ontwerp">
                                     <div class="row">
@@ -129,7 +47,7 @@ if (!empty($_POST['add_to_cart'])) {
                                         <div class="col-xs-3">
                                             <button onclick="changeStep(3)" type="button" class="btn btn-info btn_ontwerpproces_status h_button_status">Maat en aantal</button>
                                         </div>
-                                        <form method="post" enctype="multipart/form-data">
+                                        <form method="post" name="uploadForm" id="uploadForm" enctype="multipart/form-data">
                                         <div id="step-1">
                                             <script>function showSelectedColor(value) {
                                                     document.getElementById('selectedColor').innerHTML = value;
@@ -181,10 +99,13 @@ if (!empty($_POST['add_to_cart'])) {
                                                 <option value="engagement">Engagement</option>
                                             </select>
 
+<!--                                            <input type="range" min="5" max="150" value="40" id="size">-->
+
                                         </div>
 
                                         <div id="step-4">
                                             <!--stap 4 -->
+
                                             <div class="floatMaat"><p class="maat">XS</p><input type="number" class="maatAantal" value="0" name="xs"></div>
                                             <div class="floatMaat"><p class="maat">S</p><input type="number" class="maatAantal" value="0" name="s"></div>
                                             <div class="floatMaat"><p class="maat">M</p><input type="number" class="maatAantal" value="0" name="m"></div>
@@ -194,6 +115,7 @@ if (!empty($_POST['add_to_cart'])) {
                                             <div id="uploadHolder" style="display: none"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
                                         </div>
+
                                         </form>
                                         <div class="col-xs-12">
                                             <button type="button" id="prev" class="btn btn-info btn_ontwerpproces_terug h_button_terug">Terug</button>

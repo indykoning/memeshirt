@@ -111,11 +111,10 @@
                                             <div class="floatMaat"><p class="maat">M</p><input type="number" class="maatAantal" value="0" name="m"></div>
                                             <div class="floatMaat"><p class="maat">L</p><input type="number" class="maatAantal" value="0" name="l"></div>
                                             <div class="floatMaat"><p class="maat">XL</p><input type="number" class="maatAantal" value="0" name="xl"></div>
-                                            <div class="floatMaat"><p class="maat">XLL</p><input type="number" class="maatAantal" value="0" name="xxl"></div>
+                                            <div class="floatMaat"><p class="maat">XXL</p><input type="number" class="maatAantal" value="0" name="xxl"></div>
                                             <div id="uploadHolder" style="display: none"></div>
                                             <input type="text" name="image" id="ImageToUpload" style="display: none">
                                         </div>
-
                                         </form>
                                         <div class="col-xs-12">
                                             <button type="button" id="prev" class="btn btn-info btn_ontwerpproces_terug h_button_terug">Terug</button>

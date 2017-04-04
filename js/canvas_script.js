@@ -122,10 +122,7 @@ function getUrlVars() {
             fontFamily: fontfamily
         })));
     });
-    document.getElementById('deselect').addEventListener('click', function () {
-        console.log('deselect');
-        canvas.deactivateAll();
-    });
+    
     function clear() {
         canvas.clear();
         fabric.Image.fromURL(imgbuffer, function(oImg) {

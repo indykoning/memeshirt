@@ -8,9 +8,8 @@ if (!empty($_POST['betaal'])){
     $goodTogo = true;
 
     if (!LOGGED_IN && !empty($_POST['email'])&& !empty($_POST['straatnaam'])&& !empty($_POST['huisnummer'])&& !empty($_POST['postcode'])&& !empty($_POST['plaatsnaam'])){
-        $sql = "UPDATE bestelling SET b_email='" . $_POST['email'] . "', b_straatnaam='" . $_POST['straatnaam'] . "', b_huisnummer='" . $_POST['huisnummer'] . "', b_postcode='" . $_POST['postcode'] . "', b_plaatsnaam='" . $_POST['plaatsnaam'] . "' WHERE id=". $row['id'];
+        $sql = "UPDATE bestelling SET b_email='" . $_POST['email'] . "', b_straatnaam='" . $_POST['straatnaam'] . "', b_huisnummer='" . $_POST['huisnummer'] . "', b_postcode='" . $_POST['postcode'] . "', b_plaatsnaam='" . $_POST['plaatsnaam'] . "' WHERE id=". $_SESSION['bestelling_id'];
         $mysqli->query($sql);
-
     }elseif (!LOGGED_IN){
         echo "<h1 style='color: red'>Nog niet alle velden zijn ingevuld</h1>";
         $goodTogo = false;
@@ -58,6 +57,7 @@ if(!empty($_POST['update'])) {
     $xl = abs($_POST['xl']) * PRIJS_XL;
     $xxl = abs($_POST['xxl']) * PRIJS_XXL;
     $totaal = $xs+$s+$m+$l+$xl+$xxl;
+//    var_dump(PRIJS_XS);
     $sql = "UPDATE images SET totaal_prijs = '".$totaal."', xs = '" . $_POST['xs'] . "', s = '" . $_POST['s'] . "', m = '" . $_POST['m'] . "', l = '" . $_POST['l'] . "', xl = '" . $_POST['xl'] . "', xxl = '" . $_POST['xxl'] . "' WHERE id = ".$_POST['id'];
     $result = $mysqli->query($sql);
 

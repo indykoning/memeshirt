@@ -7,6 +7,15 @@ ini_set('post_max_size', '-1');
 ini_set('upload_max_filesize', '-1');
 session_start();
 require_once  "includes/db.php";
+$sql = "SELECT * FROM `prijzen` WHERE id=1";
+$result = $mysqli->query($sql);
+$prijzen = $result->fetch_assoc();
+define('PRIJS_XS', $prijzen['XS']);
+define('PRIJS_S', $prijzen['S']);
+define('PRIJS_M', $prijzen['M']);
+define('PRIJS_L', $prijzen['L']);
+define('PRIJS_XL', $prijzen['XL']);
+define('PRIJS_XXL', $prijzen['XXL']);
 $output_width = 3508;
 $output_height = 2480;
 
@@ -104,6 +113,6 @@ if (!empty($_POST['image'])) {
     var_dump(mysqli_error($mysqli));
     }else{
 //        var_dump('err');
-        
+
     }
 }?>

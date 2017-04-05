@@ -107,7 +107,7 @@ echo '
                     <div class="col-sm-2 col-xs-6 padding_bestelling">
                         <h1 class="h_bestelling_specs">Kleur: ' . $row["kleur"] . '</h1>
                     </div>
-                    <div class="col-sm-2 col-xs-8 padding_bestelling">
+                    <div class="col-sm-4 col-xs-8" style="margin-top: 12px">
                     <table>
 <tr><td>XS:</td><td><input name=\'xs\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["xs"].'\'/></td></tr>
 <tr><td>S:</td><td><input name=\'s\' type=\'number\' min=\'0\' onchange=\'liveEdit(' .$i . ')\' value=\''.$row["s"].'\'/></td></tr>
@@ -119,7 +119,7 @@ echo '
                     </div>
                     <div class="col-sm-2 col-xs-4 padding_bestelling text_align_right_bestelling">
                         <h1 class="h_bestelling_specs2">&euro; '. $row["totaal_prijs"] .'</h1>
-                        <p class="verwijderen"><label style="cursor: pointer" for="delete_wagen_'.$i.'">Verwijderen</label></p>
+                        <p class="verwijderen" style><label style="cursor: pointer;margin-bottom: 145px;" for="delete_wagen_'.$i.'">Verwijderen</label></p>
                     </div>
                     
 ';
@@ -130,31 +130,63 @@ echo '
     $totale_prijs += $row['totaal_prijs'];
     echo "</form>";
 }
-echo "</div>                    <div class=\"col-sm-3 col-sm-offset-7 col-xs-6 row_winkelwagen\">
+echo "</div>
+                 <div class=\"col-xs-12 row_winkelwagen\">
+                        <div class=\"blue_line\"></div>
+                    </div>
+                 <div class=\"col-sm-3 col-sm-offset-7 col-xs-6 row_winkelwagen\">
                         <h1 class=\"h_verzendkosten\">Verzendkosten:</h1>
                         <h1 class=\"h_totaal_prijs\">Totale prijs:</h1>
                     </div>
                     <div class=\"col-sm-2 col-xs-6 row_winkelwagen text_align_right_totaal\">
                         <h1 class=\"h_verzendkosten\">&euro; 0,00</h1>
                         <h1 class=\"h_totaal_prijs\">&euro; ".$totale_prijs."</h1>
-                    </div>";
+                    </div>
+                    ";
 $sql = "UPDATE bestelling SET totale_prijs = ". $totale_prijs . " WHERE id= ". $_SESSION['bestelling_id'];
 $mysqli->query($sql);
 
 echo "<form method='post'>";
 if (!LOGGED_IN){
  ?>
-    <table style="padding: 0; margin: 0">
-    <tr><td><label>e-mail</label></td><td><input type="text" name="email" placeholder="e-mail"></td></tr>
-            <tr><td><label>Straatnaam</label></td><td><input type="text" name="straatnaam" placeholder="straatnaam"></td></tr>
-            <tr><td><label>huisnummer</label></td><td><input type="number" name="huisnummer" placeholder="huisnummer"></td></tr>
-            <tr><td><label>postcode</label></td><td><input type="text" name="postcode" placeholder="postcode"></td></tr>
-            <tr><td><label>plaatsnaam</label></td><td><input type="text" name="plaatsnaam" placeholder="plaatsnaam"></td></tr>
-    </table>
+    <div class="row">
+    <div class="col-xs-12">
+    <div class="wrapper_registreren">
+        <div class="col-sm-6 col-xs-12">
+        <div class="form-group">
+    <span class="p_form">E-mailadres</span><input type="text" name="email" placeholder="e-mail" class="form-control">
+            </div>
+            </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <span class="p_form">Straatnaam</span><input type="text" name="straatnaam" placeholder="straatnaam" class="form-control">
+                </div>
+            </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <span class="p_form">Huisnummer</span><input type="number" name="huisnummer" placeholder="huisnummer" class="form-control">
+                </div>
+                </div>
+        <div class="col-sm-2 col-xs-4">
+            <div class="form-group">
+                <span class="p_form">Postcode</span><input type="text" name="postcode" placeholder="postcode" class="form-control">
+                </div>
+                </div>
+        <div class="col-sm-4 col-xs-8">
+            <div class="form-group">
+                <span class="p_form">Plaats</span><input type="text" name="plaatsnaam" placeholder="plaatsnaam" class="form-control">
+                </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
     <?php
 };
-echo "<input type='submit' name='betaal' value='Betaal' /></form>";
-
+    echo "<div class='col-xs-12' style='background-color: white !important;'>
+                <input type='submit' name='betaal' value='Betaal' class='btn btn-info btn_ontwerpproces_verder h_button_verder' style='margin-bottom: 10px'/>
+            </div></form>";
 if(!empty($_POST['update'])) {
     $sql = "UPDATE bestelling SET totale_prijs = '". $totale_prijs ."' WHERE id = ".$_POST['id'];
     $result = $mysqli->query($sql);

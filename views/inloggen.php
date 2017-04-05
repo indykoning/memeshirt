@@ -23,11 +23,7 @@
             <img class="gif" src="links/gif_wijs.gif" alt="">
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-4 col-xs-12">
-            <span><a class="p_vergeten" href="wachtwoordvergeten.html">Wachtwoord vergeten?</a></span>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-sm-6 hidden-xs">
             <button onclick="window.location.href='home'" type="button" class="btn btn-info btn_inlog_terug h_button_terug_bestel">Terug</button>

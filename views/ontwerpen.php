@@ -66,7 +66,9 @@
                                         </div>
                                         <div id="step-2">
                                             <!--stap 2-->
+                                            <h1 class="h_input">Kies uw afbeelding</h1>
                                             <input  type="file" id="fileUpload" accept="image/*">
+                                            <label for="fileUpload">Bestand</label>
 
                                         </div>
 

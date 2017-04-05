@@ -226,7 +226,7 @@ if(!empty($_POST['showBestelling'])) {
         echo "<tr>";
         echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
         echo "<td><input type='submit' name='showBestelling' value='Sla op'/> </td>";
-        echo "<td><div style='width: 100px'><img style=' display: block;width: 100%;height: auto;' src='order_images/" . $row['filename'] ."'></div></td>";
+        echo "<td><div style='width: 200px'><img style=' display: block;width: 100%;height: auto;' src='order_images/" . $row['filename'] ."'></div></td>";
         $checked = ($row['xs_status'] == 1) ? 'checked' : '';$i += 1;
         echo "<td><input $checked type='checkbox' name='xs' id='$i' /><label for='$i'>".$row['xs']."</label> </td>";
         $checked = ($row['s_status'] == 1) ? 'checked' : ''; $i += 1;
@@ -404,8 +404,6 @@ if(!empty($_POST['delete'])) {
     .button:hover{
         background-color: #F49517;
     }
-
-
     .btn {
         -webkit-border-radius: 4;
         -moz-border-radius: 4;
@@ -421,8 +419,8 @@ if(!empty($_POST['delete'])) {
         background: #F49517;
         text-decoration: none;
     }
-
 </style>
+
 <!--<script>-->
 <!--    var bestaandeMemes = document.getElementById("bestaandeMemes");-->
 <!--    var bestelling = document.getElementById("bestelling");-->

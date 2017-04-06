@@ -1,5 +1,6 @@
+</div>
 <div class="footer">
-    <div class="row">
+    <div class="row" style="background-color: white !important;">
         <div class="col-xs-12 col-sm-6 col-md-3 col_footer">
             <div class="footer_section">
                 <h2 class="h2_footer">Contact</h2>

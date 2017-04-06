@@ -1,9 +1,3 @@
-<div class="background-image hidden-sm">
-    <img src="links/wallpaper_home.jpg" alt="background image">
-</div>
-<div class="background-image hidden-sm hidden-md hidden-lg">
-    <img src="links/wallpaper_mobile.jpg" alt="background image">
-</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">

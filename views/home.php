@@ -1,4 +1,10 @@
- <div class="row">
+<div class="background-image hidden-sm">
+    <img id="wegErmee" src="links/wallpaper_home.jpg" alt="background image">
+</div>
+<div class="background-image hidden-sm hidden-md hidden-lg">
+    <img src="links/wallpaper_mobile.jpg" alt="background image">
+</div>
+<div class="row">
     <div class="col-xs-12">
         <div class="wrapper_home">
             <div class="row row_home">

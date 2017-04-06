@@ -200,6 +200,6 @@ if(!empty($_POST['update'])) {
 <?php
 }
 else{
-    echo "<p style='margin-top: 8%'>U heeft geen bestellingen</p>";
+    echo "<h1 style='margin-top: 20%; margin-bottom: 15%' >U heeft geen bestellingen</h1>";
 }
 

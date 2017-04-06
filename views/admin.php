@@ -12,8 +12,6 @@ $message = 'Welkom';
 if (rank == 1){
     if(!empty($_POST['bestellingDone'])) {
         $sql = "UPDATE bestelling SET status = 3, eindDatum = CURRENT_TIMESTAMP WHERE id='". $_POST['id'] . "'";
-        $sql = "SELECT * from bestelling WHERE id = ".$_POST['id']." ";
-        $result = $mysqli->query($sql);
 
         $xs =  [];
         $s = [];
@@ -89,7 +87,6 @@ if (rank == 1){
                 }
             }
         }
-//        var_dump($sql);
 //        echo "wat je nog krijgt: <br>xs: ".$xs." <br> s: ".$s."<br>m: ".$m." <br>l: ".$l."  <br>xl: ".$xl." <br>xxl: ".$xxl." ";
 
 //        for ($i = 0; $i < count($s); $i++) {
@@ -101,10 +98,14 @@ if (rank == 1){
 //            echo $xxl[$i]['xxl'];
 //        }
 //            print_r($s);
+$to = 'koenschutte@hotmail.nl';
+$subject = 'This is subject';
+$message = '';
+
         ?>
         <table>
              <?php for ($i = 1; $i < $result->num_rows+1; $i++) {
-            ?>
+            $message.='
             <tr>
                 <td>
                 </td>
@@ -113,18 +114,25 @@ if (rank == 1){
                         <th>De maten</th>
                         <th>Gestuurd</th>
                         <th>Nog niet gestuurd</th>
-                        <tr><td>xs </td><td><?php echo $xs2[$i] ?></td><td><?php echo $xs[$i]?></td></tr>
-                        <tr><td>s </td><td><?php echo $s2[$i]  ?></td><td><?php echo $s[$i]?></td></tr>
-                        <tr><td>m </td><td><?php echo $m2[$i]  ?></td><td><?php echo $m[$i]?></td></tr>
-                        <tr><td>l </td><td><?php echo $l2[$i]  ?></td><td><?php echo $l[$i]?></td></tr>
-                        <tr><td>xl </td><td><?php echo $xl2[$i]  ?></td><td><?php echo $xl[$i]?></td></tr>
-                       <tr><td>xxl </td><td><?php echo $xxl2[$i]  ?></td><td><?php echo $xxl[$i]?></td></tr>
+                        <tr><td>xs </td><td>'. $xs2[$i] .'</td><td>'.  $xs[$i] . '</td></tr>
+                        <tr><td>s </td><td>'. $s2[$i]  .'</td><td>'. $s[$i]. '</td></tr>
+                        <tr><td>m </td><td>'. $m2[$i]  .'</td><td>'. $m[$i]. '</td></tr>
+                        <tr><td>l </td><td>'. $l2[$i]  .'</td><td>'. $l[$i]. '</td></tr>
+                        <tr><td>xl </td><td>'. $xl2[$i]  .'</td><td>'. $xl[$i]. '</td></tr>
+                       <tr><td>xxl </td><td>'. $xxl2[$i]  .'</td><td>'. $xxl[$i]. '</td></tr>
                     </table>
                 </td>
             </tr>
-                 <?php }?>
+                  ';};
+             ?>
         </table>
 <?php
+        $from = "From: FirstName LastName <SomeEmailAddress@Domain.com>";
+        mail($to,$subject,$message,$from);
+
+//        echo $message;
+//        echo $to;
+
         if($compleetKlaar == 0 ){
             $sql = "UPDATE bestelling SET status = 3, eindDatum = CURRENT_TIMESTAMP WHERE id='" . $_POST['id'] . "'";
             $result = $mysqli->query($sql);

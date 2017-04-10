@@ -2,11 +2,7 @@
     <div class="row">
         <div class="col-xs-12">
 
-
-            <div class="gratis_balk">
-                <p class="p_gratis"> Gratis verzending | Binnen 2 werkdagen in huis</p>
-            </div>
-            <nav class="navbar navbar-inverse navbar-fixed-top navbar-right-top navigation_bar">
+            <nav class="navbar navbar-inverse navbar-fixed-top navbar-right-top navigation_bar" style="margin-top: 0">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

@@ -7,7 +7,6 @@
 </script>
 
 <?php
-$message = 'Welkom';
 
 if (rank == 1){
     if(!empty($_POST['bestellingDone'])) {
@@ -100,35 +99,38 @@ if (rank == 1){
 //            print_r($s);
 $to = 'koenschutte@hotmail.nl';
 $subject = 'This is subject';
-$message = '';
+$message2 = 'test';
+$from = "From: edam-volemdam@hsdl.nl";
+//        $from .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-        ?>
-        <table>
-             <?php for ($i = 1; $i < $result->num_rows+1; $i++) {
-            $message.='
-            <tr>
-                <td>
-                </td>
-                <td>
-                    <table>
-                        <th>De maten</th>
-                        <th>Gestuurd</th>
-                        <th>Nog niet gestuurd</th>
-                        <tr><td>xs </td><td>'. $xs2[$i] .'</td><td>'.  $xs[$i] . '</td></tr>
-                        <tr><td>s </td><td>'. $s2[$i]  .'</td><td>'. $s[$i]. '</td></tr>
-                        <tr><td>m </td><td>'. $m2[$i]  .'</td><td>'. $m[$i]. '</td></tr>
-                        <tr><td>l </td><td>'. $l2[$i]  .'</td><td>'. $l[$i]. '</td></tr>
-                        <tr><td>xl </td><td>'. $xl2[$i]  .'</td><td>'. $xl[$i]. '</td></tr>
-                       <tr><td>xxl </td><td>'. $xxl2[$i]  .'</td><td>'. $xxl[$i]. '</td></tr>
-                    </table>
-                </td>
-            </tr>
-                  ';};
-             ?>
-        </table>
+
+//        ?>
+<!--        <table>-->
+<!--             --><?php //for ($i = 1; $i < $result->num_rows+1; $i++) {
+//            $message.='
+//            <tr>
+//                <td>
+//                </td>
+//                <td>
+//                    <table>
+//                        <th>De maten</th>
+//                        <th>Gestuurd</th>
+//                        <th>Nog niet gestuurd</th>
+//                        <tr><td>xs </td><td>'. $xs2[$i] .'</td><td>'.  $xs[$i] . '</td></tr>
+//                        <tr><td>s </td><td>'. $s2[$i]  .'</td><td>'. $s[$i]. '</td></tr>
+//                        <tr><td>m </td><td>'. $m2[$i]  .'</td><td>'. $m[$i]. '</td></tr>
+//                        <tr><td>l </td><td>'. $l2[$i]  .'</td><td>'. $l[$i]. '</td></tr>
+//                        <tr><td>xl </td><td>'. $xl2[$i]  .'</td><td>'. $xl[$i]. '</td></tr>
+//                       <tr><td>xxl </td><td>'. $xxl2[$i]  .'</td><td>'. $xxl[$i]. '</td></tr>
+//                    </table>
+//                </td>
+//            </tr>
+//            ';};
+//             ?>
+<!--        </table>-->
 <?php
-        $from = "From: FirstName LastName <SomeEmailAddress@Domain.com>";
-        mail($to,$subject,$message,$from);
+
+        mail($to,$subject,$message2,$from);
 
 //        echo $message;
 //        echo $to;
@@ -217,6 +219,7 @@ if(!empty($_POST['showBestelling'])) {
     echo "<tr>";
     echo "<th>Opslaan</th>";
     echo "<th>Afbeelding</th>";
+    echo "<th>Kleur</th>";
     echo "<th>xs</th>";
     echo "<th>s</th>";
     echo "<th>m</th>";
@@ -235,6 +238,7 @@ if(!empty($_POST['showBestelling'])) {
         echo "<input name='id_img' type='hidden' value='" .$row['id']. "' />";
         echo "<td><input type='submit' name='showBestelling' value='Sla op'/> </td>";
         echo "<td><div style='width: 200px'><img style=' display: block;width: 100%;height: auto;' src='order_images/" . $row['filename'] ."'></div></td>";
+        echo "<td><p>".$row['kleur']."</p></td>";
         $checked = ($row['xs_status'] == 1) ? 'checked' : '';$i += 1;
         echo "<td><input $checked type='checkbox' name='xs' id='$i' /><label for='$i'>".$row['xs']."</label> </td>";
         $checked = ($row['s_status'] == 1) ? 'checked' : ''; $i += 1;
@@ -279,22 +283,29 @@ if(!empty($_POST['showBestelling'])) {
     echo "<button class='button' onclick='window.location.href = \"?page=meme\"'>Memes</button>";
     echo "<button class='button' onclick='window.location.href = \"?page=prijs\"'>Prijzen</button>";
 
-if(!empty($_POST['edit'])) {
-    $sql = "UPDATE memes SET titel = '" . $_POST['titel'] . "', filename = '" . $_POST['filename'] . "' WHERE id='" . $_POST['id'] . "'";
-    $result = $mysqli->query($sql);
-    $message = 'Succesvol veranderd';
-}
-
 if(!empty($_POST['new'])) {
-    $sql = "INSERT INTO memes (titel, filename) VALUES ('" . $_POST['titel'] . "', '" . $_POST['filename'] . "') ";
+    $image_path = 'meme_images/';
+
+    $filename = $_FILES['fileToUpload']['name'];
+
+    $tmp_filename = $_FILES['fileToUpload']['tmp_name'];
+    $target_file = $image_path . basename($filename);
+
+    $destination = $image_path . $filename;
+    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+
+    $sql = "INSERT INTO memes (titel, filename) VALUES ('" . $_POST['titel'] . "', '" . $destination . "') ";
     $result = $mysqli->query($sql);
-    $message = 'Succesvol toegevoegd';
 }
 
 if(!empty($_POST['delete'])) {
+    $sql = "SELECT * FROM memes WHERE id=". $_POST['id'] ." ";
+    $result = $mysqli->query($sql);
+    $row = $result->fetch_assoc();
+    unlink($row['filename']);
+
     $sql = "DELETE FROM memes WHERE id=". $_POST['id'] ." ";
     $result = $mysqli->query($sql);
-    $message = 'Succesvol verwijderd';
 }
     if($_GET['page'] == 'prijs'){
 
@@ -317,9 +328,10 @@ if(!empty($_POST['delete'])) {
     }
     elseif($_GET['page'] == 'meme'){
 
-    echo "<form method='post' style='margin-top: 7%'>";
+    echo "<form method='post' style='margin-top: 7%' target='_self'enctype='multipart/form-data'>";
     echo "<input type='text' name='titel' placeholder='Titel' />";
-    echo "<input type='text' name='filename' placeholder='Bestandsnaam' />";
+//    echo "<input type='text' name='filename' placeholder='Bestandsnaam' />";
+    echo "<input type='file' name='fileToUpload' id='fileToUpload' />";
     echo "<input type='submit' name='new' value='Voeg toe'>";
     echo "</form>";
 
@@ -328,9 +340,6 @@ if(!empty($_POST['delete'])) {
     echo "<table style='margin-top: 8%'>";
     echo "<tr>";
     echo "<th>Afbeelding</th>";
-    echo "<th>Titel</th>";
-    echo "<th>Bestandnaam</th>";
-    echo "<th>Aanpassen</th>";
     echo "<th>Verwijderen</th>";
     echo "</tr>";
     echo "<tr>";
@@ -339,10 +348,7 @@ if(!empty($_POST['delete'])) {
         echo "<tr>";
         echo "<form method='post'>";
         echo "<input name='id' type='hidden' value='" .$row['id']. "' />";
-        echo "<td><img src='" . $row['filename'] . "'  height='70px'/> </td>";
-        echo "<td><input type='text' name='titel' value='" . $row['titel'] . "'/></td>";
-        echo "<td><input type='text' name='filename' value='" . $row['filename'] . "' /></td>";
-        echo "<td><input class='btn' type='submit' name='edit' value='Opslaan'></td>";
+        echo "<td><img src='" . $row['filename'] . "'  height='140px'/> </td>";
         echo "<td><input class='btn' type='submit' name='delete' value='Verwijder'></td>";
         echo "</form>";
         echo "</tr>";
@@ -357,12 +363,10 @@ if(!empty($_POST['delete'])) {
         //Voltooide bestellingen
         include "model/voltooideBestellingen.php";
     }
-    echo "<p style='   position: fixed; top: 87px; color: white; font-size: 120%; padding-top: 10px; padding-bottom: 10px; width: 100%; background-color: grey; text-align: center'>$message</p>";
-
 
 }}else{
     echo "Niet ingelogd";
-    header("Location: home");
+    header("Location: inloggen");
 }
 ?>
 <style>
@@ -397,7 +401,7 @@ if(!empty($_POST['delete'])) {
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin-top: 10%;
+        margin-top: 6%;
         cursor: pointer;
     }
     a:link {

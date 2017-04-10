@@ -1,3 +1,5 @@
+<!doctype html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="Meme, shirt, meme shirt, shirts, bedrukking, bedrukken, meme bedrukken"/>

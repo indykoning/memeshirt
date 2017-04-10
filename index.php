@@ -33,8 +33,9 @@ if(isset($_POST['register'])){
 }
 if(isset($_POST['login'])){
     if(!$login->login($_POST['email'],$_POST['wachtwoord'])){
-        echo "<h1 style='color: red'>Gebruikersnaam of wachtwoord incorrect</h1>";
+        echo "<h1 style='color: red; margin-top: 60px'>Gebruikersnaam of wachtwoord incorrect</h1>";
     }else{
+        header('Location:home');
     }}
 if (isset($_GET['logout'])){
     $login->logout();
